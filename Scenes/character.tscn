@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp5s7rhrwuaa4"]
+
+[ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
+radius = 0.45
+height = 1.95
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3wky1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
+radius = 0.2
+
+[node name="Character" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Rigidbody" type="RigidBody3D" parent="."]
+collision_layer = 2
+
+[node name="Collider" type="CollisionShape3D" parent="Rigidbody"]
+shape = SubResource("CapsuleShape3D_o4w3w")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("CapsuleMesh_3wky1")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+top_level = true
+script = ExtResource("1_phgx6")
+
+[node name="Camera" type="Camera3D" parent="Pivot" node_paths=PackedStringArray("spring_target")]
+script = ExtResource("2_6se4h")
+spring_target = NodePath("../SpringArm/SpringTarget")
+
+[node name="SpringArm" type="SpringArm3D" parent="Pivot"]
+shape = SubResource("SphereShape3D_1n2n6")
+spring_length = 5.0
+
+[node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
