@@ -4,9 +4,11 @@ extends CharacterBody3D
 @export var acceleration: float = 30.0
 @export var gravity: float = 15
 @export var max_jump_height: float = 3.0
-@export var jump_charge_max_time: float = 1.0
+@export var jump_charge_max_time: float = 1
+@export var jump_deadzone: float = 0.15
 
 @onready var camera: Camera3D = $Pivot/Camera
+@onready var jump_charge_bar: ProgressBar = $CanvasLayer/ProgressBar
 
 var jump_charge_timer: float = 0.0
 
@@ -14,7 +16,8 @@ func _ready() -> void:
 	pass 
 
 func _process(delta: float) -> void:
-	pass
+	if jump_charge_bar:
+		jump_charge_bar.value = max(0, (jump_charge_timer-jump_deadzone / jump_charge_max_time-jump_deadzone) * 100)
 
 func _physics_process(delta: float) -> void:
 	
@@ -50,7 +53,10 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("jump"):
 			jump_charge_timer = min(jump_charge_timer + delta, jump_charge_max_time)
 		elif Input.is_action_just_released("jump"):
-			var multiplier = (0.5 + jump_charge_timer) / 1.5
+			var multiplier = 0.4
+			var adjusted_jump_timer = jump_charge_timer - jump_deadzone
+			if adjusted_jump_timer > 0:
+				multiplier += adjusted_jump_timer
 			var jump_speed = sqrt(2 * gravity * (max_jump_height * multiplier))
 			current_velocity.y = jump_speed
 			jump_charge_timer = 0.0

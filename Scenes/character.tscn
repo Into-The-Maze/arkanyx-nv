@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=9 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
@@ -12,6 +12,11 @@ height = 1.95
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
 radius = 0.2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1qbe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1c1c"]
+bg_color = Color(0.265788, 0.713014, 0, 1)
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, -0.00013557, -0.000448593, 0.000135891, 1, 0.000673232, 0.000448496, -0.000673297, 1, 0.000416755, 1, 0.00564385)
@@ -42,3 +47,15 @@ shape = SubResource("SphereShape3D_1n2n6")
 spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 42.0
+offset_top = 34.0
+offset_right = 362.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a1c1c")
+value = 50.0
