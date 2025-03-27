@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=9 format=3 uid="uid://dp5s7rhrwuaa4"]
 
+[ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
 
@@ -12,18 +13,25 @@ height = 1.95
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
 radius = 0.2
 
-[node name="Character" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1qbe"]
 
-[node name="Rigidbody" type="RigidBody3D" parent="."]
-collision_layer = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1c1c"]
+bg_color = Color(0, 1, 0, 1)
 
-[node name="Collider" type="CollisionShape3D" parent="Rigidbody"]
+[node name="Character" type="CharacterBody3D"]
+transform = Transform3D(1, -0.00013557, -0.000448593, 0.000135891, 1, 0.000673232, 0.000448496, -0.000673297, 1, 0.000416755, 1, 0.00564385)
+top_level = true
+script = ExtResource("1_8xy7i")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, -1.84741e-11, 8.73115e-11, 2.08331e-11, 0.5, 0, -1.30967e-10, 0, 0.5, 0.000751766, 0.00468963, 0.00858512)
 shape = SubResource("CapsuleShape3D_o4w3w")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, -2.57501e-11, 2.91038e-11, 2.80522e-11, 0.5, 0, -5.82077e-11, 0, 0.5, 0, 0, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_3wky1")
+skeleton = NodePath("")
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -39,3 +47,22 @@ shape = SubResource("SphereShape3D_1n2n6")
 spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -487.0
+offset_top = -19.0
+offset_right = 486.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a1c1c")
+value = 50.0
+show_percentage = false
