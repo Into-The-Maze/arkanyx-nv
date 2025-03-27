@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=9 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_auuca"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Item.gd" id="2_wy2sg"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="3_e1phn"]
-
-[sub_resource type="Resource" id="Resource_3wbku"]
-script = ExtResource("3_e1phn")
-inventory = Array[ExtResource("2_wy2sg")]([null, null, null, null, null, null, null, null, null, null])
+[ext_resource type="Resource" uid="uid://etp4v2v1egm7" path="res://Scenes/Inventory/player_inventory.tres" id="2_p1niv"]
+[ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/inventory.tscn" id="6_d2h06"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -22,7 +18,7 @@ radius = 0.2
 [node name="Character" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_auuca")
-inventory = SubResource("Resource_3wbku")
+inventory = ExtResource("2_p1niv")
 
 [node name="Rigidbody" type="RigidBody3D" parent="."]
 collision_layer = 2
@@ -48,3 +44,6 @@ shape = SubResource("SphereShape3D_1n2n6")
 spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
+
+[node name="Inventory" parent="." instance=ExtResource("6_d2h06")]
+inventory_data = ExtResource("2_p1niv")

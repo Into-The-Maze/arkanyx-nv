@@ -6,11 +6,13 @@ extends Control
 @onready var background = $Inventory_Background
 @onready var grid = $Inventory_Background/Grid
 
+var slots: Array[Node]
 var is_open: bool
 
 func _ready():
-	close()
-
+	create()
+	open()
+	
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
 		if is_open: close()
@@ -24,8 +26,12 @@ func close():
 	is_open = false
 	visible = false
 
+func update():
+	for i in min(inventory_data.inventory.size(), slots.size()):
+		slots[i].update(inventory_data.inventory[i])
+
 func create():
-	var inv_size = len(inventory_data)
+	var inv_size = inventory_data.inventory.size()
 	if inv_size <= max_one_line_grid_size:
 		grid.columns = inv_size
 	else:
@@ -51,4 +57,7 @@ func create():
 		var slot = preload("res://Scenes/Inventory/inventory_slot.tscn").instantiate()
 		grid.add_child(slot)
 	
+	slots = grid.get_children()
+	
+	#todo! resize background
 		
