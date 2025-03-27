@@ -2,26 +2,32 @@ extends CharacterBody3D
 
 # MOVEMENT PARAMTERS
 @export var max_speed: float = 4.0
+@export var max_stamina: float = 40.0
+@export var stamina_regen_speed: float = 4.0
 @export var sprint_speed_multiplier: float = 1.75
 @export var acceleration: float = 40.0
 
 # JUMPING PARAMTERS
 @export var gravity: float = 20
 @export var max_jump_height: float = 3.0
-@export var jump_charge_max_time: float = 0.8
+@export var jump_charge_max_time: float = 1.0
 @export var jump_deadzone: float = 0.15
 @export var air_strafe_reduction_multiplier: float = 3.0
+@export var high_jump_multiplier: float = 1.2
 
 # DODGING PARAMTERS
 @export var dodge_speed_multiplier: float = 5.0
 @export var dodge_cooldown: float = 2.0
 @export var dodge_penalty_slowdown_multiplier: float = 0.3
-@export var dodge_penalty_slowdown_duration: float = 1.0
-@export var air_dodge_reduction_multiplier: float = 0.6
+@export var dodge_penalty_slowdown_duration: float = 0.5
+@export var air_dodge_reduction_multiplier: float = 0.7
 
+# REFERENCES
 @onready var camera: Camera3D = $Pivot/Camera
-@onready var jump_charge_bar: ProgressBar = $CanvasLayer/ProgressBar
+@onready var jump_charge_bar: ProgressBar = $CanvasLayer/JumpChargeBar
+@onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
 
+var stamina: float = 0.0
 var jump_charge_timer: float = 0.0
 var dodge_cooldown_timer: float = 0.0
 var dodge_penalty_timer: float = 0.0
@@ -30,19 +36,23 @@ var is_sprinting: bool = false
 var is_dodging: bool = false
 
 func _ready() -> void:
-	pass 
+	pass
 
 func _process(delta: float) -> void:
 	if jump_charge_bar:
-		jump_charge_bar.value = max(0, ((jump_charge_timer - jump_deadzone) / (jump_charge_max_time - jump_deadzone) * 100))
+		jump_charge_bar.value = max(0, ((jump_charge_timer - jump_deadzone) / (jump_charge_max_time - jump_deadzone) * jump_charge_bar.max_value))
+	if stamina_bar:
+		stamina_bar.value = max(0, (stamina / max_stamina) * stamina_bar.max_value)
 
 func _physics_process(delta: float) -> void:
 	
+	# Adjust timers and flags
 	if is_dodging:
 		is_dodging = !is_on_floor()
 	if not is_dodging:
 		dodge_cooldown_timer = max(dodge_cooldown_timer - delta, 0)
-	dodge_penalty_timer = max(dodge_penalty_timer - delta, 0)
+		dodge_penalty_timer = max(dodge_penalty_timer - delta, 0)
+	stamina = min(max_stamina, stamina + (stamina_regen_speed * delta))
 	
 	# MOVING
 	var adjusted_max_speed = max_speed
@@ -88,9 +98,9 @@ func _physics_process(delta: float) -> void:
 		is_jumping = false
 		if Input.is_action_pressed("jump"):
 			jump_charge_timer = min(jump_charge_timer + delta, jump_charge_max_time + jump_deadzone)
-		elif Input.is_action_just_released("jump"):
+		elif Input.is_action_just_released("jump") && stamina >= 5:
 			var multiplier = 0.25
-			var adjusted_jump_charge_timer = jump_charge_timer - jump_deadzone
+			var adjusted_jump_charge_timer: float = jump_charge_timer - jump_deadzone
 			if adjusted_jump_charge_timer > 0:
 				multiplier += pow((adjusted_jump_charge_timer / jump_charge_max_time - jump_deadzone), 2) * 0.75
 			var jump_speed = sqrt(2 * gravity * (max_jump_height * multiplier))
@@ -99,21 +109,24 @@ func _physics_process(delta: float) -> void:
 			jump_charge_timer = 0.0
 			
 			# LONG JUMP
-			if is_sprinting && adjusted_jump_charge_timer == jump_charge_max_time:
+			if is_sprinting && abs(adjusted_jump_charge_timer - jump_charge_max_time) < 0.0001 && stamina >= 25:
 				var long_jump_direction: Vector3 = direction
 				if long_jump_direction == Vector3.ZERO:
 					long_jump_direction = (-camera.global_transform.basis.z).normalized()
 				var long_jump_impulse = long_jump_direction * max_speed * dodge_speed_multiplier
 				current_velocity.x = long_jump_impulse.x
 				current_velocity.z = long_jump_impulse.z
-			# HIGH JUMP
+				stamina = max(0, stamina - 25)
 			else:
-				current_velocity.y *= 1.5
+				stamina = max(0, stamina - 5)
+			# HIGH JUMP
+			if not is_sprinting:
+				current_velocity.y *= high_jump_multiplier
 		else:
 			jump_charge_timer = 0.0
 	
 	# DODGING 
-	if Input.is_action_just_pressed("dodge") && dodge_cooldown_timer <= 0:
+	if Input.is_action_just_pressed("dodge") && dodge_cooldown_timer <= 0 && stamina >= 15:
 		if direction == Vector3.ZERO:
 			var current_horizontal = Vector3(current_velocity.x, 0, current_velocity.z)
 			if current_horizontal.length() > 0:
@@ -121,6 +134,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				direction = (-camera.global_transform.basis.z).normalized()
 		horizontal_velocity = direction * max_speed * dodge_speed_multiplier
+		stamina = max(0, stamina - 15)
 		# AIR DODGING
 		if not is_on_floor():
 			horizontal_velocity *= air_dodge_reduction_multiplier
@@ -131,6 +145,5 @@ func _physics_process(delta: float) -> void:
 		dodge_penalty_timer = dodge_penalty_slowdown_duration
 	
 	# APPLYING MOVEMENT
-	print_debug(dodge_cooldown_timer)
 	velocity = current_velocity
 	move_and_slide()
