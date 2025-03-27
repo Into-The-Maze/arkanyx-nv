@@ -1,6 +1,7 @@
 extends Control
 
 @export var max_one_line_grid_size: int = 10
+@export var background_margin_size = 12
 @export var inventory_data: Inventory
 
 @onready var background = $Inventory_Background
@@ -10,7 +11,7 @@ var slots: Array[Node]
 var is_open: bool
 
 func _ready():
-	self.connect("inventory_update", _on_inventory_update)
+	# self.connect("inventory_update", _on_inventory_update)
 
 	create()
 	update()
@@ -65,5 +66,12 @@ func create():
 	
 	slots = grid.get_children()
 	
-	#todo! resize background
+	
+	
+	background.size.x = background_margin_size + grid.size.x
+	background.size.y = background_margin_size + grid.size.y
+	background.size.x = background_margin_size + grid.size.x
+
+	background.position.x -= background.size.x / 2
+	background.position.y -= background.size.y / 2
 		
