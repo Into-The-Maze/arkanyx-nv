@@ -10,9 +10,15 @@ var slots: Array[Node]
 var is_open: bool
 
 func _ready():
+	self.connect("inventory_update", _on_inventory_update)
+
 	create()
-	open()
-	
+	update()
+	close()
+
+func _on_inventory_update():
+	update()
+
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
 		if is_open: close()
