@@ -7,13 +7,13 @@ extends CharacterBody3D
 
 # JUMPING PARAMTERS
 @export var gravity: float = 20
-@export var max_jump_height: float = 5.0
+@export var max_jump_height: float = 3.0
 @export var jump_charge_max_time: float = 0.8
 @export var jump_deadzone: float = 0.15
 @export var air_strafe_reduction_multiplier: float = 3.0
 
 # DODGING PARAMTERS
-@export var dodge_speed_multiplier: float = 6.0
+@export var dodge_speed_multiplier: float = 5.0
 @export var dodge_cooldown: float = 2.0
 @export var dodge_penalty_slowdown_multiplier: float = 0.3
 @export var dodge_penalty_slowdown_duration: float = 1.0
@@ -46,7 +46,9 @@ func _physics_process(delta: float) -> void:
 	
 	# MOVING
 	var adjusted_max_speed = max_speed
+	is_sprinting = false
 	if Input.is_action_pressed("sprint"):
+		is_sprinting = true
 		adjusted_max_speed = max_speed * sprint_speed_multiplier
 	if dodge_penalty_timer > 0:
 		adjusted_max_speed = max_speed * dodge_penalty_slowdown_multiplier
@@ -64,7 +66,6 @@ func _physics_process(delta: float) -> void:
 	
 	var direction: Vector3 = input_vector.rotated(Vector3.UP, camera.global_rotation.y)
 	var current_velocity: Vector3 = velocity
-	
 	var horizontal_velocity = Vector3(current_velocity.x, 0, current_velocity.z)
 	var target_horizontal_velocity = direction * adjusted_max_speed
 	var adjusted_acceleration = acceleration
@@ -96,6 +97,18 @@ func _physics_process(delta: float) -> void:
 			current_velocity.y = jump_speed
 			is_jumping = true
 			jump_charge_timer = 0.0
+			
+			# LONG JUMP
+			if is_sprinting && adjusted_jump_charge_timer == jump_charge_max_time:
+				var long_jump_direction: Vector3 = direction
+				if long_jump_direction == Vector3.ZERO:
+					long_jump_direction = (-camera.global_transform.basis.z).normalized()
+				var long_jump_impulse = long_jump_direction * max_speed * dodge_speed_multiplier
+				current_velocity.x = long_jump_impulse.x
+				current_velocity.z = long_jump_impulse.z
+			# HIGH JUMP
+			else:
+				current_velocity.y *= 1.5
 		else:
 			jump_charge_timer = 0.0
 	
@@ -108,6 +121,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				direction = (-camera.global_transform.basis.z).normalized()
 		horizontal_velocity = direction * max_speed * dodge_speed_multiplier
+		# AIR DODGING
 		if not is_on_floor():
 			horizontal_velocity *= air_dodge_reduction_multiplier
 		current_velocity.x = horizontal_velocity.x
