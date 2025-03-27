@@ -61,6 +61,8 @@ func _physics_process(delta: float) -> void:
 		is_dodging = !is_on_floor()
 	if is_air_dodging:
 		is_air_dodging = !is_on_floor()
+	if is_wall_dodging:
+		is_dodging = false
 	if not is_dodging:
 		dodge_cooldown_timer = max(dodge_cooldown_timer - delta, 0)
 		dodge_penalty_timer = max(dodge_penalty_timer - delta, 0)
@@ -143,7 +145,7 @@ func _physics_process(delta: float) -> void:
 			jump_charge_timer = 0.0
 	
 	# WALL HOLDING
-	if is_on_wall() && not is_on_floor() && Input.is_action_pressed("jump") && not is_wall_dodging && (wall_hold_timer < max_wall_hold_time):
+	if is_on_wall() && not is_on_floor() && Input.is_action_pressed("jump") && not is_wall_dodging && (wall_hold_timer < max_wall_hold_time) && not is_air_dodging:
 		is_wall_holding = true
 		current_velocity = Vector3.ZERO
 	else:
