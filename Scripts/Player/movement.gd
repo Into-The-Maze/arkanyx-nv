@@ -1,20 +1,33 @@
 extends CharacterBody3D
 
+# MOVEMENT PARAMTERS
 @export var max_speed: float = 4.0
 @export var sprint_speed_multiplier: float = 1.75
 @export var acceleration: float = 40.0
+
+# JUMPING PARAMTERS
 @export var gravity: float = 20
 @export var max_jump_height: float = 5.0
 @export var jump_charge_max_time: float = 0.8
 @export var jump_deadzone: float = 0.15
-@export var air_strafe_reduction_multiplier: float = 3
+@export var air_strafe_reduction_multiplier: float = 3.0
+
+# DODGING PARAMTERS
+@export var dodge_speed_multiplier: float = 6.0
+@export var dodge_cooldown: float = 2.0
+@export var dodge_penalty_slowdown_multiplier: float = 0.3
+@export var dodge_penalty_slowdown_duration: float = 1.0
+@export var air_dodge_reduction_multiplier: float = 0.6
 
 @onready var camera: Camera3D = $Pivot/Camera
 @onready var jump_charge_bar: ProgressBar = $CanvasLayer/ProgressBar
 
 var jump_charge_timer: float = 0.0
+var dodge_cooldown_timer: float = 0.0
+var dodge_penalty_timer: float = 0.0
 var is_jumping: bool = false
 var is_sprinting: bool = false
+var is_dodging: bool = false
 
 func _ready() -> void:
 	pass 
@@ -25,10 +38,18 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if is_dodging:
+		is_dodging = !is_on_floor()
+	if not is_dodging:
+		dodge_cooldown_timer = max(dodge_cooldown_timer - delta, 0)
+	dodge_penalty_timer = max(dodge_penalty_timer - delta, 0)
+	
 	# MOVING
 	var adjusted_max_speed = max_speed
 	if Input.is_action_pressed("sprint"):
 		adjusted_max_speed = max_speed * sprint_speed_multiplier
+	if dodge_penalty_timer > 0:
+		adjusted_max_speed = max_speed * dodge_penalty_slowdown_multiplier
 	
 	var input_vector: Vector3 = Vector3.ZERO
 	if Input.is_action_pressed("move_forward"):
@@ -78,7 +99,24 @@ func _physics_process(delta: float) -> void:
 		else:
 			jump_charge_timer = 0.0
 	
+	# DODGING 
+	if Input.is_action_just_pressed("dodge") && dodge_cooldown_timer <= 0:
+		if direction == Vector3.ZERO:
+			var current_horizontal = Vector3(current_velocity.x, 0, current_velocity.z)
+			if current_horizontal.length() > 0:
+				direction = current_horizontal.normalized()
+			else:
+				direction = (-camera.global_transform.basis.z).normalized()
+		horizontal_velocity = direction * max_speed * dodge_speed_multiplier
+		if not is_on_floor():
+			horizontal_velocity *= air_dodge_reduction_multiplier
+		current_velocity.x = horizontal_velocity.x
+		current_velocity.z = horizontal_velocity.z
+		is_dodging = true
+		dodge_cooldown_timer = dodge_cooldown
+		dodge_penalty_timer = dodge_penalty_slowdown_duration
+	
 	# APPLYING MOVEMENT
-	print_debug(velocity)
+	print_debug(dodge_cooldown_timer)
 	velocity = current_velocity
 	move_and_slide()
