@@ -27,7 +27,7 @@ mesh = SubResource("PlaneMesh_t7w6c")
 skeleton = NodePath("../../..")
 
 [node name="Character" parent="." instance=ExtResource("1_u2vbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0428433, 2.90087, 0.274052)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0428433, 1.43558, 0.274052)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sxcsl")
@@ -39,7 +39,7 @@ light_energy = 2.0
 shadow_enabled = true
 
 [node name="Ramp" type="StaticBody3D" parent="."]
-transform = Transform3D(5.0172, 5.26568, 0, -5.0172, 5.26568, 0, 0, 0, 3.01167, 5.55564, -0.186403, 11.2946)
+transform = Transform3D(4.84624, 5.08626, -0.779478, -5.0172, 5.26568, 0, 1.29855, 1.36286, 2.90905, 2.8373, -0.186403, 11.5977)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
 shape = SubResource("BoxShape3D_2mqpa")
@@ -48,7 +48,7 @@ shape = SubResource("BoxShape3D_2mqpa")
 mesh = SubResource("BoxMesh_dmjn8")
 
 [node name="Ramp2" type="StaticBody3D" parent="."]
-transform = Transform3D(5.79925, 4.29066, 0, -4.08819, 6.08646, 0, 0, 0, 2.51373, 5.73128, -1.65569, 4.91726)
+transform = Transform3D(-1.50096, -1.11051, 2.42808, -4.08819, 6.08646, 3.24391e-08, -5.60164, -4.14446, -0.650601, 11.3633, -1.65569, 3.06155)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2"]
 shape = SubResource("BoxShape3D_2mqpa")

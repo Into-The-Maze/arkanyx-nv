@@ -1,9 +1,14 @@
 extends CharacterBody3D
 
-@export var max_speed: float = 8.0
-@export var acceleration: float = 40.0
-@export var gravity: float = 9.81
+@export var max_speed: float = 6.0
+@export var acceleration: float = 30.0
+@export var gravity: float = 15
+@export var max_jump_height: float = 3.0
+@export var jump_charge_max_time: float = 1.0
+
 @onready var camera: Camera3D = $Pivot/Camera
+
+var jump_charge_timer: float = 0.0
 
 func _ready() -> void:
 	pass 
@@ -13,6 +18,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	# MOVING
 	var input_vector: Vector3 = Vector3.ZERO
 	if Input.is_action_pressed("move_forward"):
 		input_vector.z -= 1
@@ -30,16 +36,29 @@ func _physics_process(delta: float) -> void:
 	var horizontal_velocity = Vector3(current_velocity.x, 0, current_velocity.z)
 	var target_horizontal_velocity = direction * max_speed
 	horizontal_velocity = horizontal_velocity.move_toward(target_horizontal_velocity, acceleration * delta)
+	current_velocity.x = horizontal_velocity.x
+	current_velocity.z = horizontal_velocity.z
 	
+	# GRAVITY
 	if not is_on_floor():
 		current_velocity.y -= gravity * delta
 	else:
 		current_velocity.y = 0
 	
-	current_velocity.x = horizontal_velocity.x
-	current_velocity.z = horizontal_velocity.z
+	# JUMPING
+	if is_on_floor():
+		if Input.is_action_pressed("jump"):
+			jump_charge_timer = min(jump_charge_timer + delta, jump_charge_max_time)
+		elif Input.is_action_just_released("jump"):
+			var multiplier = (0.5 + jump_charge_timer) / 1.5
+			var jump_speed = sqrt(2 * gravity * (max_jump_height * multiplier))
+			current_velocity.y = jump_speed
+			jump_charge_timer = 0.0
+		else:
+			# Reset charge if no jump input is provided.
+			jump_charge_timer = 0.0
 	
+	# APPLYING MOVEMENT
 	print_debug(velocity)
 	velocity = current_velocity
-	
 	move_and_slide()

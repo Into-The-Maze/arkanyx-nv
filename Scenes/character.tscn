@@ -19,11 +19,11 @@ top_level = true
 script = ExtResource("1_8xy7i")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, -7.84439e-12, -8.73115e-11, -3.12355e-11, 1, 0, -1.16415e-10, 0, 1, 0, 0.95, 4.65661e-10)
+transform = Transform3D(0.5, -1.84741e-11, 8.73115e-11, 2.08331e-11, 0.5, 0, -1.30967e-10, 0, 0.5, 0.000751766, 0.00468963, 0.00858512)
 shape = SubResource("CapsuleShape3D_o4w3w")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.5, -2.57501e-11, 2.91038e-11, 2.80522e-11, 0.5, 0, -5.82077e-11, 0, 0.5, 0, 0, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_3wky1")
 skeleton = NodePath("")
