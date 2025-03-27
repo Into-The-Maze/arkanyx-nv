@@ -11,15 +11,15 @@ height = 1.95
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3wky1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
-radius = 0.2
+radius = 0.3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1qbe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu1h3"]
 bg_color = Color(0.92, 1, 0.92, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1c1c"]
-bg_color = Color(0, 1, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m25ah"]
+bg_color = Color(0.36, 0.36, 1, 1)
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, -0.00013557, -0.000448593, 0.000135891, 1, 0.000673232, 0.000448496, -0.000673297, 1, 0.000416755, 1, 0.00564385)
@@ -59,10 +59,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -440.0
-offset_top = -21.0
-offset_right = 439.0
-offset_bottom = -15.0
+offset_left = -339.0
+offset_top = -19.0
+offset_right = 339.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
@@ -70,19 +70,19 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qu1h3")
 value = 50.0
 show_percentage = false
 
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="DodgeCooldownBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -487.0
-offset_top = -34.0
+offset_top = -48.0
 offset_right = 486.0
-offset_bottom = -25.0
+offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
-theme_override_styles/fill = SubResource("StyleBoxFlat_a1c1c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m25ah")
 value = 50.0
 show_percentage = false
