@@ -1,3 +1,9 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp5s7rhrwuaa4"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_auuca"]
+[ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
+[ext_resource type="Resource" uid="uid://etp4v2v1egm7" path="res://Resources/player_inventory.tres" id="2_p1niv"]
 [gd_scene load_steps=13 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
@@ -15,6 +21,10 @@ height = 1.95
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
 radius = 0.3
 
+[node name="Character" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_auuca")
+inventory = ExtResource("2_p1niv")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1qbe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu1h3"]
