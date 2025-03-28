@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=7 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
 
@@ -9,11 +9,17 @@ size = Vector3(2, 0.01, 2)
 
 [sub_resource type="Environment" id="Environment_sxcsl"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mqpa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dmjn8"]
+
 [node name="World" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(15.2159, 0, 0, 0, 0.99261, 0, 0, 0, 15.2159, 0.00787783, 4.76837e-07, -0.0160789)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00787687, -2.38419e-07, 0.0160751)
 shape = SubResource("BoxShape3D_4yo1v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
@@ -21,6 +27,31 @@ mesh = SubResource("PlaneMesh_t7w6c")
 skeleton = NodePath("../../..")
 
 [node name="Character" parent="." instance=ExtResource("1_u2vbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0428433, 1.43558, 0.274052)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sxcsl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.826435, -0.461414, 0.322648, 0.18631, 0.764886, 0.616635, -0.531313, -0.449496, 0.718095, 0, 13.0042, 0)
+light_color = Color(1, 0.958113, 0.936174, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Ramp" type="StaticBody3D" parent="."]
+transform = Transform3D(4.84624, 5.08626, -0.779478, -5.0172, 5.26568, 0, 1.29855, 1.36286, 2.90905, 2.8373, -0.186403, 11.5977)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
+shape = SubResource("BoxShape3D_2mqpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp/CollisionShape3D"]
+mesh = SubResource("BoxMesh_dmjn8")
+
+[node name="Ramp2" type="StaticBody3D" parent="."]
+transform = Transform3D(-1.50096, -1.11051, 2.42808, -4.08819, 6.08646, 3.24391e-08, -5.60164, -4.14446, -0.650601, 11.3633, -1.65569, 3.06155)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2"]
+shape = SubResource("BoxShape3D_2mqpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2/CollisionShape3D"]
+mesh = SubResource("BoxMesh_dmjn8")
