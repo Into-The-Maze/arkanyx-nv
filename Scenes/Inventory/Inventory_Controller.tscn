@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://tifbh35o55rm"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/inventory_controller.gd" id="1_7jskc"]
+
+[node name="InventoryController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7jskc")
+
+[node name="SelectedItemImage" type="Sprite2D" parent="."]

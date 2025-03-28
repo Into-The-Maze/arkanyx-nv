@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=8 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_auuca"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
-[ext_resource type="Resource" uid="uid://etp4v2v1egm7" path="res://Scenes/Inventory/player_inventory.tres" id="2_p1niv"]
-[ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/inventory.tscn" id="6_d2h06"]
+[ext_resource type="Resource" uid="uid://etp4v2v1egm7" path="res://Resources/player_inventory.tres" id="2_p1niv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -44,6 +43,3 @@ shape = SubResource("SphereShape3D_1n2n6")
 spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
-
-[node name="Inventory" parent="." instance=ExtResource("6_d2h06")]
-inventory_data = ExtResource("2_p1niv")

@@ -1,6 +1,7 @@
 extends Panel
 
 @onready var item_display: Sprite2D = $CenterContainer/Panel/Item
+@onready var interact: Button = $Interact
 
 func update(item: Inventory_Item):
 	if !item:
@@ -8,3 +9,6 @@ func update(item: Inventory_Item):
 	else:
 		item_display.visible = true
 		item_display.texture = item.icon
+
+func _on_interact_button_down() -> void:
+	pass
