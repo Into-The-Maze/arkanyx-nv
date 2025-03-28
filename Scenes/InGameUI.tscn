@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://be7hwrgdre84"]
+
+[ext_resource type="Script" path="res://Scripts/UI/charge_bar.gd" id="1_6nlc6"]
+[ext_resource type="Script" path="res://Scripts/UI/cooldown_bar.gd" id="2_d35g2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unt2n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fktob"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48cdl"]
+bg_color = Color(0.360784, 0.360784, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl3lf"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="InGameUI" type="CanvasLayer"]
+layer = 2
+visible = false
+
+[node name="JumpChargeBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -21.0
+offset_right = 339.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_unt2n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fktob")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_6nlc6")
+
+[node name="DodgeCooldownBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -487.0
+offset_top = -33.0
+offset_right = 486.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_unt2n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_48cdl")
+value = 50.0
+show_percentage = false
+script = ExtResource("2_d35g2")
+
+[node name="WallHoldBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -13.0
+offset_right = 338.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_unt2n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bl3lf")
+value = 50.0
+show_percentage = false

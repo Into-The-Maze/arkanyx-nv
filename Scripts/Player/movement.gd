@@ -5,6 +5,13 @@ extends CharacterBody3D
 @export var sprint_speed_multiplier: float = 1.75
 @export var acceleration: float = 40.0
 
+# FOV Dynamics
+@export var base_fov: float = 70.0
+@export var max_fov: float = 120.0
+@export var fov_speed_threshold: float = 5.0
+@export var fov_scale_factor: float = 1.75
+@export var fov_smoothing: float = 4.0
+
 # JUMPING PARAMTERS
 @export var gravity: float = 20
 @export var max_jump_height: float = 3.0
@@ -25,9 +32,10 @@ extends CharacterBody3D
 
 # REFERENCES
 @onready var camera: Camera3D = $Pivot/Camera
-@onready var jump_charge_bar: ProgressBar = $CanvasLayer/JumpChargeBar
-@onready var dodge_cooldown_bar: ProgressBar = $CanvasLayer/DodgeCooldownBar
-@onready var wall_hold_bar: ProgressBar = $CanvasLayer/WallHoldBar
+@onready var in_game_canvas: CanvasLayer = $InGameUI
+@onready var jump_charge_bar: ProgressBar = $InGameUI/JumpChargeBar
+@onready var dodge_cooldown_bar: ProgressBar = $InGameUI/DodgeCooldownBar
+@onready var wall_hold_bar: ProgressBar = $InGameUI/WallHoldBar
 
 var jump_charge_timer: float = 0.0
 var dodge_cooldown_timer: float = 0.0
@@ -41,8 +49,8 @@ var is_wall_holding: bool = false
 var is_wall_dodging: bool = false
 
 func _ready() -> void:
-	pass
-
+	in_game_canvas.visible = true
+ 
 func _process(delta: float) -> void:
 	if jump_charge_bar:
 		jump_charge_bar.value = max(0, ((jump_charge_timer - jump_deadzone) / (jump_charge_max_time - jump_deadzone) * jump_charge_bar.max_value))
@@ -174,6 +182,18 @@ func _physics_process(delta: float) -> void:
 		is_dodging = true
 		dodge_cooldown_timer = dodge_cooldown
 		dodge_penalty_timer = dodge_penalty_slowdown_duration
+	
+	# APPLY DYNAMIC FOV
+	var speed = horizontal_velocity.length()
+	var target_fov: float = base_fov
+	if speed > fov_speed_threshold:
+		var excess_speed = speed - fov_speed_threshold
+		target_fov = base_fov + (excess_speed * fov_scale_factor)
+		target_fov = clamp(target_fov, base_fov, max_fov)
+
+	# Smoothly interpolate FOV toward target
+	camera.fov = lerp(camera.fov, target_fov, delta * fov_smoothing)
+
 	
 	# APPLYING MOVEMENT
 	velocity = current_velocity
