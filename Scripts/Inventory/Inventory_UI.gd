@@ -9,10 +9,10 @@ extends Control
 
 var slots: Array[Node]
 var is_open: bool
+var selected_item: Inventory_Item
 
 func _ready():
-	# self.connect("inventory_update", _on_inventory_update)
-
+	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item)
 	create()
 	update()
 	close()
@@ -32,6 +32,11 @@ func open():
 func close():
 	is_open = false
 	visible = false
+
+func select_item(id, _texture):
+	selected_item = inventory_data.inventory[id]
+	inventory_data.inventory[id] = null
+	update()
 
 func update():
 	for i in min(inventory_data.inventory.size(), slots.size()):
@@ -60,13 +65,12 @@ func create():
 				best_pair = pair
 		grid.columns = int(best_pair[0])
 
-	for _i in inv_size:
+	for i in inv_size:
 		var slot = preload("res://Scenes/Inventory/inventory_slot.tscn").instantiate()
+		slot.set_meta("Index", i)
 		grid.add_child(slot)
 	
 	slots = grid.get_children()
-	
-	
 	
 	background.size.x = background_margin_size + grid.size.x
 	background.size.y = background_margin_size + grid.size.y
@@ -74,4 +78,3 @@ func create():
 
 	background.position.x -= background.size.x / 2
 	background.position.y -= background.size.y / 2
-		

@@ -11,4 +11,9 @@ func update(item: Inventory_Item):
 		item_display.texture = item.icon
 
 func _on_interact_button_down() -> void:
-	pass
+	var selected_item_id = select_item()
+	SignalBus.emit_signal("INVENTORY_ITEM_SELECTED", selected_item_id, item_display)
+
+func select_item():
+	return get_meta("Index")
+
