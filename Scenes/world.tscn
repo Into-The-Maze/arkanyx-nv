@@ -28,6 +28,21 @@ skeleton = NodePath("../../..")
 
 [node name="Character" parent="." instance=ExtResource("1_u2vbt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0428433, 1.43558, 0.274052)
+max_speed = 4.0
+sprint_speed_multiplier = 1.75
+acceleration = 40.0
+gravity = 20.0
+max_jump_height = 3.0
+jump_charge_max_time = 1.0
+jump_deadzone = 0.15
+air_strafe_reduction_multiplier = 3.0
+high_jump_multiplier = 1.2
+dodge_speed_multiplier = 5.0
+dodge_cooldown = 2.0
+dodge_penalty_slowdown_multiplier = 0.3
+dodge_penalty_slowdown_duration = 0.5
+air_dodge_reduction_multiplier = 0.7
+max_wall_hold_time = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sxcsl")

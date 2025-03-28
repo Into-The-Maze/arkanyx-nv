@@ -25,9 +25,10 @@ extends CharacterBody3D
 
 # REFERENCES
 @onready var camera: Camera3D = $Pivot/Camera
-@onready var jump_charge_bar: ProgressBar = $CanvasLayer/JumpChargeBar
-@onready var dodge_cooldown_bar: ProgressBar = $CanvasLayer/DodgeCooldownBar
-@onready var wall_hold_bar: ProgressBar = $CanvasLayer/WallHoldBar
+@onready var in_game_canvas: CanvasLayer = $InGameUI
+@onready var jump_charge_bar: ProgressBar = $InGameUI/JumpChargeBar
+@onready var dodge_cooldown_bar: ProgressBar = $InGameUI/DodgeCooldownBar
+@onready var wall_hold_bar: ProgressBar = $InGameUI/WallHoldBar
 
 var jump_charge_timer: float = 0.0
 var dodge_cooldown_timer: float = 0.0
@@ -41,8 +42,8 @@ var is_wall_holding: bool = false
 var is_wall_dodging: bool = false
 
 func _ready() -> void:
-	pass
-
+	in_game_canvas.visible = true
+ 
 func _process(delta: float) -> void:
 	if jump_charge_bar:
 		jump_charge_bar.value = max(0, ((jump_charge_timer - jump_deadzone) / (jump_charge_max_time - jump_deadzone) * jump_charge_bar.max_value))
