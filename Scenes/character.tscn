@@ -18,7 +18,6 @@ radius = 0.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 top_level = true
 script = ExtResource("1_8xy7i")
-inventory = ExtResource("2_p1niv")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, -1.84741e-11, 8.73115e-11, 2.08331e-11, 0.5, 0, -1.30967e-10, 0, 0.5, 0.000751766, 0.00468963, 0.00858512)
