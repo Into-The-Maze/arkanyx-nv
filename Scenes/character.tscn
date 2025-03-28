@@ -16,10 +16,7 @@ height = 1.95
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
 radius = 0.3
 
-[node name="Character" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_8xy7i")
-inventory = ExtResource("2_p1niv")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1qbe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu1h3"]
 bg_color = Color(0, 1, 0, 1)
@@ -31,9 +28,10 @@ bg_color = Color(0.360784, 0.360784, 1, 1)
 bg_color = Color(1, 0, 0, 1)
 
 [node name="Character" type="CharacterBody3D"]
-transform = Transform3D(1, -0.00013557, -0.000448593, 0.000135891, 1, 0.000673232, 0.000448496, -0.000673297, 1, 0.000416755, 1, 0.00564385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 top_level = true
 script = ExtResource("1_8xy7i")
+inventory = ExtResource("2_p1niv")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, -1.84741e-11, 8.73115e-11, 2.08331e-11, 0.5, 0, -1.30967e-10, 0, 0.5, 0.000751766, 0.00468963, 0.00858512)
