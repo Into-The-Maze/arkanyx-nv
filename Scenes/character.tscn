@@ -1,12 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=8 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
-[ext_resource type="Script" path="res://Scripts/UI/cooldown_bar.gd" id="4_bfcjk"]
-[ext_resource type="Script" path="res://Scripts/UI/charge_bar.gd" id="4_oncit"]
-[ext_resource type="Script" path="res://Scripts/UI/Menu/menu_toggle.gd" id="6_u7nmm"]
-[ext_resource type="Script" path="res://Scripts/UI/Menu/menu_slider.gd" id="7_uvxs1"]
+[ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/InGameUI.tscn" id="4_7an58"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -16,17 +13,6 @@ height = 1.95
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
 radius = 0.3
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1qbe"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu1h3"]
-bg_color = Color(0, 1, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m25ah"]
-bg_color = Color(0.360784, 0.360784, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o631p"]
-bg_color = Color(1, 0, 0, 1)
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, -0.00013557, -0.000448593, 0.000135891, 1, 0.000673232, 0.000448496, -0.000673297, 1, 0.000416755, 1, 0.00564385)
@@ -58,107 +44,4 @@ spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
 
-[node name="InGameUI" type="CanvasLayer" parent="."]
-layer = 2
-visible = false
-
-[node name="JumpChargeBar" type="ProgressBar" parent="InGameUI"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -339.0
-offset_top = -21.0
-offset_right = 339.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qu1h3")
-value = 50.0
-show_percentage = false
-script = ExtResource("4_oncit")
-
-[node name="DodgeCooldownBar" type="ProgressBar" parent="InGameUI"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -487.0
-offset_top = -33.0
-offset_right = 486.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
-theme_override_styles/fill = SubResource("StyleBoxFlat_m25ah")
-value = 50.0
-show_percentage = false
-script = ExtResource("4_bfcjk")
-
-[node name="WallHoldBar" type="ProgressBar" parent="InGameUI"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -339.0
-offset_top = -13.0
-offset_right = 338.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxEmpty_o1qbe")
-theme_override_styles/fill = SubResource("StyleBoxFlat_o631p")
-value = 50.0
-show_percentage = false
-
-[node name="MenuUI" type="CanvasLayer" parent="."]
-process_mode = 3
-script = ExtResource("6_u7nmm")
-
-[node name="MenuPanel" type="Panel" parent="MenuUI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MenuShouldPauseButton" type="CheckButton" parent="MenuUI/MenuPanel"]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 26.0
-offset_right = 262.0
-offset_bottom = 71.0
-action_mode = 0
-text = "Menu Pauses Game"
-
-[node name="SpeedSlider" type="HSlider" parent="MenuUI/MenuPanel"]
-layout_mode = 0
-offset_left = 57.0
-offset_top = 99.0
-offset_right = 257.0
-offset_bottom = 123.0
-script = ExtResource("7_uvxs1")
-
-[node name="Label" type="RichTextLabel" parent="MenuUI/MenuPanel/SpeedSlider"]
-layout_mode = 0
-offset_top = -21.0
-offset_right = 77.0
-offset_bottom = 5.0
-text = "Speed"
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Value" type="RichTextLabel" parent="MenuUI/MenuPanel/SpeedSlider"]
-offset_left = 79.0
-offset_top = -21.0
-offset_right = 198.0
-offset_bottom = 5.0
-text = "Value
-"
-scroll_active = false
-autowrap_mode = 0
-text_direction = 2
+[node name="InGameUI" parent="." instance=ExtResource("4_7an58")]

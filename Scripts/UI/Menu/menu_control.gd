@@ -9,7 +9,7 @@ extends Control
 func _ready() -> void:
 	menu_should_pause_button.toggled.connect(_menu_should_pause_button_toggled)
 	speed_slider.value_changed.connect(_speed_slider_changed)
-	menu_should_pause_button.value = menu_should_pause
+	menu_should_pause_button.button_pressed = menu_should_pause
 	speed_slider.value = max_speed
 
 func _menu_should_pause_button_toggled(pressed: bool) -> void:

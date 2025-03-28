@@ -14,7 +14,6 @@ func _process(_delta: float) -> void:
 func _toggle_menu():
 	var menu_open = self.visible
 	self.visible = not self.visible
-	in_game_canvas.visible = menu_open
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if menu_open else Input.MOUSE_MODE_VISIBLE
 	if should_menu_pause:
 		get_tree().paused = not menu_open
