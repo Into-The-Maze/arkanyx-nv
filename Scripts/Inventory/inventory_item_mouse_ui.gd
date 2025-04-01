@@ -5,12 +5,13 @@ extends Control
 var selectedItem: Inventory_Item
 
 func _ready():
-	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item)
+	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
 
 func _process(_delta):
 	if selectedItemImage.texture != null:
 		selectedItemImage.position = get_global_mouse_position()
 
 func select_item(_id, item_display):
+	print_debug(item_display)
 	selectedItemImage.texture = item_display
 	

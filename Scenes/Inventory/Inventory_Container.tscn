@@ -13,3 +13,4 @@ mouse_filter = 2
 script = ExtResource("1_7jskc")
 
 [node name="SelectedItemImage" type="Sprite2D" parent="."]
+z_index = 1
