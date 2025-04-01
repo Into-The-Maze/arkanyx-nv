@@ -8,44 +8,23 @@ extends Control
 @onready var grid = $Inventory_Background/Grid
 
 var slots: Array[Node]
-var is_open: bool
-var selected_item: Inventory_Item
 
 func _ready():
-	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
+	SignalBus.connect("INVENTORY_UPDATE", update)
+	SignalBus.connect("INVENTORY_OPENED", open)
+	SignalBus.connect("INVENTORY_CLOSED", close)
+
 	create()
 	update()
-	close()
 
-func _input(event):
-	if event.is_action_pressed("toggle_inventory"):
-		if is_open:
-			close()
-			SignalBus.emit_signal("INVENTORY_CLOSED")
-		else:
-			open()
-			SignalBus.emit_signal("INVENTORY_OPENED")
+func _on_mouse_entered() -> void:
+	SignalBus.emit_signal("INVENTORY_SELECTED", inventory_data)
 
 func open():
-	is_open = true
 	visible = true
-	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
 
 func close():
-	is_open = false
 	visible = false
-	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
-
-func select_item(id, _texture):
-	selected_item = inventory_data.inventory[id]
-	inventory_data.inventory[id] = null
-	update()
-
-func insert_item(id):
-	inventory_data.inventory[id] = selected_item
-	selected_item = null
-	update()
 
 func update():
 	for i in min(inventory_data.inventory.size(), slots.size()):
@@ -81,9 +60,9 @@ func create():
 	
 	slots = grid.get_children()
 	
-	background.size.x = background_margin_size + grid.size.x
+	background.size.x = background_margin_size + grid.size.x # updates grid size 
+
 	background.size.y = background_margin_size + grid.size.y
 	background.size.x = background_margin_size + grid.size.x
-
 	background.position.x -= background.size.x / 2
 	background.position.y -= background.size.y / 2
