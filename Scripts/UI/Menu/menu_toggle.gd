@@ -2,8 +2,6 @@ extends Node
 
 @export var should_menu_pause: bool = true
 
-@onready var in_game_canvas: CanvasLayer = $".."/InGameUI
-
 func _ready() -> void:
 	self.visible = false
 
