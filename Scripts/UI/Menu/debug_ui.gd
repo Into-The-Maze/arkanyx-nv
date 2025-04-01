@@ -35,11 +35,11 @@ func _process(delta: float) -> void:
 		var effective_multiplier = 1.0 + mult_total
 	
 		if stat_labels.has(stat_name):
-			stat_labels[stat_name].text = "%s = ( BASE %.2f + FLAT ADD %.2f ) * MULTIPLIER %.2f" % [stat_name, base_val, flat_total, effective_multiplier]
+			stat_labels[stat_name].text = "%s = ( B %.2f + A %.2f ) * M %.2f" % [stat_name, base_val, flat_total, effective_multiplier]
 		else:
 			var new_label = Label.new()
 			new_label.name = stat_name
-			new_label.text = "%s = ( BASE %.2f + FLAT ADD %.2f ) * MULTIPLIER %.2f" % [stat_name, base_val, flat_total, effective_multiplier]
+			new_label.text = "%s = ( B %.2f + F ADD %.2f ) * M %.2f" % [stat_name, base_val, flat_total, effective_multiplier]
 			new_label.add_theme_color_override("font_color", Color.GREEN)
 			container_l.add_child(new_label)
 			stat_labels[stat_name] = new_label
