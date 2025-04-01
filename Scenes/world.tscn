@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=7 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
-[ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="2_bnvtl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4yo1v"]
 size = Vector3(2, 0.01, 2)
@@ -56,5 +55,3 @@ shape = SubResource("BoxShape3D_2mqpa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2/CollisionShape3D"]
 mesh = SubResource("BoxMesh_dmjn8")
-
-[node name="MenuUI" parent="." instance=ExtResource("2_bnvtl")]

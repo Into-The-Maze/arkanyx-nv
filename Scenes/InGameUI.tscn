@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://be7hwrgdre84"]
 
-[ext_resource type="Script" path="res://Scripts/UI/charge_bar.gd" id="1_6nlc6"]
-[ext_resource type="Script" path="res://Scripts/UI/cooldown_bar.gd" id="2_d35g2"]
+[ext_resource type="Script" path="res://Scripts/UI/InGame/charge_bar.gd" id="1_6nlc6"]
+[ext_resource type="Script" path="res://Scripts/UI/InGame/cooldown_bar.gd" id="2_d35g2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unt2n"]
 

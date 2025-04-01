@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm4xqycyfeugt"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menu/debug_ui.gd" id="1_bljm5"]
+
+[node name="DebugStatsUI" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_bljm5")
+
+[node name="Container" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

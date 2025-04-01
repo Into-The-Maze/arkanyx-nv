@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk5owb68hs1pq"]
+[gd_scene load_steps=3 format=3 uid="uid://dk5owb68hs1pq"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Menu/menu_toggle.gd" id="1_4f5hs"]
-[ext_resource type="Script" path="res://Scripts/UI/Menu/menu_slider.gd" id="2_mmj3q"]
 [ext_resource type="Script" path="res://Scripts/UI/Menu/menu_control.gd" id="2_pm3ay"]
 
 [node name="MenuUI" type="CanvasLayer"]
@@ -17,82 +16,18 @@ grow_vertical = 2
 script = ExtResource("2_pm3ay")
 metadata/_edit_use_anchors_ = true
 
-[node name="MenuShouldPauseButton" type="CheckButton" parent="MenuPanel"]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 26.0
-offset_right = 262.0
-offset_bottom = 71.0
-action_mode = 0
-text = "Menu Pauses Game"
-metadata/_edit_use_anchors_ = true
-
-[node name="SpeedSlider" type="HSlider" parent="MenuPanel"]
-layout_mode = 0
-offset_left = 57.0
-offset_top = 99.0
-offset_right = 257.0
-offset_bottom = 123.0
-script = ExtResource("2_mmj3q")
-metadata/_edit_use_anchors_ = true
-metadata/_edit_group_ = true
-
-[node name="Label" type="RichTextLabel" parent="MenuPanel/SpeedSlider"]
-layout_mode = 0
-offset_top = -21.0
-offset_right = 120.0
-offset_bottom = 5.0
-text = "Speed"
-scroll_active = false
-autowrap_mode = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="Value" type="RichTextLabel" parent="MenuPanel/SpeedSlider"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = -21.0
-offset_right = 198.0
-offset_bottom = 5.0
-text = "Value
-"
-scroll_active = false
-autowrap_mode = 0
-text_direction = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="AccelerationSlider" type="HSlider" parent="MenuPanel"]
+[node name="DebugUIButton" type="CheckButton" parent="MenuPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.0833333
-anchor_bottom = 0.0833333
-offset_left = 57.0
-offset_top = 99.0
-offset_right = 257.0
-offset_bottom = 123.0
-max_value = 1000.0
-script = ExtResource("2_mmj3q")
-metadata/_edit_use_anchors_ = true
-metadata/_edit_group_ = true
-
-[node name="Label" type="RichTextLabel" parent="MenuPanel/AccelerationSlider"]
-layout_mode = 0
-offset_top = -21.0
-offset_right = 120.0
-offset_bottom = 5.0
-text = "Acceleration"
-scroll_active = false
-autowrap_mode = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="Value" type="RichTextLabel" parent="MenuPanel/AccelerationSlider"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = -21.0
-offset_right = 198.0
-offset_bottom = 5.0
-text = "Value
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -54.0
+offset_right = -10.0
+offset_bottom = -9.0
+action_mode = 0
+text = "Debugging UI
 "
-scroll_active = false
-autowrap_mode = 0
-text_direction = 2
 metadata/_edit_use_anchors_ = true

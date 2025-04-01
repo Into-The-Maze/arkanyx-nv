@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=10 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
 [ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/InGameUI.tscn" id="4_7an58"]
+[ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="5_ogdjs"]
+[ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/DebugStatsUI.tscn" id="6_kqiv7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -45,3 +47,8 @@ spring_length = 5.0
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
 
 [node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
+
+[node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
+visible = false
+
+[node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
