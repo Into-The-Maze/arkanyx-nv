@@ -22,16 +22,23 @@ func _on_inventory_update():
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
-		if is_open: close()
-		else: open()
+		if is_open:
+			close()
+			SignalBus.emit_signal("INVENTORY_CLOSED")
+		else:
+			open()
+			SignalBus.emit_signal("INVENTORY_OPENED")
 
 func open():
 	is_open = true
 	visible = true
+	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
+
 
 func close():
 	is_open = false
 	visible = false
+	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
 
 func select_item(id, _texture):
 	selected_item = inventory_data.inventory[id]
