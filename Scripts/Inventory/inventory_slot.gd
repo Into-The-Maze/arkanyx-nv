@@ -17,17 +17,10 @@ func update(item: Inventory_Item):
 		item_display.texture = item.icon
 
 func _on_interact_button_down() -> void:
+	var slot_id = get_meta("Index")
 	if inventory_container.selected_item == null && item_display.texture != null: # ie if there is an item to pick up in our empty hand,
-		var selected_item_id = select_item()
-		SignalBus.emit_signal("INVENTORY_ITEM_SELECTED", selected_item_id, item_display.texture)
+		SignalBus.emit_signal("INVENTORY_ITEM_SELECTED", slot_id, item_display.texture)
 	elif inventory_container.selected_item != null && item_display.texture == null: # ie if we can insert into the slot
-		var slot_id = insert_item()
 		SignalBus.emit_signal("INVENTORY_ITEM_PLACED", slot_id)
 	elif inventory_container.selected_item != null && item_display.texture != null: # ie if there are items we can swap
-		pass # todo!
-
-func select_item():
-	return get_meta("Index")
-
-func insert_item():
-	return get_meta("Index")
+		SignalBus.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, item_display.texture)

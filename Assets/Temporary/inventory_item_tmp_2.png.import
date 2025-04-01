@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxu1bb1me1r87"
-path.s3tc="res://.godot/imported/imventory_item_tmp.png-87fbec769bf3454460f5b510d1eab514.s3tc.ctex"
+uid="uid://dv0ijikec8dad"
+path="res://.godot/imported/inventory_item_tmp_2.png-9b1572e632eb9a742321bbd813df38af.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Temporary/imventory_item_tmp.png"
-dest_files=["res://.godot/imported/imventory_item_tmp.png-87fbec769bf3454460f5b510d1eab514.s3tc.ctex"]
+source_file="res://Assets/Temporary/inventory_item_tmp_2.png"
+dest_files=["res://.godot/imported/inventory_item_tmp_2.png-9b1572e632eb9a742321bbd813df38af.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

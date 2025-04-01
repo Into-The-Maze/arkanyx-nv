@@ -8,6 +8,7 @@ func _ready():
 	SignalBus.connect("INVENTORY_SELECTED", select_inventory.bind())
 	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
+	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
 
 	close()
 
@@ -43,4 +44,11 @@ func insert_item(id):
 	if selected_inventory == null: return
 	selected_inventory.inventory[id] = selected_item
 	selected_item = null
+	SignalBus.emit_signal("INVENTORY_UPDATE")
+
+func swap_item(id, _texture):
+	if selected_inventory == null: return
+	var temp = selected_inventory.inventory[id]
+	selected_inventory.inventory[id] = selected_item
+	selected_item = temp
 	SignalBus.emit_signal("INVENTORY_UPDATE")
