@@ -51,7 +51,7 @@ var is_wall_dodging: bool = false
 func _ready() -> void:
 	in_game_canvas.visible = true
  
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if jump_charge_bar:
 		jump_charge_bar.value = max(0, ((jump_charge_timer - jump_deadzone) / (jump_charge_max_time - jump_deadzone) * jump_charge_bar.max_value))
 	if dodge_cooldown_bar:
