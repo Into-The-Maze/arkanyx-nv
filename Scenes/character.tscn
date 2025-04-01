@@ -52,3 +52,5 @@ spring_length = 5.0
 visible = false
 
 [node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
+process_mode = 3
+visible = false
