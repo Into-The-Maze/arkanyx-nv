@@ -49,6 +49,8 @@ var is_wall_holding: bool = false
 var is_wall_dodging: bool = false
 
 func _ready() -> void:
+	SignalBus.connect("MENU_MAX_SPEED_CHANGED", func(new_max_speed: float): max_speed = new_max_speed)
+	SignalBus.connect("MENU_ACCELERATION_CHANGED", func(new_acceleration: float): acceleration = new_acceleration)
 	in_game_canvas.visible = true
  
 func _process(delta: float) -> void:

@@ -16,4 +16,3 @@ func _on_interact_button_down() -> void:
 
 func select_item():
 	return get_meta("Index")
-
