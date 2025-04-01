@@ -12,13 +12,11 @@ var is_open: bool
 var selected_item: Inventory_Item
 
 func _ready():
-	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item)
+	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
+	SignalBus.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
 	create()
 	update()
 	close()
-
-func _on_inventory_update():
-	update()
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
@@ -34,7 +32,6 @@ func open():
 	visible = true
 	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
 
-
 func close():
 	is_open = false
 	visible = false
@@ -43,6 +40,11 @@ func close():
 func select_item(id, _texture):
 	selected_item = inventory_data.inventory[id]
 	inventory_data.inventory[id] = null
+	update()
+
+func insert_item(id):
+	inventory_data.inventory[id] = selected_item
+	selected_item = null
 	update()
 
 func update():

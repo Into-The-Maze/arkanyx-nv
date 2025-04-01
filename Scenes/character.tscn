@@ -55,7 +55,6 @@ script = ExtResource("5_nulxb")
 inventory = ExtResource("6_l3lq6")
 
 [node name="InventoryController" parent="Data" instance=ExtResource("9_ro02m")]
-mouse_filter = 2
 
 [node name="Inventory" parent="Data/InventoryController" instance=ExtResource("10_s4gnd")]
 layout_mode = 1
