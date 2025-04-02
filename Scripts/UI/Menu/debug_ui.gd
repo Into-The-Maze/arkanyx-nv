@@ -11,7 +11,7 @@ var local_debug_labels: Dictionary = {}
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if !self.visible:
 		return

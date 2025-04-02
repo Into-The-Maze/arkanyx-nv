@@ -147,7 +147,7 @@ func process_jumping(delta: float, current_velocity: Vector3, direction: Vector3
 			jump_charge_timer = 0.0
 	return current_velocity
 
-func process_wall_holding(delta: float, current_velocity: Vector3) -> Vector3:
+func process_wall_holding(_delta: float, current_velocity: Vector3) -> Vector3:
 	if is_on_wall() and not is_on_floor() and Input.is_action_pressed("jump") and not is_wall_dodging and (wall_hold_timer < stats.get_stat("max_wall_hold_time")) and not is_air_dodging:
 		is_wall_holding = true
 		current_velocity = Vector3.ZERO
@@ -155,7 +155,7 @@ func process_wall_holding(delta: float, current_velocity: Vector3) -> Vector3:
 		is_wall_holding = false
 	return current_velocity
 
-func process_dodging(delta: float, current_velocity: Vector3, direction: Vector3) -> Vector3:
+func process_dodging(_delta: float, current_velocity: Vector3, direction: Vector3) -> Vector3:
 	if Input.is_action_just_pressed("dodge") and dodge_cooldown_timer <= 0 and not is_wall_dodging:
 		if direction == Vector3.ZERO:
 			var current_horizontal: Vector3 = Vector3(current_velocity.x, 0, current_velocity.z)

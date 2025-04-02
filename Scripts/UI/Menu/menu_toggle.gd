@@ -13,7 +13,12 @@ func _process(_delta: float) -> void:
 func _toggle_menu():
 	var menu_open = not self.visible
 	self.visible = menu_open
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if menu_open else Input.MOUSE_MODE_CAPTURED
+	
+	if menu_open:
+		SignalBus.emit_signal("MENU_OPENED")
+	else:
+		SignalBus.emit_signal("MENU_CLOSED")
+
 	if should_menu_pause && menu_open:
 		get_tree().paused = true
 	else:
