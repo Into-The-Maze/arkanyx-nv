@@ -1,6 +1,6 @@
 extends HSlider
 
-@onready var valueText := $Value
+@onready var valueText = $Value
 	
 func _ready() -> void:
 	valueText.text = str(self.value).pad_decimals(1)

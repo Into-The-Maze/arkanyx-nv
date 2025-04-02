@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm4xqycyfeugt"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menu/debug_ui.gd" id="1_bljm5"]
+
+[node name="DebugStatsUI" type="CanvasLayer"]
+script = ExtResource("1_bljm5")
+
+[node name="LeftContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RightContainer" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0

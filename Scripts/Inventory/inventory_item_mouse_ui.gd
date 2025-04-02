@@ -17,3 +17,4 @@ func insert_item(_id):
 
 func swap_item(_id, item_display):
 	texture = item_display
+
