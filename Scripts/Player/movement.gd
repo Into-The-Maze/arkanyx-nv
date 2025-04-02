@@ -200,7 +200,7 @@ func load_player_stats() -> StatBlock:
 	save_player_stats(new_stats)
 	return new_stats
 
-func save_player_stats(stats: StatBlock) -> void:
-	var err = ResourceSaver.save(stats, STATS_FILE_PATH)
+func save_player_stats(new_stats) -> void:
+	var err = ResourceSaver.save(new_stats, STATS_FILE_PATH)
 	if err != OK:
 		push_error("Failed to save player stats: %s" % err)
