@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
 [ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/InGameUI.tscn" id="4_7an58"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_nulxb"]
 [ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="5_ogdjs"]
 [ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/DebugStatsUI.tscn" id="6_kqiv7"]
-[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_nulxb"]
 [ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/Temporary/player_inventory.tres" id="6_l3lq6"]
 [ext_resource type="PackedScene" uid="uid://tifbh35o55rm" path="res://Scenes/Inventory/Inventory_Container.tscn" id="9_ro02m"]
 [ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/inventory.tscn" id="10_s4gnd"]
@@ -69,4 +69,3 @@ inventory = ExtResource("6_l3lq6")
 layout_mode = 1
 mouse_filter = 1
 inventory_data = ExtResource("6_l3lq6")
-
