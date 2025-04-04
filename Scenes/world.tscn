@@ -15,14 +15,14 @@ size = Vector3(2, 0.01, 2)
 
 [node name="World" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(15.2159, 0, 0, 0, 0.99261, 0, 0, 0, 15.2159, 0.00787783, 4.76837e-07, -0.0160789)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00787687, -2.38419e-07, 0.0160751)
 shape = SubResource("BoxShape3D_4yo1v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
 mesh = SubResource("PlaneMesh_t7w6c")
 skeleton = NodePath("../../..")
 
