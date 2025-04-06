@@ -1,5 +1,7 @@
 extends Control
 
+@export var player_inventory: Inventory
+
 var is_open: bool
 var selected_item: Inventory_Item
 var selected_inventory: Inventory
@@ -7,10 +9,18 @@ var selected_inventory: Inventory
 func _ready():
 	SignalBus.connect("INVENTORY_SELECTED", select_inventory.bind())
 	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
+	SignalBus.connect("INVENTORY_ITEM_PLACED", place_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
 
 	close()
+
+	# debug code
+	var item = preload("res://Resources/Temporary/test_staff.tres")
+	print_debug(item.name)
+	ITEM_REGISTRY.register_item(item)
+	print_debug(item.guid)
+	insert_item(0, item)
+
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
@@ -40,7 +50,7 @@ func select_item(id, _texture):
 	selected_inventory.inventory[id] = null
 	SignalBus.emit_signal("INVENTORY_UPDATE")
 
-func insert_item(id):
+func place_item(id):
 	if selected_inventory == null: return
 	selected_inventory.inventory[id] = selected_item
 	selected_item = null
@@ -51,4 +61,9 @@ func swap_item(id, _texture):
 	var temp = selected_inventory.inventory[id]
 	selected_inventory.inventory[id] = selected_item
 	selected_item = temp
+	SignalBus.emit_signal("INVENTORY_UPDATE")
+
+func insert_item(id, item, inventory=player_inventory):
+	if inventory == null: print_debug("null"); return
+	inventory.inventory[id] = item
 	SignalBus.emit_signal("INVENTORY_UPDATE")
