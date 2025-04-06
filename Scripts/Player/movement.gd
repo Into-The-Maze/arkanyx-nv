@@ -22,8 +22,6 @@ var is_air_dodging: bool = false
 var is_wall_holding: bool = false
 var is_wall_dodging: bool = false
 
-var push_force: float = 1.
-
 func _ready() -> void:
 	stats = load_player_stats()
 	in_game_canvas.visible = true
@@ -58,12 +56,6 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = current_velocity
 	move_and_slide()
-
-	# push objects
-	for i in get_slide_collision_count():
-			var c = get_slide_collision(i)
-			if c.get_collider() is RigidBody3D:
-					c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 func update_timers_and_flags(delta: float) -> void:
 	if is_dodging:
