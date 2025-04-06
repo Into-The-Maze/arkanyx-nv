@@ -14,6 +14,7 @@ func _ready():
 	SignalBus.connect("INVENTORY_ITEM_PLACED", place_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
+	SignalBus.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
 
 	close()
 
@@ -78,3 +79,14 @@ func drop_item():
 	world_item.rotation_degrees = Vector3(-20, 0, 0)
 	selected_item = null
 	SignalBus.emit_signal("INVENTORY_UPDATE")
+
+func pickup_item(item_guid):
+	var inventory_item = ITEM_REGISTRY.get_item(item_guid)
+	insert_item(get_avaiable_slot(), inventory_item)
+
+func get_avaiable_slot(inventory=player_inventory) -> int:
+	for i in range(0, inventory.inventory.size()):
+		if inventory.inventory[i] == null:
+			return i
+	
+	return -1 #todo! implement full inventory
