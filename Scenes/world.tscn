@@ -1,8 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=12 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
+[ext_resource type="PackedScene" uid="uid://cq3bdpreoadf8" path="res://Scenes/Item/orb_1.tscn" id="2_gdrll"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v1gvy"]
+
+[sub_resource type="Sky" id="Sky_i7q5v"]
+sky_material = SubResource("ProceduralSkyMaterial_v1gvy")
 
 [sub_resource type="Environment" id="Environment_sxcsl"]
+background_mode = 2
+sky = SubResource("Sky_i7q5v")
+sdfgi_enabled = true
+sdfgi_cascades = 6
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 8.0
+glow_mix = 0.498
+glow_bloom = 0.1
+glow_blend_mode = 4
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6hif"]
 size = Vector3(1000, 1, 1000)
@@ -29,12 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sxcsl")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.826435, -0.461414, 0.322648, 0.18631, 0.764886, 0.616635, -0.531313, -0.449496, 0.718095, 0, 13.0042, 0)
-light_color = Color(1, 0.958113, 0.936174, 1)
-light_energy = 2.0
-shadow_enabled = true
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 collision_layer = 2
@@ -162,3 +174,11 @@ shape = SubResource("BoxShape3D_7ci88")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_11"]
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.826435, -0.461414, 0.322648, 0.18631, 0.764886, 0.616634, -0.531313, -0.449496, 0.718095, 0, 13.0042, 0)
+light_color = Color(1, 0.958113, 0.936174, 1)
+shadow_enabled = true
+
+[node name="Orb 1" parent="." instance=ExtResource("2_gdrll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9268, 20.7133, 0.589181)
