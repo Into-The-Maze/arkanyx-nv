@@ -76,13 +76,13 @@ mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_3")
 
 [node name="Ramp_4" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(-0.21783, 0.894607, -0.390165, -0.760468, 0.0949968, 0.642389, 0.61175, 0.43664, 0.659627, 3.04101, 0.0672188, 32.6204)
+transform = Transform3D(-0.21783, 0.894607, -0.390165, -0.760468, 0.0949968, 0.642389, 0.61175, 0.43664, 0.659627, 27.4691, 3.16364, 7.88717)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_4"]
 shape = SubResource("BoxShape3D_7ci88")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_4"]
-transform = Transform3D(1, -2.98023e-08, -2.98023e-08, -8.9407e-08, 1, -1.19209e-07, 2.98023e-08, 5.96046e-08, 1, -32.1937, 16.7004, -36.2439)
+transform = Transform3D(1, -2.98023e-08, -2.98023e-08, -8.9407e-08, 1, -1.19209e-07, 2.98023e-08, 5.96046e-08, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_4")
 
@@ -125,15 +125,6 @@ shape = SubResource("BoxShape3D_7ci88")
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
 
-[node name="AngledPlane" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 0.422618, -0.906308, 0, 0.906308, 0.422618, 0, 0, 25)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/AngledPlane"]
-shape = SubResource("BoxShape3D_3e121")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/AngledPlane"]
-mesh = SubResource("BoxMesh_mohbo")
-
 [node name="Ramp_9" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(0.815815, 0, 0.578313, 0, 1, 0, -0.578313, 0, 0.815815, -0.437655, 19.0593, -33.0292)
 
@@ -162,3 +153,12 @@ shape = SubResource("BoxShape3D_7ci88")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_11"]
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
+
+[node name="AngledPlane" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 0.422618, -0.906308, 0, 0.906308, 0.422618, 0, 0, 25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/AngledPlane"]
+shape = SubResource("BoxShape3D_3e121")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/AngledPlane"]
+mesh = SubResource("BoxMesh_mohbo")
