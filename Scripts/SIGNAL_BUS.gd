@@ -22,6 +22,12 @@ signal INVENTORY_SELECTED
 @warning_ignore("unused_signal")
 signal INVENTORY_UPDATE
 
+@warning_ignore("unused_signal")
+signal INVENTORY_DESELECTED
+
+@warning_ignore("unused_signal")
+signal INVENTORY_ITEM_DROPPED
+
 # menu signals
 @warning_ignore("unused_signal")
 signal MENU_OPENED

@@ -2,6 +2,8 @@ extends Control
 
 @export var player_inventory: Inventory
 
+@onready var drop_point = $".."/".."/ItemDropPoint
+
 var is_open: bool
 var selected_item: Inventory_Item
 var selected_inventory: Inventory
@@ -11,16 +13,14 @@ func _ready():
 	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_PLACED", place_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
+	SignalBus.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
 
 	close()
 
 	# debug code
 	var item = preload("res://Resources/Temporary/test_staff.tres")
-	print_debug(item.name)
 	ITEM_REGISTRY.register_item(item)
-	print_debug(item.guid)
 	insert_item(0, item)
-
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
@@ -64,6 +64,17 @@ func swap_item(id, _texture):
 	SignalBus.emit_signal("INVENTORY_UPDATE")
 
 func insert_item(id, item, inventory=player_inventory):
-	if inventory == null: print_debug("null"); return
+	if inventory == null: return
 	inventory.inventory[id] = item
+	SignalBus.emit_signal("INVENTORY_UPDATE")
+
+func drop_item():
+	if selected_item == null: return
+	ITEM_REGISTRY.register_item(selected_item) # ensure registration
+	var world_item = selected_item.world_item.instantiate()
+	world_item.set_meta("guid", selected_item.guid)
+	get_tree().current_scene.add_child(world_item)
+	world_item.global_position = drop_point.global_position
+	world_item.rotation_degrees = Vector3(-20, 0, 0)
+	selected_item = null
 	SignalBus.emit_signal("INVENTORY_UPDATE")

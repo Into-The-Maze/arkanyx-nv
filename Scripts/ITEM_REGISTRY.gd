@@ -6,6 +6,7 @@ func register_item(item: Inventory_Item):
 	if not item.guid:
 		item.guid = generate_guid()
 	items[item.guid] = item
+	print_debug("Registered item {0} with GUID: {1}".format([item.name, item.guid]))
 
 func get_item(guid: String) -> Inventory_Item:
 	return items.get(guid)

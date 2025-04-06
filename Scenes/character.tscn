@@ -52,14 +52,8 @@ spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
 
-[node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
-
-[node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
-visible = false
-
-[node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
-process_mode = 3
-visible = false
+[node name="ItemDropPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
 
 [node name="Data" type="Node3D" parent="."]
 script = ExtResource("5_nulxb")
@@ -72,3 +66,12 @@ player_inventory = ExtResource("6_l3lq6")
 layout_mode = 1
 mouse_filter = 1
 inventory_data = ExtResource("6_l3lq6")
+
+[node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
+
+[node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
+visible = false
+
+[node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
+process_mode = 3
+visible = false

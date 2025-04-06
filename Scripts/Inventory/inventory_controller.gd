@@ -20,6 +20,9 @@ func _ready():
 func _on_mouse_entered() -> void:
 	SignalBus.emit_signal("INVENTORY_SELECTED", inventory_data)
 
+func _on_drop_item_pressed() -> void:
+	SignalBus.emit_signal("INVENTORY_ITEM_DROPPED")
+
 func open():
 	visible = true
 
