@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=8 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
+[ext_resource type="PackedScene" uid="uid://facmy4lcu82s" path="res://Scenes/Item/staff_1_rigid.tscn" id="2_ig0nu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4yo1v"]
 size = Vector3(2, 0.01, 2)
@@ -17,6 +18,8 @@ size = Vector3(2, 0.01, 2)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(15.2159, 0, 0, 0, 0.99261, 0, 0, 0, 15.2159, 0.00787783, 4.76837e-07, -0.0160789)
+collision_layer = 2
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00787687, -2.38419e-07, 0.0160751)
@@ -40,6 +43,8 @@ shadow_enabled = true
 
 [node name="Ramp" type="StaticBody3D" parent="."]
 transform = Transform3D(4.84624, 5.08626, -0.779478, -5.0172, 5.26568, 0, 1.29855, 1.36286, 2.90905, 2.8373, -0.186403, 11.5977)
+collision_layer = 2
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
 shape = SubResource("BoxShape3D_2mqpa")
@@ -49,9 +54,14 @@ mesh = SubResource("BoxMesh_dmjn8")
 
 [node name="Ramp2" type="StaticBody3D" parent="."]
 transform = Transform3D(-1.50096, -1.11051, 2.42808, -4.08819, 6.08646, 3.24391e-08, -5.60164, -4.14446, -0.650601, 11.3633, -1.65569, 3.06155)
+collision_layer = 2
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2"]
 shape = SubResource("BoxShape3D_2mqpa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2/CollisionShape3D"]
 mesh = SubResource("BoxMesh_dmjn8")
+
+[node name="Rigid Staff 1" parent="." instance=ExtResource("2_ig0nu")]
+transform = Transform3D(0.94793, -0.31848, 1.39212e-08, 0, -4.37114e-08, -1, 0.31848, 0.94793, -4.14353e-08, 2.48884, 4.60304, 11.375)

@@ -23,10 +23,11 @@ radius = 0.3
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 top_level = true
+collision_mask = 7
 script = ExtResource("1_8xy7i")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, -1.84741e-11, 8.73115e-11, 2.08331e-11, 0.5, 0, -1.30967e-10, 0, 0.5, 0.000751766, 0.00468963, 0.00858512)
+transform = Transform3D(0.5, -1.84741e-11, 8.73115e-11, 2.08331e-11, 0.5, 0, -1.30967e-10, 0, 0.5, 0.000751766, 0.00468957, 0.00858512)
 shape = SubResource("CapsuleShape3D_o4w3w")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
@@ -45,6 +46,7 @@ script = ExtResource("2_6se4h")
 spring_target = NodePath("../SpringArm/SpringTarget")
 
 [node name="SpringArm" type="SpringArm3D" parent="Pivot"]
+collision_mask = 2
 shape = SubResource("SphereShape3D_1n2n6")
 spring_length = 5.0
 
