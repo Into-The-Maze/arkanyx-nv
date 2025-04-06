@@ -19,7 +19,7 @@ func _ready():
 	close()
 
 	# debug code
-	var item = preload("res://Resources/Temporary/test_staff.tres")
+	var item = preload("res://Resources/Temporary/test_orb.tres")
 	ITEM_REGISTRY.register_item(item)
 	insert_item(0, item)
 
