@@ -4,6 +4,7 @@ func _ready():
 	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
+	SignalBus.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
 
 func _process(_delta):
 	if texture != null:
@@ -18,3 +19,5 @@ func insert_item(_id):
 func swap_item(_id, item_display):
 	texture = item_display
 
+func drop_item():
+	texture = null

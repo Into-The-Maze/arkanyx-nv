@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=17 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
 [ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/InGameUI.tscn" id="4_7an58"]
+[ext_resource type="Script" path="res://Scripts/Inventory/pick_up_items.gd" id="4_yt74t"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_nulxb"]
 [ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="5_ogdjs"]
 [ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/DebugStatsUI.tscn" id="6_kqiv7"]
-[ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/Temporary/player_inventory.tres" id="6_l3lq6"]
+[ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/player_inventory.tres" id="6_l3lq6"]
 [ext_resource type="PackedScene" uid="uid://tifbh35o55rm" path="res://Scenes/Inventory/Inventory_Container.tscn" id="9_ro02m"]
 [ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/inventory.tscn" id="10_s4gnd"]
+[ext_resource type="PackedScene" uid="uid://bfb8dax0hbm2c" path="res://Scenes/Inventory/pick_up_item_alert_ui.tscn" id="12_x1b5b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -19,6 +21,9 @@ height = 1.95
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1n2n6"]
 radius = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eebb2"]
+radius = 1.0
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -52,22 +57,39 @@ spring_length = 5.0
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
 
-[node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
+[node name="ItemDropPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
 
-[node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
-visible = false
+[node name="ItemPickUpZone" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("4_yt74t")
 
-[node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
-process_mode = 3
-visible = false
+[node name="Zone" type="CollisionShape3D" parent="ItemPickUpZone"]
+shape = SubResource("SphereShape3D_eebb2")
 
 [node name="Data" type="Node3D" parent="."]
 script = ExtResource("5_nulxb")
 inventory = ExtResource("6_l3lq6")
 
 [node name="InventoryController" parent="Data" instance=ExtResource("9_ro02m")]
+player_inventory = ExtResource("6_l3lq6")
 
 [node name="Inventory" parent="Data/InventoryController" instance=ExtResource("10_s4gnd")]
 layout_mode = 1
 mouse_filter = 1
 inventory_data = ExtResource("6_l3lq6")
+
+[node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
+visible = true
+
+[node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
+
+[node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
+process_mode = 3
+
+[node name="PickUpItemAlertUI" parent="." instance=ExtResource("12_x1b5b")]
+
+[connection signal="body_entered" from="ItemPickUpZone" to="ItemPickUpZone" method="_on_body_entered"]
+[connection signal="body_exited" from="ItemPickUpZone" to="ItemPickUpZone" method="_on_body_exited"]
