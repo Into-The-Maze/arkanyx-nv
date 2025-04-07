@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=11 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
-[ext_resource type="PackedScene" uid="uid://c3sjousheqool" path="res://Items/test_grimoire/test_grimoire.tscn" id="2_phsi1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v1gvy"]
 
@@ -203,6 +202,3 @@ skeleton = NodePath("../../Ramp_8")
 transform = Transform3D(0.826435, -0.461414, 0.322648, 0.18631, 0.764886, 0.616634, -0.531313, -0.449496, 0.718095, 0, 13.0042, 0)
 light_color = Color(1, 0.958113, 0.936174, 1)
 shadow_enabled = true
-
-[node name="Test Grimoire" parent="." instance=ExtResource("2_phsi1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6818, 4.46319, 3.42723)
