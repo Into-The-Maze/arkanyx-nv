@@ -1,8 +1,8 @@
-extends Control
+extends CanvasLayer
 
 @export var player_inventory: Inventory
 
-@onready var drop_point = $".."/".."/ItemDropPoint
+@onready var drop_point = $".."/ItemDropPoint
 
 var is_open: bool
 var selected_item: Inventory_Item
@@ -10,6 +10,7 @@ var selected_inventory: Inventory
 
 func _ready():
 	SignalBus.connect("INVENTORY_SELECTED", select_inventory.bind())
+	SignalBus.connect("INVENTORY_DESELECTED", deselect_inventory.bind())
 	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_PLACED", place_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
@@ -33,16 +34,17 @@ func _input(event):
 func select_inventory(inventory):
 	selected_inventory = inventory
 
+func deselect_inventory():
+	selected_inventory = null
+
 func open():
 	is_open = true
 	visible = true
-	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
 	SignalBus.emit_signal("INVENTORY_OPENED")
 
 func close():
 	is_open = false
 	visible = false
-	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
 	SignalBus.emit_signal("INVENTORY_CLOSED")
 
 func select_item(id, _texture):
