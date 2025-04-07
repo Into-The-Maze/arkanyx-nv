@@ -113,25 +113,27 @@ shadow_mesh = SubResource("ArrayMesh_n0krh")
 lifetime_randomness = 1.0
 emission_shape = 2
 emission_sphere_radius = 0.2
-direction = Vector3(0, 0, 0)
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.8
 angular_velocity_min = -187.12
 angular_velocity_max = 176.27
-gravity = Vector3(0, 1, 0)
+gravity = Vector3(0, 0.2, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbgnb"]
-transparency = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0kdw"]
 albedo_color = Color(0.439216, 0, 1, 0.219608)
 emission_enabled = true
 emission = Color(0, 0, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_3gpew"]
-material = SubResource("StandardMaterial3D_bbgnb")
+material = SubResource("StandardMaterial3D_b0kdw")
 radius = 0.01
 height = 0.03
 radial_segments = 4
 rings = 2
 
-[node name="Orb 1" type="RigidBody3D"]
+[node name="Test Orb" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 10
 metadata/guid = ""
@@ -159,11 +161,12 @@ surface_material_override/0 = ExtResource("4_4r06y")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.04071, 0, 0, 0, 1.04071, 0, 0, 0, 1.04071, 0, 0, 0)
-amount = 200
+amount = 300
+lifetime = 1.2
+fixed_fps = 15
 trail_lifetime = 0.9
 process_material = SubResource("ParticleProcessMaterial_bwa8q")
 draw_pass_1 = SubResource("SphereMesh_3gpew")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 0, 0, 1)
-shadow_enabled = true
