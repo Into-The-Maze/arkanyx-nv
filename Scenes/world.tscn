@@ -1,8 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=11 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
-[ext_resource type="PackedScene" uid="uid://cq3bdpreoadf8" path="res://Items/test_orb/orb_1.tscn" id="2_fmx4q"]
-[ext_resource type="PackedScene" uid="uid://facmy4lcu82s" path="res://Items/test_staff_1/test_staff_1.tscn" id="3_x2t28"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v1gvy"]
 
@@ -204,9 +202,3 @@ skeleton = NodePath("../../Ramp_8")
 transform = Transform3D(0.826435, -0.461414, 0.322648, 0.18631, 0.764886, 0.616634, -0.531313, -0.449496, 0.718095, 0, 13.0042, 0)
 light_color = Color(1, 0.958113, 0.936174, 1)
 shadow_enabled = true
-
-[node name="Orb 1" parent="." instance=ExtResource("2_fmx4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61484, 1.01124, 0.811822)
-
-[node name="TestStaff" parent="." instance=ExtResource("3_x2t28")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94195, 1.38989, 1.24971)
