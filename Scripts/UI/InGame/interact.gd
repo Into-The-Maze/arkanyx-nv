@@ -6,7 +6,7 @@ func _ready():
 
 func pick_up_item_on(item):
 	var guid = item.get_meta("guid")
-	var item_data = ITEM_REGISTRY.get_item(guid)
+	var item_dataa = ITEM_REGISTRY.get_item(guid)
 	text = "Press [{0}] to pick up {1}".format([get_key("interact"), item_data.name])
 
 func pick_up_item_off():

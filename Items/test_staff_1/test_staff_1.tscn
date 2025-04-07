@@ -470,7 +470,7 @@ emission_enabled = true
 emission = Color(1, 0, 1, 1)
 emission_energy_multiplier = 5.0
 
-[node name="TestStaff" type="RigidBody3D"]
+[node name="Test Staff" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 10
 physics_material_override = SubResource("PhysicsMaterial_4wigy")

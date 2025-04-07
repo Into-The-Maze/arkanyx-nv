@@ -205,4 +205,4 @@ light_color = Color(1, 0.958113, 0.936174, 1)
 shadow_enabled = true
 
 [node name="Test Grimoire" parent="." instance=ExtResource("2_phsi1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6818, 4.46319, 3.42723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89849, 12.2548, -3.91192)

@@ -133,7 +133,7 @@ height = 0.03
 radial_segments = 4
 rings = 2
 
-[node name="Orb 1" type="RigidBody3D"]
+[node name="Test Orb" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 10
 metadata/guid = ""
