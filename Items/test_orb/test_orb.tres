@@ -9,3 +9,4 @@ script = ExtResource("2_d5557")
 name = "Orb"
 icon = ExtResource("1_u1763")
 world_item = ExtResource("3_hjhov")
+type = 1
