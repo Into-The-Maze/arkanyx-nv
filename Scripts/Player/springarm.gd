@@ -4,9 +4,6 @@ extends Node3D
 @export_range(-90., 0., 0.1, "radians_as_degrees") var min_v_axis: float = -PI/2
 @export_range(0., 90., 0.1, "radians_as_degrees") var max_v_axis: float = PI/4
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 func _process(_delta: float) -> void:
 	global_position = $"..".global_position # ew
 
