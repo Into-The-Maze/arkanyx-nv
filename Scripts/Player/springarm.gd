@@ -4,15 +4,25 @@ extends Node3D
 @export_range(-90., 0., 0.1, "radians_as_degrees") var min_v_axis: float = -PI/2
 @export_range(0., 90., 0.1, "radians_as_degrees") var max_v_axis: float = PI/4
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+var mouse_moves_camera: bool = true
+
+func _ready():
+	SignalBus.connect("INVENTORY_OPENED", camera_off)
+	SignalBus.connect("INVENTORY_CLOSED", camera_on)
 
 func _process(_delta: float) -> void:
 	global_position = $"..".global_position # ew
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		rotation.x -= event.relative.y * mouse_sensitivity
-		rotation.x = clamp(rotation.x, min_v_axis, max_v_axis)
-		rotation.y -= event.relative.x * mouse_sensitivity
-		rotation.y = wrapf(rotation.y, 0, TAU)
+	if mouse_moves_camera:
+		if event is InputEventMouseMotion:
+			rotation.x -= event.relative.y * mouse_sensitivity
+			rotation.x = clamp(rotation.x, min_v_axis, max_v_axis)
+			rotation.y -= event.relative.x * mouse_sensitivity
+			rotation.y = wrapf(rotation.y, 0, TAU)
+
+func camera_off():
+	mouse_moves_camera = false
+
+func camera_on():
+	mouse_moves_camera = true

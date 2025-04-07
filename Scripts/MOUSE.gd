@@ -6,6 +6,8 @@ func _ready():
 	SignalBus.connect("MENU_OPENED", free_mouse)
 	SignalBus.connect("MENU_CLOSED", capture_mouse)
 
+	capture_mouse()
+
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
