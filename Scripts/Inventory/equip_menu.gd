@@ -10,3 +10,14 @@ extends CanvasLayer
 # 4 - RING 2  #
 ###############
 
+func _ready():
+  SignalBus.connect("INVENTORY_OPENED", open.bind())
+  SignalBus.connect("INVENTORY_CLOSED", close.bind())
+  
+  close()
+
+func open():
+  visible = true
+
+func close():
+  visible = false

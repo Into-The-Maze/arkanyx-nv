@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_ohi5d")
+equip_icon = ExtResource("1_u1763")
 name = "Orb"
 icon = ExtResource("1_u1763")
 world_item = ExtResource("3_hjhov")

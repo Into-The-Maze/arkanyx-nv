@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_1hfkf")
+equip_icon = ExtResource("1_01g70")
 name = "test_staff"
 icon = ExtResource("1_01g70")
 world_item = ExtResource("3_f5ghg")
