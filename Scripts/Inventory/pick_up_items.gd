@@ -6,6 +6,9 @@ var closest_item
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if closest_item != null:
+			if not closest_item.get_meta("guid"):
+				print_debug("Item without guid detected!")
+				return
 			SignalBus.emit_signal("NEARBY_ITEM_PICKUP", closest_item.get_meta("guid"))
 			closest_item.queue_free()
 		
