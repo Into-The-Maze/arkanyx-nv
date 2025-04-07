@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="Inventory_Item" load_steps=4 format=3 uid="uid://vikhtcyd5pmj"]
+[gd_resource type="Resource" script_class="Inventory_Item_Weapon" load_steps=4 format=3 uid="uid://vikhtcyd5pmj"]
 
 [ext_resource type="Texture2D" uid="uid://bxu1bb1me1r87" path="res://Assets/Temporary/inventory_item_tmp.png" id="1_01g70"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Item.gd" id="2_6oh4f"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Item Types/Item_Weapon.gd" id="2_1hfkf"]
 [ext_resource type="PackedScene" uid="uid://facmy4lcu82s" path="res://Items/test_staff_1/test_staff_1.tscn" id="3_f5ghg"]
 
 [resource]
-script = ExtResource("2_6oh4f")
+script = ExtResource("2_1hfkf")
 name = "test_staff"
 icon = ExtResource("1_01g70")
 world_item = ExtResource("3_f5ghg")
