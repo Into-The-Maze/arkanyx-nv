@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_nulxb"]
 [ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="5_ogdjs"]
 [ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/DebugStatsUI.tscn" id="6_kqiv7"]
-[ext_resource type="Resource" path="res://Resources/player_inventory.tres" id="6_l3lq6"]
+[ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/player_inventory.tres" id="6_l3lq6"]
 [ext_resource type="PackedScene" uid="uid://tifbh35o55rm" path="res://Scenes/Inventory/Inventory_Container.tscn" id="9_ro02m"]
 [ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/inventory.tscn" id="10_s4gnd"]
-[ext_resource type="PackedScene" path="res://Scenes/Inventory/pick_up_item_alert_ui.tscn" id="12_x1b5b"]
+[ext_resource type="PackedScene" uid="uid://bfb8dax0hbm2c" path="res://Scenes/Inventory/pick_up_item_alert_ui.tscn" id="12_x1b5b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -73,11 +73,10 @@ shape = SubResource("SphereShape3D_eebb2")
 script = ExtResource("5_nulxb")
 inventory = ExtResource("6_l3lq6")
 
-[node name="InventoryController" parent="Data" instance=ExtResource("9_ro02m")]
+[node name="InventoryController" parent="." instance=ExtResource("9_ro02m")]
 player_inventory = ExtResource("6_l3lq6")
 
-[node name="Inventory" parent="Data/InventoryController" instance=ExtResource("10_s4gnd")]
-layout_mode = 1
+[node name="Inventory" parent="InventoryController" instance=ExtResource("10_s4gnd")]
 mouse_filter = 1
 inventory_data = ExtResource("6_l3lq6")
 

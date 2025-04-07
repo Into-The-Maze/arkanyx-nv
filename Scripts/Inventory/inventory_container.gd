@@ -1,8 +1,8 @@
-extends Control
+extends CanvasLayer
 
 @export var player_inventory: Inventory
 
-@onready var drop_point = $".."/".."/ItemDropPoint
+@onready var drop_point = $".."/ItemDropPoint
 
 var is_open: bool
 var selected_item: Inventory_Item
@@ -36,13 +36,11 @@ func select_inventory(inventory):
 func open():
 	is_open = true
 	visible = true
-	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
 	SignalBus.emit_signal("INVENTORY_OPENED")
 
 func close():
 	is_open = false
 	visible = false
-	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
 	SignalBus.emit_signal("INVENTORY_CLOSED")
 
 func select_item(id, _texture):
