@@ -10,6 +10,7 @@ var selected_inventory: Inventory
 
 func _ready():
 	SignalBus.connect("INVENTORY_SELECTED", select_inventory.bind())
+	SignalBus.connect("INVENTORY_DESELECTED", deselect_inventory.bind())
 	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_PLACED", place_item.bind())
 	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
@@ -32,6 +33,9 @@ func _input(event):
 
 func select_inventory(inventory):
 	selected_inventory = inventory
+
+func deselect_inventory():
+	selected_inventory = null
 
 func open():
 	is_open = true
