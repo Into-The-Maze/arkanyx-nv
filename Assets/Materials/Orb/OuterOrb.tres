@@ -1,8 +1,8 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://bckkgnvnan5n"]
 
 [resource]
+render_priority = -1
 transparency = 1
-cull_mode = 1
 albedo_color = Color(0, 0, 1, 0.8)
 roughness = 0.0
 emission = Color(1, 0, 0, 1)

@@ -1,25 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=13 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
+[ext_resource type="PackedScene" uid="uid://cq3bdpreoadf8" path="res://Items/test_orb/orb_1.tscn" id="2_w5aj7"]
+[ext_resource type="PackedScene" uid="uid://facmy4lcu82s" path="res://Items/test_staff_1/test_staff_1.tscn" id="3_ytpos"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v1gvy"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hm7ad"]
 
-[sub_resource type="Sky" id="Sky_i7q5v"]
-sky_material = SubResource("ProceduralSkyMaterial_v1gvy")
+[sub_resource type="Sky" id="Sky_krf7d"]
+sky_material = SubResource("ProceduralSkyMaterial_hm7ad")
 
-[sub_resource type="Environment" id="Environment_sxcsl"]
+[sub_resource type="Environment" id="Environment_ub5ws"]
 background_mode = 2
-sky = SubResource("Sky_i7q5v")
+sky = SubResource("Sky_krf7d")
+ambient_light_source = 3
+tonemap_mode = 2
 sdfgi_enabled = true
-sdfgi_cascades = 6
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 8.0
-glow_mix = 0.498
-glow_bloom = 0.1
-glow_blend_mode = 4
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
+sdfgi_use_occlusion = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6hif"]
 size = Vector3(1000, 1, 1000)
@@ -42,10 +38,12 @@ size = Vector3(1000, 1000, 1)
 [node name="World" type="Node3D"]
 
 [node name="Character" parent="." instance=ExtResource("1_u2vbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28931, 1.5, 0.0426874)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_sxcsl")
+environment = SubResource("Environment_ub5ws")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 collision_layer = 2
@@ -198,7 +196,8 @@ shape = SubResource("BoxShape3D_7ci88")
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.826435, -0.461414, 0.322648, 0.18631, 0.764886, 0.616634, -0.531313, -0.449496, 0.718095, 0, 13.0042, 0)
-light_color = Color(1, 0.958113, 0.936174, 1)
-shadow_enabled = true
+[node name="Test Orb" parent="." instance=ExtResource("2_w5aj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23897, 1.03167, 1.26846)
+
+[node name="Test Staff" parent="." instance=ExtResource("3_ytpos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67923, 1.19807, 0.152474)

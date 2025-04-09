@@ -122,7 +122,8 @@ angular_velocity_max = 176.27
 gravity = Vector3(0, 0.2, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0kdw"]
-albedo_color = Color(0.439216, 0, 1, 0.219608)
+transparency = 1
+albedo_color = Color(0.439216, 0, 1, 1)
 emission_enabled = true
 emission = Color(0, 0, 1, 1)
 
@@ -170,3 +171,4 @@ draw_pass_1 = SubResource("SphereMesh_3gpew")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 0, 0, 1)
+shadow_enabled = true

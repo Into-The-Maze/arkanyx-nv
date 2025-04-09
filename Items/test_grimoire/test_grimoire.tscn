@@ -130,12 +130,12 @@ mesh = SubResource("ArrayMesh_bmplv")
 skeleton = NodePath("")
 
 [node name="Pages" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.438094, 0, 4.26516e-08, 0, 0.396342, 0, -6.61504e-08, 0, -0.282469, -0.0396435, 0.0350914, -0.145464)
+transform = Transform3D(-0.438094, 0, 4.26516e-08, 0, 0.396342, 0, -6.61504e-08, 0, -0.282469, -0.0383749, 0.0350914, -0.147367)
 mesh = SubResource("ArrayMesh_pd1y4")
 skeleton = NodePath("")
 
 [node name="Pages 2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.438094, 0, 0, 0, 0.396342, 0, 0, 0, 0.282469, -0.000741943, -0.00689351, 0.132806)
+transform = Transform3D(0.438094, 0, 0, 0, 0.396342, 0, 0, 0, 0.282469, 0.000526682, -0.00689351, 0.130903)
 mesh = SubResource("ArrayMesh_837h3")
 skeleton = NodePath("")
 
