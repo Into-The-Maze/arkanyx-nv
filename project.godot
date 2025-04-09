@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-SignalBus="*res://Scripts/SIGNAL_BUS.gd"
-Mouse="*res://Scripts/MOUSE.gd"
+SIGNAL_BUS="*res://Scripts/SIGNAL_BUS.gd"
+MOUSE="*res://Scripts/MOUSE.gd"
 ITEM_REGISTRY="*res://Scripts/ITEM_REGISTRY.gd"
 G="*res://Scripts/GLOBALS.gd"
 

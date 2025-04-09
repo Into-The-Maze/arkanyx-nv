@@ -10,15 +10,15 @@ extends Control
 var slots: Array[Node]
 
 func _ready():
-	SignalBus.connect("INVENTORY_UPDATE", update)
-	SignalBus.connect("INVENTORY_OPENED", open)
-	SignalBus.connect("INVENTORY_CLOSED", close)
+	SIGNAL_BUS.connect("INVENTORY_UPDATE", update)
+	SIGNAL_BUS.connect("INVENTORY_OPENED", open)
+	SIGNAL_BUS.connect("INVENTORY_CLOSED", close)
 
 	create()
 	update()
 
 func _on_drop_item_pressed() -> void:
-	SignalBus.emit_signal("INVENTORY_ITEM_DROPPED")
+	SIGNAL_BUS.emit_signal("INVENTORY_ITEM_DROPPED")
 
 func open():
 	visible = true
