@@ -20,10 +20,10 @@ func _on_interact_button_down() -> void:
 
 	var slot_id = get_meta("Index")
 	if inventory_container.selected_item == null && item_display.texture != null: # ie if there is an item to pick up in our empty hand,
-		SignalBus.emit_signal("INVENTORY_ITEM_SELECTED", slot_id, item_display.texture)
+		SIGNAL_BUS.emit_signal("INVENTORY_ITEM_SELECTED", slot_id, item_display.texture)
 	elif inventory_container.selected_item != null && item_display.texture == null: # ie if we can insert into the slot
-		SignalBus.emit_signal("INVENTORY_ITEM_PLACED", slot_id)
+		SIGNAL_BUS.emit_signal("INVENTORY_ITEM_PLACED", slot_id)
 	elif inventory_container.selected_item != null && item_display.texture != null: # ie if there are items we can swap
-		SignalBus.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, item_display.texture)
+		SIGNAL_BUS.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, item_display.texture)
 
 

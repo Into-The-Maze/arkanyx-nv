@@ -9,13 +9,13 @@ var selected_item: Inventory_Item
 var selected_inventory: Inventory
 
 func _ready():
-	SignalBus.connect("INVENTORY_SELECTED", select_inventory.bind())
-	SignalBus.connect("INVENTORY_DESELECTED", deselect_inventory.bind())
-	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_PLACED", place_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
-	SignalBus.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
+	SIGNAL_BUS.connect("INVENTORY_SELECTED", select_inventory.bind())
+	SIGNAL_BUS.connect("INVENTORY_DESELECTED", deselect_inventory.bind())
+	SIGNAL_BUS.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
+	SIGNAL_BUS.connect("INVENTORY_ITEM_PLACED", place_item.bind())
+	SIGNAL_BUS.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
+	SIGNAL_BUS.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
+	SIGNAL_BUS.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
 
 	close()
 
@@ -44,36 +44,36 @@ func deselect_inventory():
 func open():
 	is_open = true
 	visible = true
-	SignalBus.emit_signal("INVENTORY_OPENED")
+	SIGNAL_BUS.emit_signal("INVENTORY_OPENED")
 
 func close():
 	is_open = false
 	visible = false
-	SignalBus.emit_signal("INVENTORY_CLOSED")
+	SIGNAL_BUS.emit_signal("INVENTORY_CLOSED")
 
 func select_item(id, _texture):
 	if selected_inventory == null: return
 	selected_item = selected_inventory.inventory[id]
 	selected_inventory.inventory[id] = null
-	SignalBus.emit_signal("INVENTORY_UPDATE")
+	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
 func place_item(id):
 	if selected_inventory == null: return
 	selected_inventory.inventory[id] = selected_item
 	selected_item = null
-	SignalBus.emit_signal("INVENTORY_UPDATE")
+	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
 func swap_item(id, _texture):
 	if selected_inventory == null: return
 	var temp = selected_inventory.inventory[id]
 	selected_inventory.inventory[id] = selected_item
 	selected_item = temp
-	SignalBus.emit_signal("INVENTORY_UPDATE")
+	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
 func insert_item(id, item, inventory=player_inventory):
 	if inventory == null: return
 	inventory.inventory[id] = item
-	SignalBus.emit_signal("INVENTORY_UPDATE")
+	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
 func drop_item():
 	if selected_item == null: return
@@ -84,7 +84,7 @@ func drop_item():
 	world_item.global_position = drop_point.global_position
 	world_item.rotation_degrees = Vector3(-20, 0, 0)
 	selected_item = null
-	SignalBus.emit_signal("INVENTORY_UPDATE")
+	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
 func pickup_item(item_guid):
 	var inventory_item = ITEM_REGISTRY.get_item(item_guid)

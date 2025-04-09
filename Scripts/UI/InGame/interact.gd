@@ -1,8 +1,8 @@
 extends RichTextLabel
 
 func _ready():
-	SignalBus.connect("NEARBY_ITEM_DETECTED", pick_up_item_on.bind())
-	SignalBus.connect("NEARBY_ITEM_EMPTY", pick_up_item_off.bind())
+	SIGNAL_BUS.connect("NEARBY_ITEM_DETECTED", pick_up_item_on.bind())
+	SIGNAL_BUS.connect("NEARBY_ITEM_EMPTY", pick_up_item_off.bind())
 
 func pick_up_item_on(item):
 	var guid = item.get_meta("guid")

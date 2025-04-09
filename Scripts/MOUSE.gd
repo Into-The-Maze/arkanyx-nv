@@ -1,10 +1,10 @@
 extends Node
 
 func _ready():
-	SignalBus.connect("INVENTORY_OPENED", free_mouse)
-	SignalBus.connect("INVENTORY_CLOSED", capture_mouse)
-	SignalBus.connect("MENU_OPENED", free_mouse)
-	SignalBus.connect("MENU_CLOSED", capture_mouse)
+	SIGNAL_BUS.connect("INVENTORY_OPENED", free_mouse)
+	SIGNAL_BUS.connect("INVENTORY_CLOSED", capture_mouse)
+	SIGNAL_BUS.connect("MENU_OPENED", free_mouse)
+	SIGNAL_BUS.connect("MENU_CLOSED", capture_mouse)
 
 	capture_mouse()
 
