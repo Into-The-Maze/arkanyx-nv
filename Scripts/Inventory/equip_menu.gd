@@ -11,8 +11,8 @@ extends CanvasLayer
 ###############
 
 func _ready():
-  SignalBus.connect("INVENTORY_OPENED", open.bind())
-  SignalBus.connect("INVENTORY_CLOSED", close.bind())
+  SIGNALBUS.connect("INVENTORY_OPENED", open.bind())
+  SIGNALBUS.connect("INVENTORY_CLOSED", close.bind())
   
   close()
 

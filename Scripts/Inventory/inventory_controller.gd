@@ -1,68 +1,94 @@
-extends Control
+extends CanvasLayer
 
-@export var max_one_line_grid_size: int = 10
-@export var background_margin_size = 12
-@export var inventory_data: Inventory
+@export var player_inventory: Inventory
 
-@onready var background = $Inventory_Background
-@onready var grid = $Inventory_Background/Grid
+@onready var drop_point = $".."/ItemDropPoint
 
-var slots: Array[Node]
+var is_open: bool
+var selected_item: Inventory_Item
+var selected_inventory: Inventory
 
 func _ready():
-	SignalBus.connect("INVENTORY_UPDATE", update)
-	SignalBus.connect("INVENTORY_OPENED", open)
-	SignalBus.connect("INVENTORY_CLOSED", close)
+	SIGNALBUS.connect("INVENTORY_SELECTED", select_inventory.bind())
+	SIGNALBUS.connect("INVENTORY_DESELECTED", deselect_inventory.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_PLACED", place_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
+	SIGNALBUS.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
 
-	create()
-	update()
+	close()
 
-func _on_drop_item_pressed() -> void:
-	SignalBus.emit_signal("INVENTORY_ITEM_DROPPED")
+	# debug code
+	var item = preload("res://Items/test_orb/test_orb.tres")
+	ITEM_REGISTRY.register_item(item)
+	insert_item(0, item)
+
+func _input(event):
+	if event.is_action_pressed("toggle_inventory"):
+		if is_open:
+			close()
+		else:
+			open()
+
+func select_inventory(inventory):
+	selected_inventory = inventory
+
+func deselect_inventory():
+	selected_inventory = null
 
 func open():
+	is_open = true
 	visible = true
+	SIGNALBUS.emit_signal("INVENTORY_OPENED")
 
 func close():
+	is_open = false
 	visible = false
+	SIGNALBUS.emit_signal("INVENTORY_CLOSED")
 
-func update():
-	for i in min(inventory_data.inventory.size(), slots.size()):
-		slots[i].update(inventory_data.inventory[i])
+func select_item(id, _texture):
+	if selected_inventory == null: return
+	selected_item = selected_inventory.inventory[id]
+	selected_inventory.inventory[id] = null
+	SIGNALBUS.emit_signal("INVENTORY_UPDATE")
 
-func create():
-	var inv_size = inventory_data.inventory.size()
-	if inv_size <= max_one_line_grid_size:
-		grid.columns = inv_size
-	else:
-		# compute factor pairs
-		var factor_pairs = []
-		var lim = sqrt(inv_size)
-		for i in range(1, lim + 1):
-			var div = float(inv_size) / i # hate this language sometimes
-			var div_i: int = floor(div)
-			if div == div_i:
-				factor_pairs.append([div,i])
-		# find pair with lowest difference
-		var best_pair = factor_pairs[0]
-		var min_diff = abs(best_pair[0] - best_pair[1])
-		for pair in factor_pairs:
-			var diff = abs(pair[0] - pair[1])
-			if diff < min_diff:
-				min_diff = diff
-				best_pair = pair
-		grid.columns = int(best_pair[0])
+func place_item(id):
+	if selected_inventory == null: return
+	selected_inventory.inventory[id] = selected_item
+	selected_item = null
+	SIGNALBUS.emit_signal("INVENTORY_UPDATE")
 
-	for i in inv_size:
-		var slot = preload("res://Scenes/Inventory/inventory_slot.tscn").instantiate()
-		slot.set_meta("Index", i)
-		grid.add_child(slot)
+func swap_item(id, _texture):
+	if selected_inventory == null: return
+	var temp = selected_inventory.inventory[id]
+	selected_inventory.inventory[id] = selected_item
+	selected_item = temp
+	SIGNALBUS.emit_signal("INVENTORY_UPDATE")
+
+func insert_item(id, item, inventory=player_inventory):
+	if inventory == null: return
+	inventory.inventory[id] = item
+	SIGNALBUS.emit_signal("INVENTORY_UPDATE")
+
+func drop_item():
+	if selected_item == null: return
+	ITEM_REGISTRY.register_item(selected_item) # ensure registration
+	var world_item = selected_item.world_item.instantiate()
+	world_item.set_meta("guid", selected_item.guid)
+	get_tree().current_scene.add_child(world_item)
+	world_item.global_position = drop_point.global_position
+	world_item.rotation_degrees = Vector3(-20, 0, 0)
+	selected_item = null
+	SIGNALBUS.emit_signal("INVENTORY_UPDATE")
+
+func pickup_item(item_guid):
+	var inventory_item = ITEM_REGISTRY.get_item(item_guid)
+	insert_item(get_avaiable_slot(), inventory_item)
+
+func get_avaiable_slot(inventory=player_inventory) -> int:
+	for i in range(0, inventory.inventory.size()):
+		if inventory.inventory[i] == null:
+			return i
 	
-	slots = grid.get_children()
-	
-	background.size.x = background_margin_size + grid.size.x # updates grid size 
-
-	background.size.y = background_margin_size + grid.size.y
-	background.size.x = background_margin_size + grid.size.x
-	background.position.x -= background.size.x / 2
-	background.position.y -= background.size.y / 2
+	return -1 #todo! implement full inventory

@@ -7,8 +7,8 @@ extends Node3D
 var mouse_moves_camera: bool = true
 
 func _ready():
-	SignalBus.connect("INVENTORY_OPENED", camera_off)
-	SignalBus.connect("INVENTORY_CLOSED", camera_on)
+	SIGNALBUS.connect("INVENTORY_OPENED", camera_off)
+	SIGNALBUS.connect("INVENTORY_CLOSED", camera_on)
 
 func _process(_delta: float) -> void:
 	global_position = $"..".global_position # ew

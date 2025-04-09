@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Inventory_Item_Weapon" load_steps=4 format=3 uid="uid://dt2vmbvd6y6cp"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/Item Types/Item_Weapon.gd" id="1_ohi5d"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Item Types/item_weapon.gd" id="1_ohi5d"]
 [ext_resource type="Texture2D" uid="uid://deg8p3jff543h" path="res://Assets/Temporary/test_orb_sprite.png" id="1_u1763"]
 [ext_resource type="PackedScene" uid="uid://cq3bdpreoadf8" path="res://Items/test_orb/orb_1.tscn" id="3_hjhov"]
 

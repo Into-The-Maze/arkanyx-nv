@@ -1,10 +1,10 @@
 extends Sprite2D
 
 func _ready():
-	SignalBus.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
-	SignalBus.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_SELECTED", select_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_PLACED", insert_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
+	SIGNALBUS.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
 
 func _process(_delta):
 	if texture != null:

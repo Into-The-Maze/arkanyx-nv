@@ -9,7 +9,7 @@ var equipment
 const slot_id = 1
 
 func _ready():
-	SignalBus.connect("INVENTORY_UPDATE", update.bind())
+	SIGNALBUS.connect("INVENTORY_UPDATE", update.bind())
 	inventory_container = get_parent().get_parent().get_parent()
 	equipment = get_parent().get_parent().equipment.inventory
 
@@ -26,8 +26,8 @@ func _on_interact_button_down() -> void:
 	if inventory_container.selected_item && inventory_container.selected_item is not Inventory_Item_Chest: return
 
 	if inventory_container.selected_item == null && item_display.texture != null: # ie if there is an item to pick up in our empty hand,
-		SignalBus.emit_signal("INVENTORY_ITEM_SELECTED", slot_id, equipment[slot_id].icon)
+		SIGNALBUS.emit_signal("INVENTORY_ITEM_SELECTED", slot_id, equipment[slot_id].icon)
 	elif inventory_container.selected_item != null && item_display.texture == null: # ie if we can insert into the slot
-		SignalBus.emit_signal("INVENTORY_ITEM_PLACED", slot_id)
+		SIGNALBUS.emit_signal("INVENTORY_ITEM_PLACED", slot_id)
 	elif inventory_container.selected_item != null && item_display.texture != null: # ie if there are items we can swap
-		SignalBus.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, equipment[slot_id].icon)
+		SIGNALBUS.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, equipment[slot_id].icon)

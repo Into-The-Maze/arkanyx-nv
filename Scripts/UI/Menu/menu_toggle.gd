@@ -15,9 +15,9 @@ func _toggle_menu():
 	self.visible = menu_open
 	
 	if menu_open:
-		SignalBus.emit_signal("MENU_OPENED")
+		SIGNALBUS.emit_signal("MENU_OPENED")
 	else:
-		SignalBus.emit_signal("MENU_CLOSED")
+		SIGNALBUS.emit_signal("MENU_CLOSED")
 
 	if should_menu_pause && menu_open:
 		get_tree().paused = true
