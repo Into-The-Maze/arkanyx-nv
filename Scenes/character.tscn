@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=20 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
@@ -9,10 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="5_ogdjs"]
 [ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/DebugStatsUI.tscn" id="6_kqiv7"]
 [ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/player_inventory.tres" id="6_l3lq6"]
+[ext_resource type="Resource" uid="uid://bg30gi84ppkpd" path="res://Resources/player_equipment.tres" id="6_pudw4"]
+[ext_resource type="Script" path="res://Scripts/AbilitySlot/current_ability_slot_manager.gd" id="8_eseud"]
 [ext_resource type="PackedScene" uid="uid://b84b3qsok860l" path="res://Scenes/Inventory/equip_menu.tscn" id="9_b2u6l"]
 [ext_resource type="PackedScene" uid="uid://tifbh35o55rm" path="res://Scenes/Inventory/Inventory_Container.tscn" id="9_ro02m"]
 [ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/inventory.tscn" id="10_s4gnd"]
-[ext_resource type="PackedScene" uid="uid://bfb8dax0hbm2c" path="res://Scenes/Inventory/pick_up_item_alert_ui.tscn" id="12_x1b5b"]
+[ext_resource type="PackedScene" path="res://Scenes/Inventory/pick_up_item_alert_ui.tscn" id="12_x1b5b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -72,7 +74,11 @@ shape = SubResource("SphereShape3D_eebb2")
 
 [node name="Data" type="Node3D" parent="."]
 script = ExtResource("5_nulxb")
+equipment = ExtResource("6_pudw4")
 inventory = ExtResource("6_l3lq6")
+
+[node name="CurrentAbilitySlotManager" type="Node" parent="Data"]
+script = ExtResource("8_eseud")
 
 [node name="InventoryController" parent="." instance=ExtResource("9_ro02m")]
 player_inventory = ExtResource("6_l3lq6")
@@ -84,7 +90,6 @@ inventory_data = ExtResource("6_l3lq6")
 [node name="EquipMenu" parent="InventoryController" instance=ExtResource("9_b2u6l")]
 
 [node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
-visible = true
 
 [node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
 

@@ -1,8 +1,8 @@
 extends Node3D
 
-# we can have player metadata and stuff here?
-
+@export var equipment: Inventory
 @export var inventory: Inventory
+@export var current_ability_slot_manager: CurrentAbilitySlotManager
 
 func collect(item):
   inventory.insert(item)

@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="Inventory_Item_Weapon" load_steps=4 format=3 uid="uid://dt2vmbvd6y6cp"]
+[gd_resource type="Resource" script_class="Inventory_Item_Weapon" load_steps=7 format=3 uid="uid://dt2vmbvd6y6cp"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/Item Types/Item_Weapon.gd" id="1_ohi5d"]
 [ext_resource type="Texture2D" uid="uid://deg8p3jff543h" path="res://Assets/Temporary/test_orb_sprite.png" id="1_u1763"]
+[ext_resource type="Script" path="res://Scripts/AbilitySlot/Ability_Slot.gd" id="1_x2dam"]
+[ext_resource type="Resource" uid="uid://dxswt57ht1bug" path="res://Resources/AbilitySlots/damage_slot.tres" id="2_5xqfh"]
+[ext_resource type="Resource" uid="uid://b7k5kpq52dysd" path="res://Resources/AbilitySlots/self_buff_slot.tres" id="3_dywka"]
 [ext_resource type="PackedScene" uid="uid://cq3bdpreoadf8" path="res://Items/test_orb/orb_1.tscn" id="3_hjhov"]
 
 [resource]
 script = ExtResource("1_ohi5d")
 equip_icon = ExtResource("1_u1763")
+default_slots = Array[ExtResource("1_x2dam")]([ExtResource("2_5xqfh"), ExtResource("2_5xqfh"), ExtResource("3_dywka")])
 name = "Orb"
 icon = ExtResource("1_u1763")
 world_item = ExtResource("3_hjhov")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://be7hwrgdre84"]
+[gd_scene load_steps=8 format=3 uid="uid://be7hwrgdre84"]
 
 [ext_resource type="Script" path="res://Scripts/UI/InGame/charge_bar.gd" id="1_6nlc6"]
 [ext_resource type="Script" path="res://Scripts/UI/InGame/cooldown_bar.gd" id="2_d35g2"]
+[ext_resource type="Script" path="res://Scripts/UI/InGame/slot_bar.gd" id="3_7ixxr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unt2n"]
 
@@ -16,7 +17,6 @@ bg_color = Color(1, 0, 0, 1)
 
 [node name="InGameUI" type="CanvasLayer"]
 layer = 2
-visible = false
 
 [node name="JumpChargeBar" type="ProgressBar" parent="."]
 anchors_preset = 7
@@ -70,3 +70,17 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_unt2n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bl3lf")
 value = 50.0
 show_percentage = false
+
+[node name="SlotBar" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -82.0
+offset_right = 20.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_7ixxr")
