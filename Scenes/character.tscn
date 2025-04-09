@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=19 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
 [ext_resource type="Script" path="res://Scripts/Player/springarm.gd" id="1_phgx6"]
 [ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="2_6se4h"]
 [ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/InGameUI.tscn" id="4_7an58"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_distance.gd" id="4_bwxx5"]
 [ext_resource type="Script" path="res://Scripts/Inventory/pick_up_items.gd" id="4_yt74t"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_nulxb"]
 [ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/MenuUI.tscn" id="5_ogdjs"]
@@ -54,6 +55,7 @@ spring_target = NodePath("../SpringArm/SpringTarget")
 collision_mask = 2
 shape = SubResource("SphereShape3D_1n2n6")
 spring_length = 5.0
+script = ExtResource("4_bwxx5")
 
 [node name="SpringTarget" type="Node3D" parent="Pivot/SpringArm"]
 
