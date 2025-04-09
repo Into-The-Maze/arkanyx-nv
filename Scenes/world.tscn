@@ -1,8 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=11 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
-[ext_resource type="PackedScene" uid="uid://cq3bdpreoadf8" path="res://Items/test_orb/orb_1.tscn" id="2_w5aj7"]
-[ext_resource type="PackedScene" uid="uid://facmy4lcu82s" path="res://Items/test_staff_1/test_staff_1.tscn" id="3_ytpos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hm7ad"]
 
@@ -212,6 +210,7 @@ mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
 
 [node name="Box" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3559, 0, 3.20152)
 
 [node name="Ramp_12" type="StaticBody3D" parent="Box"]
 transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -1.92634, 3.5097, -10.6675)
@@ -271,11 +270,6 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_7ci88")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_16"]
+transform = Transform3D(1, 0, 2.32831e-10, 0, 1, 0, -2.32831e-10, 0, 1, 1.2276, 0, 0.00274301)
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../../Terrain/Ramp_8")
-
-[node name="Test Orb" parent="." instance=ExtResource("2_w5aj7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4245, 1.50693, 1.37869)
-
-[node name="Test Staff" parent="." instance=ExtResource("3_ytpos")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57116, 0.664613, -1.47346)
