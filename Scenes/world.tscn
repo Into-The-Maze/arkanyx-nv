@@ -8,17 +8,26 @@
 
 [sub_resource type="Sky" id="Sky_krf7d"]
 sky_material = SubResource("ProceduralSkyMaterial_hm7ad")
+radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_ub5ws"]
 background_mode = 2
 sky = SubResource("Sky_krf7d")
 ambient_light_source = 3
+reflected_light_source = 2
 tonemap_mode = 2
+tonemap_exposure = 0.9
+tonemap_white = 1.2
+ssao_enabled = true
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.75
 sdfgi_cascades = 8
+sdfgi_energy = 2.0
 glow_enabled = true
+glow_normalized = true
+glow_intensity = 2.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6hif"]
 size = Vector3(1000, 1, 1000)
@@ -45,6 +54,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29334, 1.5, 0.0426874)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ub5ws")
+
+[node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 collision_layer = 2
@@ -245,6 +258,18 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_7ci88")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_15"]
+mesh = SubResource("BoxMesh_ikhiv")
+skeleton = NodePath("../../../Terrain/Ramp_8")
+
+[node name="Ramp_16" type="StaticBody3D" parent="Box"]
+transform = Transform3D(0.00473604, 0, -2.11973, 0, 2.11974, 0, 2.11973, 0, 0.00473604, 4.68791, 3.57267, 6.97422)
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_16"]
+shape = SubResource("BoxShape3D_7ci88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_16"]
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../../Terrain/Ramp_8")
 
