@@ -28,6 +28,7 @@ glow_normalized = true
 glow_intensity = 2.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
+volumetric_fog_length = 32.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6hif"]
 size = Vector3(1000, 1, 1000)
