@@ -23,6 +23,10 @@ func _ready():
 	var item = preload("res://Items/test_orb/test_orb.tres")
 	ITEM_REGISTRY.register_item(item)
 	insert_item(0, item)
+	
+	var item2 = preload("res://Items/test_staff_1/test_staff.tres")
+	ITEM_REGISTRY.register_item(item2)
+	insert_item(1, item2)
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
