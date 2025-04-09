@@ -151,7 +151,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_dwiqa")
 
 [node name="Inner ORb" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.192233, 0, 0, 0, 0.192233, 0, 0, 0, 0.192233, 0, 0, 0)
+transform = Transform3D(0.192233, 0, 0, 0, 0.192233, 0, 0, 0, 0.192233, 0.000265121, 0, -0.000375092)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_306sf")
 skeleton = NodePath("")
