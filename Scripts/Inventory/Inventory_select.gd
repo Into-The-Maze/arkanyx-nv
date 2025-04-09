@@ -7,9 +7,9 @@ func _process(_delta):
 	var hovering := Rect2(Vector2(), size).has_point(local_mouse_pos)
 	
 	if hovering != previous_hovering && hovering:
-		SignalBus.emit_signal("INVENTORY_SELECTED", $".."/"..".inventory_data)
+		SIGNAL_BUS.emit_signal("INVENTORY_SELECTED", $".."/"..".inventory_data)
 		previous_hovering = hovering
 	elif hovering != previous_hovering && !hovering:
-		SignalBus.emit_signal("INVENTORY_DESELECTED")
+		SIGNAL_BUS.emit_signal("INVENTORY_DESELECTED")
 
 	previous_hovering = hovering

@@ -9,7 +9,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if not closest_item.get_meta("guid"):
 				print_debug("Item without guid detected!")
 				return
-			SignalBus.emit_signal("NEARBY_ITEM_PICKUP", closest_item.get_meta("guid"))
+			SIGNAL_BUS.emit_signal("NEARBY_ITEM_PICKUP", closest_item.get_meta("guid"))
 			closest_item.queue_free()
 		
 func _on_body_entered(body: Node3D) -> void:
@@ -23,9 +23,9 @@ func _on_body_exited(body: Node3D) -> void:
 func update():
 	if items.is_empty():
 		closest_item = null
-		SignalBus.emit_signal("NEARBY_ITEM_EMPTY")
+		SIGNAL_BUS.emit_signal("NEARBY_ITEM_EMPTY")
 		return
-	SignalBus.emit_signal("NEARBY_ITEM_DETECTED", get_closest_item())
+	SIGNAL_BUS.emit_signal("NEARBY_ITEM_DETECTED", get_closest_item())
 
 func get_closest_item() -> Node3D:
 	if items.is_empty():
