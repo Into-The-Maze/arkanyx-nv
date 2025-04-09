@@ -10,9 +10,6 @@ func _ready():
 	SIGNAL_BUS.connect("INVENTORY_OPENED", camera_off)
 	SIGNAL_BUS.connect("INVENTORY_CLOSED", camera_on)
 
-func _process(_delta: float) -> void:
-	global_position = $"..".global_position # ew
-
 func _unhandled_input(event: InputEvent) -> void:
 	if mouse_moves_camera:
 		if event is InputEventMouseMotion:
