@@ -30,8 +30,8 @@ func _on_interact_button_down() -> void:
 	elif inventory_container.selected_item != null && item_display.texture == null: # ie if we can insert into the slot
 		SIGNAL_BUS.emit_signal("INVENTORY_ITEM_PLACED", slot_id)
 	elif inventory_container.selected_item != null && item_display.texture != null: # ie if there are items we can swap
-		SignalBus.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, equipment[slot_id].icon)
+		SIGNAL_BUS.emit_signal("INVENTORY_ITEM_SWAPPED", slot_id, equipment[slot_id].icon)
 	else:
 		return
-	SignalBus.emit_signal("GEAR_WEAPON_CHANGED", equipment[slot_id])
+	SIGNAL_BUS.emit_signal("GEAR_WEAPON_CHANGED", equipment[slot_id])
 	print_debug("GEAR_WEAPON_CHANGED")

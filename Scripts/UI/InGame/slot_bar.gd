@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name SlotBar
 
 func _ready():
-	SignalBus.connect("WEAPON_SLOTS_UPDATED", update_slots)
+	SIGNAL_BUS.connect("WEAPON_SLOTS_UPDATED", update_slots)
 
 func update_slots(slots: Array):
 
