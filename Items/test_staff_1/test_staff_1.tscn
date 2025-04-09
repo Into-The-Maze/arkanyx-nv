@@ -464,6 +464,7 @@ roughness = 0.35
 emission_enabled = true
 emission = Color(1, 0, 1, 1)
 emission_energy_multiplier = 5.0
+refraction_enabled = true
 
 [node name="Test Staff" type="RigidBody3D"]
 collision_layer = 8
@@ -474,7 +475,9 @@ metadata/guid = ""
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000971854, 1.69644, 0.000841856)
 light_color = Color(1, 0, 1, 1)
+light_energy = 0.6
 shadow_enabled = true
+omni_range = 8.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.04071, 0, 0, 0, 1.04071, 0, 0, 0, 1.04071, -0.0043059, 1.62527, 0.00287855)
@@ -496,56 +499,66 @@ shape = SubResource("BoxShape3D_pm6pw")
 
 [node name="Bottom" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.12283, 0, 0, 0, -3.12283, 4.71535e-07, 0, -4.71535e-07, -3.12283, 0, -0.236428, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_wnbvr")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_uxgnc")
 
 [node name="Pole" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.63609, 0, 0, 0, 3.15975, 0, 0, 0, 2.63609, 0, 0.684909, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_gu3qu")
 skeleton = NodePath("")
 
 [node name="Bottom Ring" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.41998, 0, 0, 0, -4.02986, 3.65406e-07, 0, -6.08492e-07, -2.41998, 0, -0.201081, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_lgryw")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_krdpb")
 
 [node name="Handle Ring Top" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.59453, 0, 0, 0, -6.08297, 3.91764e-07, 0, -9.18502e-07, -2.59453, 0, 1.13815, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_jngoo")
 skeleton = NodePath("")
 
 [node name="Wrap" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0576131, 0, 0, 0, 0.069058, 0, 0, 0, 0.0576131, 0, 0.842285, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_w714y")
 skeleton = NodePath("")
 
 [node name="Handle Ring Bottom" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.59453, 0, 0, 0, -6.08297, 3.91764e-07, 0, -9.18502e-07, -2.59453, 0, 0.639058, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_elnqy")
 skeleton = NodePath("")
 
 [node name="Top" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.78124, 0, 0, 0, -4.78124, 7.21948e-07, 0, -7.21948e-07, -4.78124, 0, 1.471, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_qq25j")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_uxgnc")
 
 [node name="Top Ring" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.07804, 0, 0, 0, -3.46046, 3.13776e-07, 0, -5.22514e-07, -2.07804, 0, 1.45635, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_ws3d0")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_krdpb")
 
 [node name="Metal Ring" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.16572, 0, 0, 0, -1.12786, 3.27015e-07, 0, -1.70302e-07, -2.16572, 0, 1.44895, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_wpymd")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_uxgnc")
 
 [node name="Crystal" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.6469, 0, 0, 0, 4.64796, 0, 0, 0, 2.6469, 0, 1.60099, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_f84ya")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_yw3fr")

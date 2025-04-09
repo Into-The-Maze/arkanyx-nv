@@ -16,6 +16,9 @@ ambient_light_source = 3
 tonemap_mode = 2
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.75
+sdfgi_cascades = 8
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6hif"]
 size = Vector3(1000, 1, 1000)
@@ -38,12 +41,10 @@ size = Vector3(1000, 1000, 1)
 [node name="World" type="Node3D"]
 
 [node name="Character" parent="." instance=ExtResource("1_u2vbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28931, 1.5, 0.0426874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29334, 1.5, 0.0426874)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ub5ws")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 collision_layer = 2
@@ -196,8 +197,59 @@ shape = SubResource("BoxShape3D_7ci88")
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
 
+[node name="Box" type="Node3D" parent="."]
+
+[node name="Ramp_12" type="StaticBody3D" parent="Box"]
+transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -1.92634, 3.5097, -10.6675)
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_12"]
+shape = SubResource("BoxShape3D_7ci88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.912045, 0, -0.944708)
+mesh = SubResource("BoxMesh_ikhiv")
+skeleton = NodePath("../../../Terrain/Ramp_8")
+
+[node name="Ramp_13" type="StaticBody3D" parent="Box"]
+transform = Transform3D(0.00473604, 0, -2.11973, 0, 2.11974, 0, 2.11973, 0, 0.00473604, -12.4402, 3.5097, -0.300713)
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_13"]
+shape = SubResource("BoxShape3D_7ci88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_13"]
+mesh = SubResource("BoxMesh_ikhiv")
+skeleton = NodePath("../../../Terrain/Ramp_8")
+
+[node name="Ramp_14" type="StaticBody3D" parent="Box"]
+transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -3.66652, 3.5097, 8.24849)
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_14"]
+shape = SubResource("BoxShape3D_7ci88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_14"]
+mesh = SubResource("BoxMesh_ikhiv")
+skeleton = NodePath("../../../Terrain/Ramp_8")
+
+[node name="Ramp_15" type="StaticBody3D" parent="Box"]
+transform = Transform3D(-2.11956, -0.0271917, -0.00347773, 0.00347812, -9.07883e-08, -2.11974, 0.0271917, -2.11956, 4.47068e-05, -4.03217, 12.0983, -0.290261)
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_15"]
+shape = SubResource("BoxShape3D_7ci88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_15"]
+mesh = SubResource("BoxMesh_ikhiv")
+skeleton = NodePath("../../../Terrain/Ramp_8")
+
 [node name="Test Orb" parent="." instance=ExtResource("2_w5aj7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23897, 1.03167, 1.26846)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4245, 1.50693, 1.37869)
 
 [node name="Test Staff" parent="." instance=ExtResource("3_ytpos")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67923, 1.19807, 0.152474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57116, 0.664613, -1.47346)

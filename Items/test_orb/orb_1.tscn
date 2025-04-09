@@ -144,18 +144,21 @@ shape = SubResource("SphereShape3D_6ij28")
 
 [node name="Orb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.231634, 0, 0, 0, 0.21733, 0, 0, 0, 0.231634, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_wvh1m")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_dwiqa")
 
 [node name="Inner ORb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.192233, 0, 0, 0, 0.192233, 0, 0, 0, 0.192233, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_306sf")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_oc4f6")
 
 [node name="Outer Orb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.295869, 0, 0, 0, 0.276405, 0, 0, 0, 0.295869, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_6bx82")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_4r06y")
@@ -172,3 +175,4 @@ draw_pass_1 = SubResource("SphereMesh_3gpew")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 0, 0, 1)
 shadow_enabled = true
+omni_range = 8.0
