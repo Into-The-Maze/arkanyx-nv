@@ -110,16 +110,21 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_n0krh")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bwa8q"]
-lifetime_randomness = 1.0
+lifetime_randomness = 0.7
 emission_shape = 2
 emission_sphere_radius = 0.2
 direction = Vector3(0, 1, 0)
-spread = 5.0
-initial_velocity_min = -0.11
+spread = 0.0
+initial_velocity_min = 0.2
 initial_velocity_max = 0.6
 angular_velocity_min = -187.12
 angular_velocity_max = 176.27
 gravity = Vector3(0, 0.5, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 0.001
+turbulence_noise_speed = Vector3(0, 3, 0)
+turbulence_noise_speed_random = 2.0
+turbulence_influence_max = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0kdw"]
 transparency = 1
@@ -151,7 +156,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_dwiqa")
 
 [node name="Inner ORb" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.192233, 0, 0, 0, 0.192233, 0, 0, 0, 0.192233, 0, 0, 0)
+transform = Transform3D(0.192233, 0, 0, 0, 0.192233, 0, 0, 0, 0.192233, 0.000265121, 0, -0.000375092)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_306sf")
 skeleton = NodePath("")
@@ -165,9 +170,9 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_4r06y")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1.04071, 0, 0, 0, 1.04071, 0, 0, 0, 1.04071, 0.00112331, 5.96046e-08, -0.000436783)
-amount = 600
-lifetime = 0.5
+transform = Transform3D(1.04071, 0, 0, 0, 1.04071, 0, 0, 0, 1.04071, 0.00165081, 0.000808761, -0.00121164)
+amount = 700
+lifetime = 0.55
 explosiveness = 0.3
 randomness = 1.0
 fixed_fps = 15
