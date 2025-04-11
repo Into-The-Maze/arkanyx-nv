@@ -6,4 +6,4 @@
 
 [resource]
 script = ExtResource("2_8scth")
-abilities = Array[ExtResource("1_lv8ei")]([ExtResource("2_lr1cn"), ExtResource("2_lr1cn"), ExtResource("2_lr1cn")])
+abilities = Array[ExtResource("1_lv8ei")]([ExtResource("2_lr1cn")])
