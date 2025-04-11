@@ -27,6 +27,10 @@ func _ready():
 	var item2 = preload("res://Items/test_staff_1/test_staff.tres")
 	ITEM_REGISTRY.register_item(item2)
 	insert_item(1, item2)
+	
+	var item3 = preload("res://Items/placeholder_item/test_item.tres")
+	ITEM_REGISTRY.register_item(item3)
+	insert_item(3, item3)
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
@@ -96,5 +100,3 @@ func get_avaiable_slot(inventory=player_inventory) -> int:
 			return i
 	
 	return -1 #todo! implement full inventory
-
-

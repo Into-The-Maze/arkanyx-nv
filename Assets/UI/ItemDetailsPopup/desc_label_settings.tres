@@ -2,4 +2,3 @@
 
 [resource]
 font_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 0)
