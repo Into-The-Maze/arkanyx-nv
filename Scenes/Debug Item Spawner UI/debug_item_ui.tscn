@@ -1,11 +1,18 @@
-[gd_scene format=3 uid="uid://c0ilvbefkw8m2"]
+[gd_scene load_steps=3 format=3 uid="uid://c0ilvbefkw8m2"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Debug Item Spawner/debug_item_ui.gd" id="1_ho544"]
+[ext_resource type="Script" path="res://Scripts/UI/Debug Item Spawner/item_grid.gd" id="2_xbu4u"]
 
 [node name="DebugItemUI" type="CanvasLayer"]
+script = ExtResource("1_ho544")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(192, 32)
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(192, 32)
 layout_mode = 2
 columns = 6
+script = ExtResource("2_xbu4u")

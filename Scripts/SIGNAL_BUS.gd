@@ -34,3 +34,6 @@ signal MENU_OPENED
 @warning_ignore("unused_signal")
 signal MENU_CLOSED
 
+# debug signals
+@warning_ignore("unused_signal")
+signal DEBUG_INSERT_NEW_ITEM (item: Inventory_Item)
