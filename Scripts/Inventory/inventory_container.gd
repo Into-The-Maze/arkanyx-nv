@@ -30,7 +30,7 @@ func _ready():
 	
 	var item3 = preload("res://Items/placeholder_item/test_item.tres")
 	ITEM_REGISTRY.register_item(item3)
-	insert_item(3, item3)
+	insert_item(2, item3)
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):

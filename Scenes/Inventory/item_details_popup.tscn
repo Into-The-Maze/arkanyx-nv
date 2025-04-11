@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dogs1kh3ujrul"]
+[gd_scene load_steps=9 format=3 uid="uid://dogs1kh3ujrul"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/item_details_popup.gd" id="1_nym3s"]
 [ext_resource type="LabelSettings" uid="uid://cxnlcmk8eh5ub" path="res://Assets/UI/ItemDetailsPopup/name_label_settings.tres" id="2_yokpr"]
@@ -9,20 +9,22 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4unkc"]
 bg_color = Color(0.936035, 0.754525, 0.568768, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.592638, 0.402381, 0.192358, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.779343, 0.546321, 0.294591, 1)
 border_blend = true
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-expand_margin_left = 16.0
-expand_margin_top = 16.0
-expand_margin_right = 16.0
-expand_margin_bottom = 16.0
+expand_margin_left = 24.0
+expand_margin_top = 24.0
+expand_margin_right = 24.0
+expand_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx8lr"]
 
 [node name="ItemDetailsPopup" type="Panel"]
 offset_right = 164.0
@@ -39,21 +41,32 @@ custom_minimum_size = Vector2(164, 68)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 24
 
 [node name="Icon_and_Name" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 12
+
+[node name="Panel" type="Panel" parent="VBox/Icon_and_Name"]
+layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="VBox/Icon_and_Name"]
 texture_filter = 1
 layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBox/Icon_and_Name"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yx8lr")
 
 [node name="Name" type="Label" parent="VBox/Icon_and_Name"]
 layout_mode = 2
 text = "Name
 "
 label_settings = ExtResource("2_yokpr")
+
+[node name="Panel3" type="Panel" parent="VBox/Icon_and_Name"]
+layout_mode = 2
 
 [node name="Description" type="Label" parent="VBox"]
 self_modulate = Color(0, 0, 0, 1)
