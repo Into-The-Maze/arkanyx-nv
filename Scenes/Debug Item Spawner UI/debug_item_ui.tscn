@@ -8,8 +8,17 @@ script = ExtResource("1_ho544")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(192, 32)
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -252.0
+offset_top = -198.0
+offset_right = -60.0
+offset_bottom = -158.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 custom_minimum_size = Vector2(192, 32)
