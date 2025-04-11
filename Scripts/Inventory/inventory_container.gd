@@ -17,6 +17,8 @@ func _ready():
 	SIGNAL_BUS.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
 	SIGNAL_BUS.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
 
+	SIGNAL_BUS.connect("DEBUG_INSERT_NEW_ITEM", debug_insert_item.bind())
+	
 	close()
 
 	# debug code
@@ -92,3 +94,8 @@ func get_avaiable_slot(inventory=player_inventory) -> int:
 			return i
 	
 	return -1 #todo! implement full inventory
+
+func debug_insert_item(item):
+	var i = item.duplicate()
+	ITEM_REGISTRY.register_item(i)
+	insert_item(get_avaiable_slot(), i)
