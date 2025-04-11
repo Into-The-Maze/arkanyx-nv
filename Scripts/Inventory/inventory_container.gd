@@ -70,6 +70,7 @@ func swap_item(id, _texture):
 
 func insert_item(id, item, inventory=player_inventory):
 	if inventory == null: return
+	if id == -1: return
 	inventory.inventory[id] = item
 	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
@@ -93,7 +94,8 @@ func get_available_slot(inventory=player_inventory) -> int:
 		if inventory.inventory[i] == null:
 			return i
 	
-	return -1 #todo! implement full inventory
+	SIGNAL_BUS.emit_signal("INVENTORY_FULL")
+	return -1
 
 func debug_insert_item(item):
 	var i = item.duplicate()

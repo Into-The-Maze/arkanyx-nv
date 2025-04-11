@@ -20,8 +20,10 @@ signal INVENTORY_DESELECTED
 @warning_ignore("unused_signal")
 signal INVENTORY_ITEM_DROPPED
 @warning_ignore("unused_signal")
+signal INVENTORY_FULL
 
 # picking up items
+@warning_ignore("unused_signal")
 signal NEARBY_ITEM_DETECTED
 @warning_ignore("unused_signal")
 signal NEARBY_ITEM_EMPTY
