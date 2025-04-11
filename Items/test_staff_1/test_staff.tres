@@ -12,5 +12,6 @@ script = ExtResource("2_1hfkf")
 equip_icon = ExtResource("1_01g70")
 default_slots = Array[ExtResource("1_cu4cb")]([ExtResource("2_kv6en"), ExtResource("3_vkqt0")])
 name = "Test Staff"
+description = "Cool le purple le staff lol"
 icon = ExtResource("1_01g70")
 world_item = ExtResource("3_f5ghg")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=4 uid="uid://cq3bdpreoadf8"]
 
-[ext_resource type="Material" uid="uid://cjaepunnmk3dt" path="res://Assets/Materials/Orb/Orb.tres" id="2_dwiqa"]
-[ext_resource type="Material" uid="uid://c7y6f4ggawj8m" path="res://Assets/Materials/Orb/InnerOrb.tres" id="3_oc4f6"]
-[ext_resource type="Material" uid="uid://bckkgnvnan5n" path="res://Assets/Materials/Orb/OuterOrb.tres" id="4_4r06y"]
+[ext_resource type="Material" uid="uid://cjaepunnmk3dt" path="res://Assets/Materials/Orb/Orb.tres" id="1_5t5nm"]
+[ext_resource type="Material" uid="uid://c7y6f4ggawj8m" path="res://Assets/Materials/Orb/InnerOrb.tres" id="2_u64qe"]
+[ext_resource type="Material" uid="uid://bckkgnvnan5n" path="res://Assets/Materials/Orb/OuterOrb.tres" id="3_ujjvn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6ij28"]
 radius = 0.27
@@ -153,21 +153,21 @@ transform = Transform3D(0.231634, 0, 0, 0, 0.21733, 0, 0, 0, 0.231634, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_wvh1m")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_dwiqa")
+surface_material_override/0 = ExtResource("1_5t5nm")
 
 [node name="Inner ORb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.192233, 0, 0, 0, 0.192233, 0, 0, 0, 0.192233, 0.000265121, 0, -0.000375092)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_306sf")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("3_oc4f6")
+surface_material_override/0 = ExtResource("2_u64qe")
 
 [node name="Outer Orb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.295869, 0, 0, 0, 0.276405, 0, 0, 0, 0.295869, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_6bx82")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("4_4r06y")
+surface_material_override/0 = ExtResource("3_ujjvn")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.04071, 0, 0, 0, 1.04071, 0, 0, 0, 1.04071, 0.00165081, 0.000808761, -0.00121164)
