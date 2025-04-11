@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dogs1kh3ujrul"]
+[gd_scene load_steps=5 format=3 uid="uid://dogs1kh3ujrul"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/item_details_popup.gd" id="1_nym3s"]
 [ext_resource type="LabelSettings" uid="uid://cxnlcmk8eh5ub" path="res://Assets/UI/ItemDetailsPopup/name_label_settings.tres" id="2_yokpr"]
-[ext_resource type="LabelSettings" uid="uid://21ee5k4n842j" path="res://Assets/UI/ItemDetailsPopup/desc_label_settings.tres" id="3_lj2yi"]
 [ext_resource type="Texture2D" uid="uid://chbe0a34d362m" path="res://Assets/Temporary/inventory_drop_item.png" id="4_fi6l8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4unkc"]
@@ -23,21 +22,13 @@ expand_margin_right = 16.0
 expand_margin_bottom = 16.0
 
 [node name="ItemDetailsPopup" type="Panel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.0
-offset_top = -34.0
-offset_right = 82.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 164.0
+offset_bottom = 68.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4unkc")
 script = ExtResource("1_nym3s")
 
 [node name="VBox" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(164, 68)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -56,13 +47,15 @@ text = "Name
 "
 label_settings = ExtResource("2_yokpr")
 
-[node name="Description" type="Label" parent="VBox"]
-custom_minimum_size = Vector2(8, 8)
+[node name="Description" type="RichTextLabel" parent="VBox"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(200, 8)
 layout_mode = 2
-text = "Name
-"
-label_settings = ExtResource("3_lj2yi")
+text = "Desc"
+fit_content = true
+scroll_active = false
 autowrap_mode = 2
+shortcut_keys_enabled = false
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 1
@@ -76,3 +69,5 @@ offset_bottom = 13.0
 grow_horizontal = 0
 icon = ExtResource("4_fi6l8")
 expand_icon = true
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
