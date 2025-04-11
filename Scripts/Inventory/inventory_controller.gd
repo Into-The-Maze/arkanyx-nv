@@ -28,7 +28,8 @@ func close():
 
 func update():
 	for i in min(inventory_data.inventory.size(), slots.size()):
-		slots[i].update(inventory_data.inventory[i])
+		var item = inventory_data.inventory[i]
+		slots[i].update(item, i)
 
 func create():
 	var inv_size = inventory_data.inventory.size()

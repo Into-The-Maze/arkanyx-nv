@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd5keg60jlqrq"]
 
 [ext_resource type="Texture2D" uid="uid://d0csnvsjsqdbp" path="res://Assets/Temporary/equip_menu_ring.png" id="1_kjltu"]
-[ext_resource type="Script" path="res://Scripts/Inventory/equip_ring_slot.gd" id="1_pk0ms"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_ring_slot.gd" id="1_pk0ms"]
 
 [node name="RingSlot" type="Panel"]
 custom_minimum_size = Vector2(32, 32)

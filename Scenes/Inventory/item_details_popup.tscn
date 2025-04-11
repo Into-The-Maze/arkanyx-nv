@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://dogs1kh3ujrul"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/item_details_popup.gd" id="1_nym3s"]
+[ext_resource type="LabelSettings" uid="uid://cxnlcmk8eh5ub" path="res://Assets/UI/ItemDetailsPopup/name_label_settings.tres" id="2_yokpr"]
+[ext_resource type="LabelSettings" uid="uid://21ee5k4n842j" path="res://Assets/UI/ItemDetailsPopup/desc_label_settings.tres" id="3_lj2yi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4unkc"]
+bg_color = Color(0.936035, 0.754525, 0.568768, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.592638, 0.402381, 0.192358, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+
+[node name="ItemDetailsPopup" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -34.0
+offset_right = 82.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4unkc")
+script = ExtResource("1_nym3s")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon_and_Name" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="VBox/Icon_and_Name"]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBox/Icon_and_Name"]
+layout_mode = 2
+text = "Name
+"
+label_settings = ExtResource("2_yokpr")
+
+[node name="Description" type="Label" parent="VBox"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+text = "Name
+"
+label_settings = ExtResource("3_lj2yi")
+autowrap_mode = 2

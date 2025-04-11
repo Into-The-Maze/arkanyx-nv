@@ -11,6 +11,6 @@
 script = ExtResource("1_ohi5d")
 equip_icon = ExtResource("1_u1763")
 default_slots = Array[ExtResource("1_x2dam")]([ExtResource("2_5xqfh"), ExtResource("2_5xqfh"), ExtResource("3_dywka")])
-name = "Orb"
+name = "Test Orb"
 icon = ExtResource("1_u1763")
 world_item = ExtResource("3_hjhov")

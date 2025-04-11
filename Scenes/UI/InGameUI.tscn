@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://be7hwrgdre84"]
 
-[ext_resource type="Script" path="res://Scripts/UI/InGame/charge_bar.gd" id="1_6nlc6"]
-[ext_resource type="Script" path="res://Scripts/UI/InGame/cooldown_bar.gd" id="2_d35g2"]
-[ext_resource type="Script" path="res://Scripts/UI/InGame/slot_bar.gd" id="3_7ixxr"]
+[ext_resource type="Script" path="res://Scripts/UI/InGame/charge_bar.gd" id="1_4bv53"]
+[ext_resource type="Script" path="res://Scripts/UI/InGame/cooldown_bar.gd" id="2_avtd2"]
+[ext_resource type="Script" path="res://Scripts/UI/InGame/slot_bar.gd" id="3_vc1jp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unt2n"]
 
@@ -34,7 +34,7 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_unt2n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fktob")
 value = 50.0
 show_percentage = false
-script = ExtResource("1_6nlc6")
+script = ExtResource("1_4bv53")
 
 [node name="DodgeCooldownBar" type="ProgressBar" parent="."]
 anchors_preset = 7
@@ -52,7 +52,7 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_unt2n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_48cdl")
 value = 50.0
 show_percentage = false
-script = ExtResource("2_d35g2")
+script = ExtResource("2_avtd2")
 
 [node name="WallHoldBar" type="ProgressBar" parent="."]
 anchors_preset = 7
@@ -83,4 +83,4 @@ offset_right = 20.0
 offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("3_7ixxr")
+script = ExtResource("3_vc1jp")

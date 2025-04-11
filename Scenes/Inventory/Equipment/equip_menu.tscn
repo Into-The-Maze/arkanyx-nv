@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://b84b3qsok860l"]
 
 [ext_resource type="Texture2D" uid="uid://bbhohbpec1gcs" path="res://Assets/Temporary/inventory_background_tmp.png" id="1_5ujpu"]
-[ext_resource type="Script" path="res://Scripts/Inventory/equip_menu.gd" id="1_l87l0"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_menu.gd" id="1_l87l0"]
 [ext_resource type="Resource" uid="uid://bg30gi84ppkpd" path="res://Resources/player_equipment.tres" id="2_7w8i5"]
-[ext_resource type="Script" path="res://Scripts/Inventory/equip_menu_select.gd" id="4_tmw6k"]
-[ext_resource type="PackedScene" uid="uid://bk4xb4jrpsus4" path="res://Scenes/Inventory/equip_weapon_slot.tscn" id="4_xvaws"]
-[ext_resource type="PackedScene" uid="uid://btvy1rmolughn" path="res://Scenes/Inventory/equip_chest_slot.tscn" id="6_av4ug"]
-[ext_resource type="PackedScene" uid="uid://130qariii0xe" path="res://Scenes/Inventory/equip_head_slot.tscn" id="7_ydg3x"]
-[ext_resource type="PackedScene" uid="uid://dd5keg60jlqrq" path="res://Scenes/Inventory/equip_ring_slot.tscn" id="8_8267c"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_menu_select.gd" id="4_tmw6k"]
+[ext_resource type="PackedScene" uid="uid://bk4xb4jrpsus4" path="res://Scenes/Inventory/Equipment/equip_weapon_slot.tscn" id="4_xvaws"]
+[ext_resource type="PackedScene" uid="uid://btvy1rmolughn" path="res://Scenes/Inventory/Equipment/equip_chest_slot.tscn" id="6_av4ug"]
+[ext_resource type="PackedScene" uid="uid://130qariii0xe" path="res://Scenes/Inventory/Equipment/equip_head_slot.tscn" id="7_ydg3x"]
+[ext_resource type="PackedScene" uid="uid://dd5keg60jlqrq" path="res://Scenes/Inventory/Equipment/equip_ring_slot.tscn" id="8_8267c"]
 
 [node name="EquipMenu" type="CanvasLayer"]
 script = ExtResource("1_l87l0")

@@ -34,6 +34,10 @@ signal NEARBY_ITEM_EMPTY
 @warning_ignore("unused_signal")
 signal NEARBY_ITEM_PICKUP
 
+# inspecting items
+@warning_ignore("unused_signal")
+signal INVENTORY_ITEM_INSPECTED
+
 # menu signals
 @warning_ignore("unused_signal")
 signal MENU_OPENED

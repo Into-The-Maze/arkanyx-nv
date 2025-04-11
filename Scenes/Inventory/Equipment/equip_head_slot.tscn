@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://130qariii0xe"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/equip_head_slot.gd" id="1_g0hfx"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_head_slot.gd" id="1_g0hfx"]
 [ext_resource type="Texture2D" uid="uid://jibh4tp0s1f7" path="res://Assets/Temporary/equip_menu_head.png" id="1_hew2j"]
 
 [node name="HeadSlot" type="Panel"]

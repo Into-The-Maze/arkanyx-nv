@@ -3,6 +3,7 @@ extends CanvasLayer
 @export var player_inventory: Inventory
 
 @onready var drop_point = $".."/ItemDropPoint
+@onready var item_popup = $ItemDetailsPopup
 
 var is_open: bool
 var selected_item: Inventory_Item
@@ -16,9 +17,10 @@ func _ready():
 	SIGNAL_BUS.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
 	SIGNAL_BUS.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
 	SIGNAL_BUS.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
-
+	SIGNAL_BUS.connect("INVENTORY_ITEM_INSPECTED", open_item_details_popup.bind())
+	
 	close()
-
+	
 	# debug code
 	var item = preload("res://Items/test_orb/test_orb.tres")
 	ITEM_REGISTRY.register_item(item)
@@ -96,3 +98,9 @@ func get_avaiable_slot(inventory=player_inventory) -> int:
 			return i
 	
 	return -1 #todo! implement full inventory
+
+func open_item_details_popup(item: Inventory_Item, position: Vector2):
+	if item == null:
+		return
+	item_popup.show_item(item, position)
+	item_popup.visible = true

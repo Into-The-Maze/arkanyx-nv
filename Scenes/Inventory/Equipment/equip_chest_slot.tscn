@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btvy1rmolughn"]
 
 [ext_resource type="Texture2D" uid="uid://ndnc5svskio6" path="res://Assets/Temporary/equip_menu_chest.png" id="1_dn1yn"]
-[ext_resource type="Script" path="res://Scripts/Inventory/equip_chest_slot.gd" id="1_pd5ta"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_chest_slot.gd" id="1_pd5ta"]
 
 [node name="ChestSlot" type="Panel"]
 custom_minimum_size = Vector2(64, 64)
