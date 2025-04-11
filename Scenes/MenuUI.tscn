@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk5owb68hs1pq"]
+[gd_scene load_steps=7 format=3 uid="uid://dk5owb68hs1pq"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Menu/menu_toggle.gd" id="1_4f5hs"]
 [ext_resource type="Script" path="res://Scripts/UI/Menu/menu_control.gd" id="2_pm3ay"]
+[ext_resource type="PackedScene" uid="uid://c0ilvbefkw8m2" path="res://Scenes/Debug Item Spawner UI/debug_item_ui.tscn" id="3_gjdjt"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Item Types/Item.gd" id="4_1yitc"]
+[ext_resource type="Resource" uid="uid://dt2vmbvd6y6cp" path="res://Items/test_orb/test_orb.tres" id="5_b2i0j"]
+[ext_resource type="Resource" uid="uid://vikhtcyd5pmj" path="res://Items/test_staff_1/test_staff.tres" id="6_chv2c"]
 
 [node name="MenuUI" type="CanvasLayer"]
 process_mode = 3
@@ -31,3 +35,6 @@ action_mode = 0
 text = "Debugging UI
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="DebugItemUI" parent="MenuPanel" instance=ExtResource("3_gjdjt")]
+spawnable_items = Array[ExtResource("4_1yitc")]([ExtResource("5_b2i0j"), ExtResource("6_chv2c")])

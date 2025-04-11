@@ -2,35 +2,40 @@ extends Node
 
 # inventory signals
 @warning_ignore("unused_signal")
-signal INVENTORY_OPENED
+signal INVENTORY_OPENED ()
 @warning_ignore("unused_signal")
-signal INVENTORY_CLOSED
+signal INVENTORY_CLOSED ()
 @warning_ignore("unused_signal")
-signal INVENTORY_ITEM_SELECTED
+signal INVENTORY_ITEM_SELECTED (slot_id: int, item_icon: Texture2D)
 @warning_ignore("unused_signal")
-signal INVENTORY_ITEM_PLACED
+signal INVENTORY_ITEM_PLACED (slot_id: int)
 @warning_ignore("unused_signal")
-signal INVENTORY_ITEM_SWAPPED
+signal INVENTORY_ITEM_SWAPPED (slot_id: int, item_icon: Texture2D)
 @warning_ignore("unused_signal")
-signal INVENTORY_SELECTED
+signal INVENTORY_SELECTED (inventory: Inventory)
 @warning_ignore("unused_signal")
-signal INVENTORY_UPDATE
+signal INVENTORY_UPDATE ()
 @warning_ignore("unused_signal")
-signal INVENTORY_DESELECTED
+signal INVENTORY_DESELECTED ()
 @warning_ignore("unused_signal")
-signal INVENTORY_ITEM_DROPPED
+signal INVENTORY_ITEM_DROPPED ()
 @warning_ignore("unused_signal")
+signal INVENTORY_FULL ()
 
 # picking up items
-signal NEARBY_ITEM_DETECTED
 @warning_ignore("unused_signal")
-signal NEARBY_ITEM_EMPTY
+signal NEARBY_ITEM_DETECTED (item: Node3D)
 @warning_ignore("unused_signal")
-signal NEARBY_ITEM_PICKUP
+signal NEARBY_ITEM_EMPTY ()
+@warning_ignore("unused_signal")
+signal NEARBY_ITEM_PICKUP (guid: int)
 
 # menu signals
 @warning_ignore("unused_signal")
-signal MENU_OPENED
+signal MENU_OPENED ()
 @warning_ignore("unused_signal")
-signal MENU_CLOSED
+signal MENU_CLOSED ()
 
+# debug signals
+@warning_ignore("unused_signal")
+signal DEBUG_INSERT_NEW_ITEM (item: Inventory_Item)
