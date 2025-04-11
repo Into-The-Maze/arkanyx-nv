@@ -44,7 +44,10 @@ offset_bottom = 40.0
 
 [node name="Icon_and_Name" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 16
+
+[node name="Space 1" type="Panel" parent="VBox/Icon_and_Name"]
+layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="VBox/Icon_and_Name"]
 texture_filter = 1
@@ -55,6 +58,9 @@ layout_mode = 2
 text = "Name
 "
 label_settings = ExtResource("2_yokpr")
+
+[node name="Space 2" type="Panel" parent="VBox/Icon_and_Name"]
+layout_mode = 2
 
 [node name="Description" type="Label" parent="VBox"]
 custom_minimum_size = Vector2(8, 8)
