@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c0ilvbefkw8m2"]
+
+[node name="DebugItemUI" type="CanvasLayer"]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+columns = 6

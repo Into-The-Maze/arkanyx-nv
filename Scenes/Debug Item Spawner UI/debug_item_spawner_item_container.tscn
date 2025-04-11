@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://y2m0db3tgh2x"]
+
+[node name="CenterContainer" type="CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemTexture" type="Sprite2D" parent="."]
+
+[node name="Spawn" type="Button" parent="."]
+layout_mode = 2
