@@ -18,7 +18,7 @@ func _ready():
 	SIGNAL_BUS.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
 
 	SIGNAL_BUS.connect("DEBUG_INSERT_NEW_ITEM", debug_insert_item.bind())
-	
+
 	close()
 
 	# debug code
@@ -86,9 +86,9 @@ func drop_item():
 
 func pickup_item(item_guid):
 	var inventory_item = ITEM_REGISTRY.get_item(item_guid)
-	insert_item(get_avaiable_slot(), inventory_item)
+	insert_item(get_available_slot(), inventory_item)
 
-func get_avaiable_slot(inventory=player_inventory) -> int:
+func get_available_slot(inventory=player_inventory) -> int:
 	for i in range(0, inventory.inventory.size()):
 		if inventory.inventory[i] == null:
 			return i
@@ -98,4 +98,4 @@ func get_avaiable_slot(inventory=player_inventory) -> int:
 func debug_insert_item(item):
 	var i = item.duplicate()
 	ITEM_REGISTRY.register_item(i)
-	insert_item(get_avaiable_slot(), i)
+	insert_item(get_available_slot(), i)
