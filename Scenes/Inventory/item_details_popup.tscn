@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dogs1kh3ujrul"]
+[gd_scene load_steps=6 format=3 uid="uid://dogs1kh3ujrul"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/item_details_popup.gd" id="1_nym3s"]
 [ext_resource type="LabelSettings" uid="uid://cxnlcmk8eh5ub" path="res://Assets/UI/ItemDetailsPopup/name_label_settings.tres" id="2_yokpr"]
+[ext_resource type="LabelSettings" uid="uid://21ee5k4n842j" path="res://Assets/UI/ItemDetailsPopup/desc_label_settings.tres" id="3_s6vnv"]
 [ext_resource type="Texture2D" uid="uid://chbe0a34d362m" path="res://Assets/Temporary/inventory_drop_item.png" id="4_fi6l8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4unkc"]
@@ -47,15 +48,13 @@ text = "Name
 "
 label_settings = ExtResource("2_yokpr")
 
-[node name="Description" type="RichTextLabel" parent="VBox"]
+[node name="Description" type="Label" parent="VBox"]
 self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(200, 8)
 layout_mode = 2
 text = "Desc"
-fit_content = true
-scroll_active = false
+label_settings = ExtResource("3_s6vnv")
 autowrap_mode = 2
-shortcut_keys_enabled = false
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 1
