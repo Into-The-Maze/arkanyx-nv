@@ -38,7 +38,7 @@ func _on_interact_button_down() -> void:
 func open_item_details_popup(item: Inventory_Item, pos: Vector2):
 	if item == null:
 		return
-	var i = preload("res://Scenes/Inventory/item_details_popup.tscn")
+	var i = preload("res://Scenes/Inventory/Inspect/item_details_popup.tscn")
 	var item_popup = i.instantiate()
 	inventory_container.add_child(item_popup)
 	item_popup.show_item(item, pos)

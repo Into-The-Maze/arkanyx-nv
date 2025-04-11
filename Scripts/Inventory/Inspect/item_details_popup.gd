@@ -9,6 +9,7 @@ extends Panel
 @onready var icon = $VBox/Icon_and_Name/Icon
 @onready var name_label = $VBox/Icon_and_Name/Name
 @onready var description_label = $VBox/Description
+@onready var ability_select = $VBox/AbilitySelect
 
 func show_item(item: Inventory_Item, pos: Vector2):
 	
@@ -33,13 +34,14 @@ func scale_texture_to_px(texture: Texture, size: int):
 func _on_close_pressed():
 	queue_free()
 
-func construct_weapon_popup(item: Inventory_Item):
+func construct_weapon_popup(item: Inventory_Item_Weapon):
 	icon.texture = item.icon
 	scale_texture_to_px(icon.texture, 96)
 	name_label.text = item.name
 	name_label.label_settings = weapon_name_set
 	description_label.text = item.description
 	description_label.label_settings = weapon_desc_set
+	ability_select.display_slots(item)
 
 func construct_item_popup(item: Inventory_Item):
 	icon.texture = item.icon

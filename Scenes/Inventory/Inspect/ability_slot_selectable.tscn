@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf7y77yjhlrvs"]
+
+[ext_resource type="Texture2D" uid="uid://cqq1y25rra308" path="res://Resources/AbilitySlots/any_slot.png" id="1_t34qa"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inspect/ability_slot_selectable.gd" id="2_3bq5h"]
+[ext_resource type="Resource" uid="uid://d4mkd1abe1syr" path="res://Resources/player_abilities.tres" id="2_a4fhr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56bse"]
+
+[node name="AbilitySlotSelectable" type="Panel" node_paths=PackedStringArray("ability_icon", "slot_icon", "abilities_grid")]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_56bse")
+script = ExtResource("2_3bq5h")
+ability_icon = NodePath("AbilityIcon")
+slot_icon = NodePath("SlotIcon")
+abilities_grid = NodePath("AbilitiesGrid")
+learned_abilities = ExtResource("2_a4fhr")
+
+[node name="SlotIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_t34qa")
+centered = false
+
+[node name="AbilityIcon" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="AbilitiesGrid" type="GridContainer" parent="."]
+layout_mode = 1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 104.0
+offset_bottom = 104.0
+columns = 4
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

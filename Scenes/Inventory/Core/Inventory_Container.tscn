@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://tifbh35o55rm"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/inventory_item_mouse_ui.gd" id="1_7jskc"]
-[ext_resource type="Script" path="res://Scripts/Inventory/inventory_container.gd" id="1_idwv3"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Core/inventory_item_mouse_ui.gd" id="1_7jskc"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Core/inventory_container.gd" id="1_idwv3"]
 
 [node name="InventoryContainer" type="CanvasLayer"]
 script = ExtResource("1_idwv3")

@@ -7,7 +7,6 @@ func _ready():
 	SIGNAL_BUS.connect("GEAR_WEAPON_CHANGED", update_slots)
 
 func update_slots(weapon):
-	print_debug("update_slots")
 	if weapon is Inventory_Item_Weapon:
 		current_slots = weapon.instance_slots
 	else:

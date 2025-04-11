@@ -55,7 +55,7 @@ func create():
 		grid.columns = int(best_pair[0])
 
 	for i in inv_size:
-		var slot = preload("res://Scenes/Inventory/inventory_slot.tscn").instantiate()
+		var slot = preload("res://Scenes/Inventory/Core/inventory_slot.tscn").instantiate()
 		slot.set_meta("Index", i)
 		grid.add_child(slot)
 	

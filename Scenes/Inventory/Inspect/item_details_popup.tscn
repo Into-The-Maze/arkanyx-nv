@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dogs1kh3ujrul"]
+[gd_scene load_steps=10 format=3 uid="uid://dogs1kh3ujrul"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/item_details_popup.gd" id="1_nym3s"]
-[ext_resource type="LabelSettings" uid="uid://cxnlcmk8eh5ub" path="res://Assets/UI/ItemDetailsPopup/name_label_settings.tres" id="2_yokpr"]
-[ext_resource type="LabelSettings" uid="uid://21ee5k4n842j" path="res://Assets/UI/ItemDetailsPopup/desc_label_settings.tres" id="3_s6vnv"]
-[ext_resource type="Texture2D" uid="uid://chbe0a34d362m" path="res://Assets/Temporary/inventory_drop_item.png" id="4_fi6l8"]
-[ext_resource type="LabelSettings" uid="uid://exosvs57nb7f" path="res://Assets/UI/ItemDetailsPopup/weapon_desc_label_settings.tres" id="4_n8tts"]
-[ext_resource type="LabelSettings" uid="uid://dvms3bk3klhxe" path="res://Assets/UI/ItemDetailsPopup/weapon_name_label_settings.tres" id="5_2sw2g"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inspect/item_details_popup.gd" id="1_7m1ry"]
+[ext_resource type="LabelSettings" uid="uid://21ee5k4n842j" path="res://Assets/UI/ItemDetailsPopup/desc_label_settings.tres" id="2_ai1aa"]
+[ext_resource type="LabelSettings" uid="uid://cxnlcmk8eh5ub" path="res://Assets/UI/ItemDetailsPopup/name_label_settings.tres" id="3_md2ib"]
+[ext_resource type="LabelSettings" uid="uid://exosvs57nb7f" path="res://Assets/UI/ItemDetailsPopup/weapon_desc_label_settings.tres" id="4_sm8fi"]
+[ext_resource type="LabelSettings" uid="uid://dvms3bk3klhxe" path="res://Assets/UI/ItemDetailsPopup/weapon_name_label_settings.tres" id="5_don4e"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inspect/ability_select.gd" id="6_emd4d"]
+[ext_resource type="Texture2D" uid="uid://chbe0a34d362m" path="res://Assets/Temporary/inventory_drop_item.png" id="7_ew040"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4unkc"]
 bg_color = Color(0.936035, 0.754525, 0.568768, 1)
@@ -30,11 +31,11 @@ expand_margin_bottom = 24.0
 offset_right = 164.0
 offset_bottom = 68.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4unkc")
-script = ExtResource("1_nym3s")
-desc_set = ExtResource("3_s6vnv")
-name_set = ExtResource("2_yokpr")
-weapon_desc_set = ExtResource("4_n8tts")
-weapon_name_set = ExtResource("5_2sw2g")
+script = ExtResource("1_7m1ry")
+desc_set = ExtResource("2_ai1aa")
+name_set = ExtResource("3_md2ib")
+weapon_desc_set = ExtResource("4_sm8fi")
+weapon_name_set = ExtResource("5_don4e")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(164, 68)
@@ -63,7 +64,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_yx8lr")
 layout_mode = 2
 text = "Name
 "
-label_settings = ExtResource("2_yokpr")
+label_settings = ExtResource("3_md2ib")
 
 [node name="Panel3" type="Panel" parent="VBox/Icon_and_Name"]
 layout_mode = 2
@@ -73,8 +74,13 @@ self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(200, 8)
 layout_mode = 2
 text = "Desc"
-label_settings = ExtResource("3_s6vnv")
+label_settings = ExtResource("2_ai1aa")
 autowrap_mode = 2
+
+[node name="AbilitySelect" type="HBoxContainer" parent="VBox"]
+visible = false
+layout_mode = 2
+script = ExtResource("6_emd4d")
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 1
@@ -86,7 +92,7 @@ offset_top = -29.0
 offset_right = 29.0
 offset_bottom = 13.0
 grow_horizontal = 0
-icon = ExtResource("4_fi6l8")
+icon = ExtResource("7_ew040")
 expand_icon = true
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
