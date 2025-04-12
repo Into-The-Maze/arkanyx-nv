@@ -27,9 +27,10 @@ func _on_button_pressed() -> void:
 	abilities_grid.add_child(empty_option)
 	
 	for ability in learned_abilities.abilities:
-		var new_option = option.instantiate()
-		new_option.set_ability(ability)
-		abilities_grid.add_child(new_option)
+		if ability.type == slot.slot_type:
+			var new_option = option.instantiate()
+			new_option.set_ability(ability)
+			abilities_grid.add_child(new_option)
 	
 	abilities_grid.visible = true
 
