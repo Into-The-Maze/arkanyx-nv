@@ -28,17 +28,13 @@ signal WEAPON_SLOTS_UPDATED
 
 # picking up items
 @warning_ignore("unused_signal")
-signal NEARBY_ITEM_DETECTED
-@warning_ignore("unused_signal")
-signal INVENTORY_FULL ()
-
-# picking up items
-@warning_ignore("unused_signal")
 signal NEARBY_ITEM_DETECTED (item: Node3D)
 @warning_ignore("unused_signal")
 signal NEARBY_ITEM_EMPTY ()
 @warning_ignore("unused_signal")
 signal NEARBY_ITEM_PICKUP (guid: int)
+@warning_ignore("unused_signal")
+signal INVENTORY_FULL ()
 
 # menu signals
 @warning_ignore("unused_signal")
