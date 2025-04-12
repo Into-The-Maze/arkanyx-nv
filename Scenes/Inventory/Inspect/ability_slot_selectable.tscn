@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf7y77yjhlrvs"]
+[gd_scene load_steps=6 format=3 uid="uid://bf7y77yjhlrvs"]
 
 [ext_resource type="Texture2D" uid="uid://cqq1y25rra308" path="res://Resources/AbilitySlots/any_slot.png" id="1_t34qa"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inspect/ability_slot_selectable.gd" id="2_3bq5h"]
 [ext_resource type="Resource" uid="uid://d4mkd1abe1syr" path="res://Resources/player_abilities.tres" id="2_a4fhr"]
+[ext_resource type="Texture2D" uid="uid://qmkvbd8jw1d6" path="res://Abilities/fireball/fireball.png" id="4_1u62c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56bse"]
 
@@ -13,21 +14,23 @@ offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_56bse")
 script = ExtResource("2_3bq5h")
 ability_icon = NodePath("AbilityIcon")
-slot_icon = NodePath("SlotIcon")
+slot_icon = NodePath("AbilityIcon/SlotIcon")
 abilities_grid = NodePath("AbilitiesGrid")
 learned_abilities = ExtResource("2_a4fhr")
 
-[node name="SlotIcon" type="Sprite2D" parent="."]
+[node name="AbilityIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_1u62c")
+centered = false
+
+[node name="SlotIcon" type="Sprite2D" parent="AbilityIcon"]
 texture_filter = 1
 texture = ExtResource("1_t34qa")
 centered = false
 
-[node name="AbilityIcon" type="Sprite2D" parent="."]
-texture_filter = 1
-centered = false
-
 [node name="Button" type="Button" parent="."]
 z_index = -1
+texture_filter = 1
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
