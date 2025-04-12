@@ -18,7 +18,17 @@ signal INVENTORY_UPDATE ()
 @warning_ignore("unused_signal")
 signal INVENTORY_DESELECTED ()
 @warning_ignore("unused_signal")
-signal INVENTORY_ITEM_DROPPED ()
+signal INVENTORY_ITEM_DROPPED
+
+# ability slots signals
+@warning_ignore("unused_signal")
+signal GEAR_WEAPON_CHANGED
+@warning_ignore("unused_signal")
+signal WEAPON_SLOTS_UPDATED
+
+# picking up items
+@warning_ignore("unused_signal")
+signal NEARBY_ITEM_DETECTED
 @warning_ignore("unused_signal")
 signal INVENTORY_FULL ()
 

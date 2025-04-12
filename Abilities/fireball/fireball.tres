@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://chraium0ow57s"]
+
+[ext_resource type="Texture2D" uid="uid://dj7026p56uxjd" path="res://Abilities/fireball/fireball.png" id="1_m43k6"]
+[ext_resource type="Script" path="res://Scripts/Ability/Ability.gd" id="2_y6ewt"]
+
+[resource]
+script = ExtResource("2_y6ewt")
+ability_name = "Fireball"
+description = "Shoot a large fireball which explodes upon impact."
+icon = ExtResource("1_m43k6")
+type = 0
+cooldown = 6.0

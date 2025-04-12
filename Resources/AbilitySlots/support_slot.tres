@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AbilitySlot" load_steps=3 format=3 uid="uid://dsqxgu2etjage"]
+
+[ext_resource type="Script" path="res://Scripts/AbilitySlot/Ability_Slot.gd" id="1_fqrg2"]
+[ext_resource type="Texture2D" uid="uid://dmt314sdudeai" path="res://Resources/AbilitySlots/support_slot.png" id="2_ybgii"]
+
+[resource]
+script = ExtResource("1_fqrg2")
+slot_type = 3
+slot_icon = ExtResource("2_ybgii")

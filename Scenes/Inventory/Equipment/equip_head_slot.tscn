@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://130qariii0xe"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_head_slot.gd" id="1_g0hfx"]
+[ext_resource type="Texture2D" uid="uid://jibh4tp0s1f7" path="res://Assets/Temporary/equip_menu_head.png" id="1_hew2j"]
+
+[node name="HeadSlot" type="Panel"]
+custom_minimum_size = Vector2(64, 32)
+offset_right = 64.0
+offset_bottom = 32.0
+script = ExtResource("1_g0hfx")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_hew2j")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 32.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Item" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="Interact" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="button_down" from="Interact" to="." method="_on_interact_button_down"]

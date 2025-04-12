@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk4xb4jrpsus4"]
+
+[ext_resource type="Texture2D" uid="uid://r56bw4uuq77u" path="res://Assets/Temporary/equip_menu_weapon.png" id="1_em147"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Equipment/equip_weapon_slot.gd" id="1_q5mfj"]
+
+[node name="WeaponSlot" type="Panel"]
+custom_minimum_size = Vector2(40, 96)
+offset_right = 40.0
+offset_bottom = 96.0
+script = ExtResource("1_q5mfj")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_em147")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 96.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Item" type="Sprite2D" parent="CenterContainer/Panel"]
+texture_filter = 1
+
+[node name="Interact" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(40, 96)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 96.0
+
+[connection signal="button_down" from="Interact" to="." method="_on_interact_button_down"]

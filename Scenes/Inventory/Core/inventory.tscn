@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5m3njv4mbdmo"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Core/inventory_controller.gd" id="1_hwikq"]
+[ext_resource type="Texture2D" uid="uid://bbhohbpec1gcs" path="res://Assets/Temporary/inventory_background_tmp.png" id="2_i46gf"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Core/Inventory_select.gd" id="3_741af"]
+[ext_resource type="Texture2D" uid="uid://chbe0a34d362m" path="res://Assets/Temporary/inventory_drop_item.png" id="3_s8ih6"]
+
+[node name="Inventory" type="Control"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.994161, 1)
+script = ExtResource("1_hwikq")
+
+[node name="Inventory_Background" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("2_i46gf")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Grid" type="GridContainer" parent="Inventory_Background"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 46.0
+columns = 4
+script = ExtResource("3_741af")
+
+[node name="DropItemBackground" type="TextureRect" parent="Inventory_Background"]
+texture_filter = 1
+layout_mode = 0
+offset_top = -40.0
+offset_right = 40.0
+texture = ExtResource("3_s8ih6")
+
+[node name="DropItem" type="Button" parent="Inventory_Background/DropItemBackground"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Inventory_Background/DropItemBackground/DropItem" to="." method="_on_drop_item_pressed"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Inventory_Item" load_steps=3 format=3 uid="uid://jkcwgpjo1ce2"]
+
+[ext_resource type="Texture2D" uid="uid://qmkvbd8jw1d6" path="res://Abilities/fireball/fireball.png" id="1_np14m"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Item Types/Item.gd" id="2_7qcbc"]
+
+[resource]
+script = ExtResource("2_7qcbc")
+name = "Item"
+description = "le item le test item for tests"
+icon = ExtResource("1_np14m")

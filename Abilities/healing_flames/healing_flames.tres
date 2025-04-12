@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://dq7lliqevtqbs"]
+
+[ext_resource type="Texture2D" uid="uid://bdsmp2e01hx6i" path="res://Abilities/healing_flames/healing_flames.png" id="1_g3c3u"]
+[ext_resource type="Script" path="res://Scripts/Ability/Ability.gd" id="2_cxljl"]
+
+[resource]
+script = ExtResource("2_cxljl")
+ability_name = "Healing Flames"
+description = "Conjure a circle of healing flames on your position"
+icon = ExtResource("1_g3c3u")
+type = 2
+cooldown = 10.0
