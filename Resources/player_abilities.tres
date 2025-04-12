@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Ability/Ability.gd" id="1_lv8ei"]
 [ext_resource type="Script" path="res://Scripts/Ability/LearnedAbilities.gd" id="2_8scth"]
 [ext_resource type="Resource" uid="uid://chraium0ow57s" path="res://Abilities/fireball/fireball.tres" id="2_lr1cn"]
-[ext_resource type="Resource" uid="uid://6ioxfcjy5y68" path="res://Abilities/bolt/bolt.tres" id="3_gknbv"]
-[ext_resource type="Resource" uid="uid://dq7lliqevtqbs" path="res://Abilities/heal/heal.tres" id="4_8xxjo"]
+[ext_resource type="Resource" uid="uid://6ioxfcjy5y68" path="res://Abilities/magic_bolt/magic_bolt.tres" id="3_gknbv"]
+[ext_resource type="Resource" uid="uid://dq7lliqevtqbs" path="res://Abilities/healing_flames/healing_flames.tres" id="4_8xxjo"]
 
 [resource]
 script = ExtResource("2_8scth")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beyvjpxa0i304"
-path="res://.godot/imported/bolt.png-2fda7a363fd74e75c03e1183c96e2baa.ctex"
+uid="uid://bdsmp2e01hx6i"
+path="res://.godot/imported/healing_flames.png-cadb65dc980c3a40fa2f8f3744f08bac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Abilities/bolt/bolt.png"
-dest_files=["res://.godot/imported/bolt.png-2fda7a363fd74e75c03e1183c96e2baa.ctex"]
+source_file="res://Abilities/healing_flames/healing_flames.png"
+dest_files=["res://.godot/imported/healing_flames.png-cadb65dc980c3a40fa2f8f3744f08bac.ctex"]
 
 [params]
 
