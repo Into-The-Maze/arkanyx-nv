@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://y2m0db3tgh2x"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Debug Item Spawner/debug_item_spawner_item_container.gd" id="1_vikxw"]
+
+[node name="CenterContainer" type="CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_vikxw")
+
+[node name="ItemTexture" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Spawn" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[connection signal="button_down" from="Spawn" to="." method="_on_spawn_button_down"]

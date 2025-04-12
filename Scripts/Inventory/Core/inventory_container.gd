@@ -16,7 +16,8 @@ func _ready():
 	SIGNAL_BUS.connect("INVENTORY_ITEM_SWAPPED", swap_item.bind())
 	SIGNAL_BUS.connect("INVENTORY_ITEM_DROPPED", drop_item.bind())
 	SIGNAL_BUS.connect("NEARBY_ITEM_PICKUP", pickup_item.bind())
-	
+	SIGNAL_BUS.connect("DEBUG_INSERT_NEW_ITEM", debug_insert_item.bind())
+
 	close()
 	
 	# debug code
@@ -76,6 +77,7 @@ func swap_item(id, _texture):
 
 func insert_item(id, item, inventory=player_inventory):
 	if inventory == null: return
+	if id == -1: return
 	inventory.inventory[id] = item
 	SIGNAL_BUS.emit_signal("INVENTORY_UPDATE")
 
@@ -92,11 +94,17 @@ func drop_item():
 
 func pickup_item(item_guid):
 	var inventory_item = ITEM_REGISTRY.get_item(item_guid)
-	insert_item(get_avaiable_slot(), inventory_item)
+	insert_item(get_available_slot(), inventory_item)
 
-func get_avaiable_slot(inventory=player_inventory) -> int:
+func get_available_slot(inventory=player_inventory) -> int:
 	for i in range(0, inventory.inventory.size()):
 		if inventory.inventory[i] == null:
 			return i
 	
-	return -1 #todo! implement full inventory
+	SIGNAL_BUS.emit_signal("INVENTORY_FULL")
+	return -1
+
+func debug_insert_item(item):
+	var i = item.duplicate()
+	ITEM_REGISTRY.register_item(i)
+	insert_item(get_available_slot(), i)
