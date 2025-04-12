@@ -6,7 +6,7 @@ extends Panel
 func set_ability(newAbility: Ability):
 	if !newAbility:	
 		ability = null
-		icon.texture = preload("res://Assets/Temporary/inventory_drop_item.png")
+		icon.texture = preload("res://Abilities/deselect.png")
 	else:
 		ability = newAbility
 		icon.texture = ability.icon
