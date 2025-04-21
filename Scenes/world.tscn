@@ -213,7 +213,7 @@ skeleton = NodePath("../../Ramp_8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3559, 0, 3.20152)
 
 [node name="Ramp_12" type="StaticBody3D" parent="Box"]
-transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -1.92634, 3.5097, -10.6675)
+transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -3.79114, 3.5097, -10.6675)
 collision_layer = 2
 collision_mask = 15
 
@@ -221,7 +221,6 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_7ci88")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.912045, 0, -0.944708)
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../../Terrain/Ramp_8")
 
@@ -262,7 +261,7 @@ mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../../Terrain/Ramp_8")
 
 [node name="Ramp_16" type="StaticBody3D" parent="Box"]
-transform = Transform3D(0.00473604, 0, -2.11973, 0, 2.11974, 0, 2.11973, 0, 0.00473604, 4.68791, 3.57267, 6.97422)
+transform = Transform3D(0.00473604, 0, -2.11973, 0, 2.11974, 0, 2.11973, 0, 0.00473604, 5.18941, 3.57267, 8.55093)
 collision_layer = 2
 collision_mask = 15
 
@@ -270,6 +269,6 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_7ci88")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_16"]
-transform = Transform3D(1, 0, 2.32831e-10, 0, 1, 0, -2.32831e-10, 0, 1, 1.2276, 0, 0.00274301)
+transform = Transform3D(1, 0, 2.32831e-10, 0, 1, 0, -2.32831e-10, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../../Terrain/Ramp_8")
