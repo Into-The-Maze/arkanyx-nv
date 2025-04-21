@@ -9,4 +9,4 @@ ability_name = "Fireball"
 description = "Shoot a large fireball which explodes upon impact."
 icon = ExtResource("1_m43k6")
 type = 0
-cooldown = 6.0
+cooldown = 10.0

@@ -9,4 +9,4 @@ ability_name = "Magic Bolt"
 description = "Fire a small, quick projectile of purple energy."
 icon = ExtResource("1_ysw61")
 type = 0
-cooldown = 3.0
+cooldown = 2.0

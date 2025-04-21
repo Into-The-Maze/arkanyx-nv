@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://bxt1cxi6j0ye6"]
+
+[ext_resource type="Script" path="res://Scripts/Ability/Ability.gd" id="1_1mr6e"]
+[ext_resource type="Texture2D" uid="uid://ie3bbryfrvru" path="res://Abilities/rage/rage.png" id="1_xk74t"]
+
+[resource]
+script = ExtResource("1_1mr6e")
+ability_name = "Rage"
+description = "Increase damage and damage taken for 10 seconds."
+icon = ExtResource("1_xk74t")
+type = -1
+cooldown = 40.0

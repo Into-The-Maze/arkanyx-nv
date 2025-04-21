@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://dth5d2vakb3f8"]
+
+[ext_resource type="Texture2D" uid="uid://hp8dje3uk7nn" path="res://Abilities/uplift/uplift.png" id="1_i4neq"]
+[ext_resource type="Script" path="res://Scripts/Ability/Ability.gd" id="1_ol73v"]
+
+[resource]
+script = ExtResource("1_ol73v")
+ability_name = "Uplift"
+description = "Put down an area of uplifting morale. You and any allies in this area gain movement speed."
+icon = ExtResource("1_i4neq")
+type = 3
+cooldown = 20.0

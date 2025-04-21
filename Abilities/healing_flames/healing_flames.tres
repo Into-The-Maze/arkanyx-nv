@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_cxljl")
 ability_name = "Healing Flames"
-description = "Conjure a circle of healing flames on your position"
+description = "Conjure a circle of green flames on your position. Healing any allies within."
 icon = ExtResource("1_g3c3u")
 type = 2
-cooldown = 10.0
+cooldown = 15.0
