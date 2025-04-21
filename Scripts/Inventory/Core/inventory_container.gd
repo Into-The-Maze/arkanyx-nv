@@ -19,19 +19,6 @@ func _ready():
 	SIGNAL_BUS.connect("DEBUG_INSERT_NEW_ITEM", debug_insert_item.bind())
 
 	close()
-	
-	# debug code
-	var item = preload("res://Items/test_orb/test_orb.tres")
-	ITEM_REGISTRY.register_item(item)
-	insert_item(0, item)
-	
-	var item2 = preload("res://Items/test_staff_1/test_staff.tres")
-	ITEM_REGISTRY.register_item(item2)
-	insert_item(1, item2)
-	
-	var item3 = preload("res://Items/placeholder_item/test_item.tres")
-	ITEM_REGISTRY.register_item(item3)
-	insert_item(2, item3)
 
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):

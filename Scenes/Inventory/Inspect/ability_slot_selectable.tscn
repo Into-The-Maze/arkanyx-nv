@@ -35,6 +35,7 @@ offset_bottom = 64.0
 flat = true
 
 [node name="AbilitiesGrid" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 offset_left = 64.0
 offset_top = 64.0
