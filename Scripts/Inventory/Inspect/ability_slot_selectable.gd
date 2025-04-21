@@ -8,6 +8,9 @@ extends Panel
 
 var slot: AbilitySlot
 
+func _ready():
+	abilities_grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 func set_slot(newSlot: AbilitySlot):
 	slot = newSlot
 	slot_icon.texture = slot.slot_icon
@@ -33,10 +36,12 @@ func _on_button_pressed() -> void:
 			abilities_grid.add_child(new_option)
 	
 	abilities_grid.visible = true
+	abilities_grid.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func clear_options():
 	for child in abilities_grid.get_children():
 		child.queue_free()
+	abilities_grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func selected_ability(selected: Ability):
 	if selected:

@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends GridContainer
 
 @onready var selectable_slot = preload("res://Scenes/Inventory/Inspect/ability_slot_selectable.tscn")
 
