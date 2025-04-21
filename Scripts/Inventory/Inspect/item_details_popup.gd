@@ -5,11 +5,10 @@ extends Panel
 @export var weapon_desc_set: LabelSettings
 @export var weapon_name_set: LabelSettings
 
-@onready var v_box = $VBox
-@onready var icon = $VBox/Icon_and_Name/Icon
-@onready var name_label = $VBox/Icon_and_Name/Name
-@onready var description_label = $VBox/Description
-@onready var ability_select = $VBox/AbilitySelect
+@onready var icon = $Icon/Texture
+@onready var name_label = $Name
+@onready var description_label = $ScrollContainer/Description
+@onready var ability_select = $AbilitySelect
 
 func show_item(item: Inventory_Item, pos: Vector2):
 	
@@ -18,7 +17,6 @@ func show_item(item: Inventory_Item, pos: Vector2):
 	else:
 		construct_item_popup(item)
 	
-	size = v_box.get_minimum_size()
 	global_position = pos + Vector2(128, -64)
 
 func scale_texture_to_px(texture: Texture, size: int):
@@ -28,8 +26,8 @@ func scale_texture_to_px(texture: Texture, size: int):
 		var scale_factor = size / min(original_width, original_height)
 		var new_width = original_width * scale_factor
 		var new_height = original_height * scale_factor
-		icon.custom_minimum_size = Vector2(new_width, new_height)
-		icon.expand = true
+		#icon.custom_minimum_size = Vector2(new_width, new_height)
+		#icon.expand = true
 
 func _on_close_pressed():
 	queue_free()

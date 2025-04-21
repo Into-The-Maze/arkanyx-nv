@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dogs1kh3ujrul"]
+[gd_scene load_steps=8 format=3 uid="uid://dogs1kh3ujrul"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/Inspect/item_details_popup.gd" id="1_7m1ry"]
 [ext_resource type="LabelSettings" uid="uid://21ee5k4n842j" path="res://Assets/UI/ItemDetailsPopup/desc_label_settings.tres" id="2_ai1aa"]
@@ -8,87 +8,65 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/Inspect/ability_select.gd" id="6_emd4d"]
 [ext_resource type="Texture2D" uid="uid://chbe0a34d362m" path="res://Assets/Temporary/inventory_drop_item.png" id="7_ew040"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4unkc"]
-bg_color = Color(0.936035, 0.754525, 0.568768, 1)
-border_width_left = 12
-border_width_top = 12
-border_width_right = 12
-border_width_bottom = 12
-border_color = Color(0.779343, 0.546321, 0.294591, 1)
-border_blend = true
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 24.0
-expand_margin_top = 24.0
-expand_margin_right = 24.0
-expand_margin_bottom = 24.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx8lr"]
-
 [node name="ItemDetailsPopup" type="Panel"]
 texture_filter = 1
-offset_right = 164.0
-offset_bottom = 68.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4unkc")
+offset_right = 300.0
+offset_bottom = 370.0
 script = ExtResource("1_7m1ry")
 desc_set = ExtResource("2_ai1aa")
 name_set = ExtResource("3_md2ib")
 weapon_desc_set = ExtResource("4_sm8fi")
 weapon_name_set = ExtResource("5_don4e")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="Icon" type="CenterContainer" parent="."]
 texture_filter = 1
-custom_minimum_size = Vector2(164, 68)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 24
-
-[node name="Icon_and_Name" type="HBoxContainer" parent="VBox"]
-texture_filter = 1
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
-theme_override_constants/separation = 12
+offset_right = 96.0
+offset_bottom = 96.0
 
-[node name="Panel" type="Panel" parent="VBox/Icon_and_Name"]
-texture_filter = 1
+[node name="Texture" type="TextureRect" parent="Icon"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="VBox/Icon_and_Name"]
+[node name="Name" type="Label" parent="."]
 texture_filter = 1
+custom_minimum_size = Vector2(204, 96)
 layout_mode = 2
-
-[node name="Panel2" type="Panel" parent="VBox/Icon_and_Name"]
-texture_filter = 1
-custom_minimum_size = Vector2(8, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_yx8lr")
-
-[node name="Name" type="Label" parent="VBox/Icon_and_Name"]
-texture_filter = 1
-layout_mode = 2
-text = "Name
-"
+offset_left = 96.0
+offset_right = 192.0
+offset_bottom = 96.0
+text = "Name"
 label_settings = ExtResource("3_md2ib")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Panel3" type="Panel" parent="VBox/Icon_and_Name"]
-texture_filter = 1
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(280, 120)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 96.0
+offset_right = 290.0
+offset_bottom = 156.0
 
-[node name="Description" type="Label" parent="VBox"]
+[node name="Description" type="Label" parent="ScrollContainer"]
 self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
-custom_minimum_size = Vector2(200, 8)
+custom_minimum_size = Vector2(280, 19)
 layout_mode = 2
 text = "Desc"
 label_settings = ExtResource("2_ai1aa")
 autowrap_mode = 2
 
-[node name="AbilitySelect" type="HBoxContainer" parent="VBox"]
-visible = false
+[node name="AbilitySelect" type="GridContainer" parent="."]
 texture_filter = 1
+custom_minimum_size = Vector2(280, 64)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 290.0
+offset_bottom = 280.0
+columns = 4
 script = ExtResource("6_emd4d")
 
 [node name="Close" type="Button" parent="."]
