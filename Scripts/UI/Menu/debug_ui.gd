@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @export var target_stats: StatBlock
-@onready var player: CharacterBody3D = $".."
+@onready var player: CharacterBody3D = $".."/SubViewportContainer/SubViewport/Character
 @onready var container_l: VBoxContainer = $LeftContainer
 @onready var container_r: VBoxContainer = $RightContainer
 

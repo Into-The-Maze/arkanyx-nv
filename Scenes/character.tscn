@@ -1,19 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://dp5s7rhrwuaa4"]
+[gd_scene load_steps=11 format=3 uid="uid://dp5s7rhrwuaa4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/movement.gd" id="1_8xy7i"]
-[ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/UI/InGameUI.tscn" id="4_7an58"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Core/pick_up_items.gd" id="4_yt74t"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_nulxb"]
-[ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/UI/MenuUI.tscn" id="5_ogdjs"]
-[ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/UI/DebugStatsUI.tscn" id="6_kqiv7"]
 [ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/player_inventory.tres" id="6_l3lq6"]
 [ext_resource type="Resource" uid="uid://bg30gi84ppkpd" path="res://Resources/player_equipment.tres" id="6_pudw4"]
 [ext_resource type="Script" path="res://Scripts/AbilitySlot/current_ability_slot_manager.gd" id="8_eseud"]
-[ext_resource type="PackedScene" uid="uid://b84b3qsok860l" path="res://Scenes/Inventory/Equipment/equip_menu.tscn" id="9_b2u6l"]
 [ext_resource type="Resource" uid="uid://d4mkd1abe1syr" path="res://Resources/player_abilities.tres" id="9_e3x05"]
-[ext_resource type="PackedScene" uid="uid://tifbh35o55rm" path="res://Scenes/Inventory/Core/Inventory_Container.tscn" id="9_ro02m"]
-[ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/Core/inventory.tscn" id="10_s4gnd"]
-[ext_resource type="PackedScene" uid="uid://bfb8dax0hbm2c" path="res://Scenes/Inventory/Core/pick_up_item_alert_ui.tscn" id="12_x1b5b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4w3w"]
 radius = 0.45
@@ -40,9 +33,6 @@ layers = 2
 mesh = SubResource("CapsuleMesh_3wky1")
 skeleton = NodePath("")
 
-[node name="ItemDropPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
-
 [node name="ItemPickUpZone" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 8
@@ -60,24 +50,6 @@ learned_abilities = ExtResource("9_e3x05")
 
 [node name="CurrentAbilitySlotManager" type="Node" parent="Data"]
 script = ExtResource("8_eseud")
-
-[node name="InventoryController" parent="." instance=ExtResource("9_ro02m")]
-player_inventory = ExtResource("6_l3lq6")
-
-[node name="Inventory" parent="InventoryController" instance=ExtResource("10_s4gnd")]
-mouse_filter = 1
-inventory_data = ExtResource("6_l3lq6")
-
-[node name="EquipMenu" parent="InventoryController" instance=ExtResource("9_b2u6l")]
-
-[node name="InGameUI" parent="." instance=ExtResource("4_7an58")]
-
-[node name="MenuUI" parent="." instance=ExtResource("5_ogdjs")]
-
-[node name="DebugStatsUI" parent="." instance=ExtResource("6_kqiv7")]
-process_mode = 3
-
-[node name="PickUpItemAlertUI" parent="." instance=ExtResource("12_x1b5b")]
 
 [connection signal="body_entered" from="ItemPickUpZone" to="ItemPickUpZone" method="_on_body_entered"]
 [connection signal="body_exited" from="ItemPickUpZone" to="ItemPickUpZone" method="_on_body_exited"]
