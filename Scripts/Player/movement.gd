@@ -10,6 +10,7 @@ var stats: StatBlock
 @onready var jump_charge_bar: ProgressBar = $InGameUI/JumpChargeBar
 @onready var dodge_cooldown_bar: ProgressBar = $InGameUI/DodgeCooldownBar
 @onready var wall_hold_bar: ProgressBar = $InGameUI/WallHoldBar
+@onready var rotated: Node3D = %Rotated
 
 var jump_charge_timer: float = 0.0
 var dodge_cooldown_timer: float = 0.0
@@ -21,6 +22,8 @@ var is_dodging: bool = false
 var is_air_dodging: bool = false
 var is_wall_holding: bool = false
 var is_wall_dodging: bool = false
+var last_movement_direction : Vector3 = Vector3.BACK
+var rotation_speed : float = 12.0
 
 func _ready() -> void:
 	stats = load_player_stats()
@@ -50,12 +53,19 @@ func _physics_process(delta: float) -> void:
 	current_velocity = process_jumping(delta, current_velocity, direction)
 	current_velocity = process_wall_holding(delta, current_velocity)
 	current_velocity = process_dodging(delta, current_velocity, direction)
-	
+		
 	var horizontal_velocity: Vector3 = Vector3(current_velocity.x, 0, current_velocity.z)
 	apply_dynamic_fov(delta, horizontal_velocity)
-	
+		
 	velocity = current_velocity
 	move_and_slide()
+	
+	if direction.length() > 0.2:
+		last_movement_direction = direction
+	
+	var target_angle := Vector3.BACK.signed_angle_to(last_movement_direction, Vector3.UP)
+	
+	rotated.global_rotation.y = lerp_angle(rotated.rotation.y, target_angle, rotation_speed * delta)
 
 func update_timers_and_flags(delta: float) -> void:
 	if is_dodging:
