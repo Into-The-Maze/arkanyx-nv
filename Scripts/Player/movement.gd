@@ -6,10 +6,10 @@ var stats: StatBlock
 
 # REFERENCES
 @onready var camera: Camera3D = $Pivot/Camera
-@onready var in_game_canvas: CanvasLayer = $InGameUI
-@onready var jump_charge_bar: ProgressBar = $InGameUI/JumpChargeBar
-@onready var dodge_cooldown_bar: ProgressBar = $InGameUI/DodgeCooldownBar
-@onready var wall_hold_bar: ProgressBar = $InGameUI/WallHoldBar
+@onready var in_game_canvas: CanvasLayer = $".."/".."/".."/InGameUI
+@onready var jump_charge_bar: ProgressBar = $".."/".."/".."/InGameUI/JumpChargeBar
+@onready var dodge_cooldown_bar: ProgressBar = $".."/".."/".."/InGameUI/DodgeCooldownBar
+@onready var wall_hold_bar: ProgressBar = $".."/".."/".."/InGameUI/WallHoldBar
 
 var jump_charge_timer: float = 0.0
 var dodge_cooldown_timer: float = 0.0

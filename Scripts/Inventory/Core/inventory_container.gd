@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @export var player_inventory: Inventory
 
-@onready var drop_point = $".."/ItemDropPoint
+@export var drop_point: Node3D
 
 var is_open: bool
 var selected_item: Inventory_Item

@@ -1,6 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfnibrakagxsc"]
+[gd_scene load_steps=26 format=3 uid="uid://bfnibrakagxsc"]
 
 [ext_resource type="PackedScene" uid="uid://dp5s7rhrwuaa4" path="res://Scenes/character.tscn" id="1_u2vbt"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_movement.gd" id="2_vu2sb"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_interpolation.gd" id="3_hpktm"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_distance.gd" id="4_kvboi"]
+[ext_resource type="PackedScene" uid="uid://tifbh35o55rm" path="res://Scenes/Inventory/Core/Inventory_Container.tscn" id="5_hhq8t"]
+[ext_resource type="Shader" path="res://Shaders/WORLD_pixel_perfect_outlines.gdshader" id="5_ldhh1"]
+[ext_resource type="Resource" uid="uid://c38hcilxr66pf" path="res://Resources/player_inventory.tres" id="6_fivgh"]
+[ext_resource type="PackedScene" uid="uid://b5m3njv4mbdmo" path="res://Scenes/Inventory/Core/inventory.tscn" id="7_oyjqv"]
+[ext_resource type="PackedScene" uid="uid://b84b3qsok860l" path="res://Scenes/Inventory/Equipment/equip_menu.tscn" id="8_1218m"]
+[ext_resource type="PackedScene" uid="uid://be7hwrgdre84" path="res://Scenes/UI/InGameUI.tscn" id="9_j7vnl"]
+[ext_resource type="PackedScene" uid="uid://dk5owb68hs1pq" path="res://Scenes/UI/MenuUI.tscn" id="10_7md2r"]
+[ext_resource type="PackedScene" uid="uid://cm4xqycyfeugt" path="res://Scenes/UI/DebugStatsUI.tscn" id="11_d0iji"]
+[ext_resource type="PackedScene" uid="uid://bfb8dax0hbm2c" path="res://Scenes/Inventory/Core/pick_up_item_alert_ui.tscn" id="12_h3cal"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hm7ad"]
 
@@ -28,6 +40,25 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_length = 32.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htwg8"]
+render_priority = -5
+shader = ExtResource("5_ldhh1")
+shader_parameter/depth_threshold = 0.05
+shader_parameter/reverse_depth_threshold = 0.25
+shader_parameter/normal_threshold = 0.6
+shader_parameter/darken_amount = 0.3
+shader_parameter/lighten_amount = 1.5
+shader_parameter/normal_edge_bias = Vector3(1, 1, 1)
+shader_parameter/light_direction = Vector3(-0.96, -0.18, 0.2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lp5t8"]
+material = SubResource("ShaderMaterial_htwg8")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5lchf"]
+radius = 0.1
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6hif"]
 size = Vector3(1000, 1, 1000)
 
@@ -46,10 +77,7 @@ size = Vector3(1000, 1000, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_mohbo"]
 size = Vector3(1000, 1000, 1)
 
-[node name="World" type="Node3D"]
-
-[node name="Character" parent="." instance=ExtResource("1_u2vbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29334, 1.5, 0.0426874)
+[node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ub5ws")
@@ -58,218 +86,276 @@ environment = SubResource("Environment_ub5ws")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Terrain" type="StaticBody3D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="Character" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_u2vbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29334, 1.5, 0.0426874)
+
+[node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport/Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+script = ExtResource("2_vu2sb")
+
+[node name="Camera" type="Camera3D" parent="SubViewportContainer/SubViewport/Character/Pivot"]
+fov = 90.0
+script = ExtResource("3_hpktm")
+
+[node name="PostProcessing" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Character/Pivot/Camera"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_lp5t8")
+skeleton = NodePath("../../../..")
+
+[node name="SpringArm" type="SpringArm3D" parent="SubViewportContainer/SubViewport/Character/Pivot"]
+collision_mask = 2
+shape = SubResource("SphereShape3D_5lchf")
+spring_length = 4.0
+script = ExtResource("4_kvboi")
+max_zoom = 4.0
+
+[node name="SpringTarget" type="Node3D" parent="SubViewportContainer/SubViewport/Character/Pivot/SpringArm"]
+
+[node name="ItemDropPoint" type="Node3D" parent="SubViewportContainer/SubViewport/Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
+
+[node name="Terrain" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain"]
 shape = SubResource("BoxShape3D_q6hif")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain"]
 mesh = SubResource("BoxMesh_eqh6l")
 
-[node name="Ramp_1" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_1" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(0.5, -0.5, 0.707107, 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 14.427, 0, 0)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_1"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_1"]
 mesh = SubResource("BoxMesh_ikhiv")
 
-[node name="Ramp_2" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.457107, -0.25, 0.853553, 0.853553, 0.146447, 0.5, -0.25, 0.957107, 0.146447, 21.6405, 3.60375, 16.4295)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_2"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_2"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../Ramp_2")
 
-[node name="Ramp_3" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.832107, 0.478553, 0.28033, 0.28033, -0.0732232, 0.957107, 0.478553, 0.875, -0.0732233, 15.0458, 0.483628, 25.7163)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_3"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_3"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../Ramp_3")
 
-[node name="Ramp_4" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.21783, 0.894607, -0.390165, -0.760468, 0.0949968, 0.642389, 0.61175, 0.43664, 0.659627, 3.04101, 0.0672188, 32.6204)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_4"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_4"]
 transform = Transform3D(1, -2.98023e-08, -2.98023e-08, -8.9407e-08, 1, -1.19209e-07, 2.98023e-08, 5.96046e-08, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../Ramp_4")
 
-[node name="Ramp_5" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_5" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(0.5, -0.5, 0.707107, 0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 14.427, 0, 0)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_5"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0496845, -0.0496855, 0.0994196)
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../Ramp_5")
 
-[node name="Ramp_6" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_6" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.852, 5.5, -29.5103)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_6"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_6"]
 mesh = SubResource("BoxMesh_ikhiv")
 
-[node name="Ramp_7" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_7" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.520682, 0, 0.853751, 0, 1, 0, -0.853751, 0, -0.520682, -1.82499, 5.5, -44.567)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_7"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_7"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../Ramp_7")
 
-[node name="Ramp_8" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_8" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.45778, 0, -0.889065, 0, 0.999999, 0, 0.889065, 0, -0.45778, -14.6752, 12.4084, -42.5615)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_8"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_8"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_8"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../Ramp_8")
 
-[node name="AngledPlane" type="StaticBody3D" parent="Terrain"]
+[node name="AngledPlane" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(1, 0, 0, 0, 0.422618, -0.906308, 0, 0.906308, 0.422618, 0, 0, 25)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/AngledPlane"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/AngledPlane"]
 shape = SubResource("BoxShape3D_3e121")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/AngledPlane"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/AngledPlane"]
 mesh = SubResource("BoxMesh_mohbo")
 
-[node name="Ramp_9" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_9" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(0.815815, 0, 0.578313, 0, 1, 0, -0.578313, 0, 0.815815, -0.437655, 19.0593, -33.0292)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_9"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_9"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_9"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_9"]
 mesh = SubResource("BoxMesh_ikhiv")
 
-[node name="Ramp_10" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_10" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.520682, 0, 0.853751, 0, 1, 0, -0.853751, 0, -0.520682, 1.235, 20.8725, -48.3805)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_10"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_10"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_10"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_10"]
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_7")
 
-[node name="Ramp_11" type="StaticBody3D" parent="Terrain"]
+[node name="Ramp_11" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(-0.190209, 0, -0.981743, 0, 0.999999, 0, 0.981743, 0, -0.190209, -10.8182, 26.4996, -42.5615)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Ramp_11"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_11"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Ramp_11"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Ramp_11"]
 mesh = SubResource("BoxMesh_ikhiv")
 skeleton = NodePath("../../Ramp_8")
 
-[node name="Box" type="Node3D" parent="."]
+[node name="Box" type="Node3D" parent="SubViewportContainer/SubViewport/Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3559, 0, 3.20152)
 
-[node name="Ramp_12" type="StaticBody3D" parent="Box"]
+[node name="Ramp_12" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain/Box"]
 transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -1.92634, 3.5097, -10.6675)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_12"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_12"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_12"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.912045, 0, -0.944708)
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../../Terrain/Ramp_8")
+skeleton = NodePath("../../../Ramp_8")
 
-[node name="Ramp_13" type="StaticBody3D" parent="Box"]
+[node name="Ramp_13" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain/Box"]
 transform = Transform3D(0.00473604, 0, -2.11973, 0, 2.11974, 0, 2.11973, 0, 0.00473604, -12.4402, 3.5097, -0.300713)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_13"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_13"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_13"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_13"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../../Terrain/Ramp_8")
+skeleton = NodePath("../../../Ramp_8")
 
-[node name="Ramp_14" type="StaticBody3D" parent="Box"]
+[node name="Ramp_14" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain/Box"]
 transform = Transform3D(-2.11973, 0, -0.00473601, 0, 2.11974, 0, 0.00473601, 0, -2.11973, -3.66652, 3.5097, 8.24849)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_14"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_14"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_14"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_14"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../../Terrain/Ramp_8")
+skeleton = NodePath("../../../Ramp_8")
 
-[node name="Ramp_15" type="StaticBody3D" parent="Box"]
+[node name="Ramp_15" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain/Box"]
 transform = Transform3D(-2.11956, -0.0271917, -0.00347773, 0.00347812, -9.07883e-08, -2.11974, 0.0271917, -2.11956, 4.47068e-05, -4.03217, 12.0983, -0.290261)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_15"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_15"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_15"]
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../../Terrain/Ramp_8")
+skeleton = NodePath("../../../Ramp_8")
 
-[node name="Ramp_16" type="StaticBody3D" parent="Box"]
+[node name="Ramp_16" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Terrain/Box"]
 transform = Transform3D(0.00473604, 0, -2.11973, 0, 2.11974, 0, 2.11973, 0, 0.00473604, 4.68791, 3.57267, 6.97422)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/Ramp_16"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_16"]
 shape = SubResource("BoxShape3D_7ci88")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/Ramp_16"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Terrain/Box/Ramp_16"]
 transform = Transform3D(1, 0, 2.32831e-10, 0, 1, 0, -2.32831e-10, 0, 1, 1.2276, 0, 0.00274301)
 mesh = SubResource("BoxMesh_ikhiv")
-skeleton = NodePath("../../../Terrain/Ramp_8")
+skeleton = NodePath("../../../Ramp_8")
+
+[node name="InventoryController" parent="." node_paths=PackedStringArray("drop_point") instance=ExtResource("5_hhq8t")]
+player_inventory = ExtResource("6_fivgh")
+drop_point = NodePath("../SubViewportContainer/SubViewport/Character/ItemDropPoint")
+
+[node name="Inventory" parent="InventoryController" instance=ExtResource("7_oyjqv")]
+mouse_filter = 1
+inventory_data = ExtResource("6_fivgh")
+metadata/_edit_use_anchors_ = true
+
+[node name="EquipMenu" parent="InventoryController" instance=ExtResource("8_1218m")]
+
+[node name="InGameUI" parent="." instance=ExtResource("9_j7vnl")]
+
+[node name="MenuUI" parent="." instance=ExtResource("10_7md2r")]
+
+[node name="DebugStatsUI" parent="." instance=ExtResource("11_d0iji")]
+process_mode = 3
+
+[node name="PickUpItemAlertUI" parent="." instance=ExtResource("12_h3cal")]
