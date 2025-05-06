@@ -1,24 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw48uwn4yawng"]
+[gd_scene load_steps=3 format=3 uid="uid://dw48uwn4yawng"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/Inspect/ability_option.gd" id="1_1f3k5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bqg5f"]
+size = Vector2(20, 20)
 
 [node name="AbilityOption" type="Panel" node_paths=PackedStringArray("icon", "button")]
 texture_filter = 1
 custom_minimum_size = Vector2(64, 64)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 64.0
+offset_bottom = 64.0
 script = ExtResource("1_1f3k5")
 icon = NodePath("Icon")
 button = NodePath("Icon/Button")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(3.2, 3.2)
+texture = SubResource("PlaceholderTexture2D_bqg5f")
 centered = false
 
 [node name="Button" type="Button" parent="Icon"]
 texture_filter = 1
-offset_right = 64.0
-offset_bottom = 64.0
+offset_right = 20.0
+offset_bottom = 20.0
 flat = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

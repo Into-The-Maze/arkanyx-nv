@@ -6,10 +6,10 @@
 [ext_resource type="Resource" uid="uid://6ioxfcjy5y68" path="res://Abilities/magic_bolt/magic_bolt.tres" id="3_gknbv"]
 [ext_resource type="Resource" uid="uid://dq7lliqevtqbs" path="res://Abilities/healing_flames/healing_flames.tres" id="4_8xxjo"]
 [ext_resource type="Resource" uid="uid://cs033h4app3xu" path="res://Abilities/douse/douse.tres" id="5_t05y7"]
-[ext_resource type="Resource" uid="uid://dnlxfdnn45bo0" path="res://Abilities/leech/leech.tres" id="6_r1h5q"]
+[ext_resource type="Resource" uid="uid://dnlxfdnn45bo0" path="res://Abilities/vampire/vampire.tres" id="6_dy1wj"]
 [ext_resource type="Resource" uid="uid://bxt1cxi6j0ye6" path="res://Abilities/rage/rage.tres" id="7_e8hum"]
 [ext_resource type="Resource" uid="uid://dth5d2vakb3f8" path="res://Abilities/uplift/uplift.tres" id="8_8fela"]
 
 [resource]
 script = ExtResource("2_8scth")
-abilities = Array[ExtResource("1_lv8ei")]([ExtResource("2_lr1cn"), ExtResource("3_gknbv"), ExtResource("4_8xxjo"), ExtResource("5_t05y7"), ExtResource("6_r1h5q"), ExtResource("7_e8hum"), ExtResource("8_8fela")])
+abilities = Array[ExtResource("1_lv8ei")]([ExtResource("2_lr1cn"), ExtResource("3_gknbv"), ExtResource("4_8xxjo"), ExtResource("5_t05y7"), ExtResource("6_dy1wj"), ExtResource("7_e8hum"), ExtResource("8_8fela")])

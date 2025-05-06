@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btwt4ypviurfa"
-path="res://.godot/imported/leech.png-f4360ae705daaa32cf7b96d979829096.ctex"
+uid="uid://cjwuryekornh0"
+path="res://.godot/imported/vampire.png-101df54bdd2eab74935be380454a43d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Abilities/leech/leech.png"
-dest_files=["res://.godot/imported/leech.png-f4360ae705daaa32cf7b96d979829096.ctex"]
+source_file="res://Abilities/vampire/vampire.png"
+dest_files=["res://.godot/imported/vampire.png-101df54bdd2eab74935be380454a43d5.ctex"]
 
 [params]
 
