@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkhja2uax44on"
-path="res://.godot/imported/healing_slot.png-a75452a137c22ddd1b87e5b374dfb00d.ctex"
+uid="uid://bfqfjdha7d7ut"
+path="res://.godot/imported/selfish_slot.png-e421be6c17c6fe378d8f38298a65fbd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/AbilitySlots/healing_slot.png"
-dest_files=["res://.godot/imported/healing_slot.png-a75452a137c22ddd1b87e5b374dfb00d.ctex"]
+source_file="res://Resources/AbilitySlots/selfish_slot.png"
+dest_files=["res://.godot/imported/selfish_slot.png-e421be6c17c6fe378d8f38298a65fbd2.ctex"]
 
 [params]
 

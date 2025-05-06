@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="AbilitySlot" load_steps=3 format=3 uid="uid://b7k5kpq52dysd"]
-
-[ext_resource type="Script" path="res://Scripts/AbilitySlot/Ability_Slot.gd" id="1_5op4i"]
-[ext_resource type="Texture2D" uid="uid://bfqfjdha7d7ut" path="res://Resources/AbilitySlots/self_buff_slot.png" id="2_8bh8u"]
-
-[resource]
-script = ExtResource("1_5op4i")
-slot_type = 1
-slot_icon = ExtResource("2_8bh8u")

@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://Scripts/AbilitySlot/Ability_Slot.gd" id="1_cu4cb"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Item Types/Item_Weapon.gd" id="2_1hfkf"]
 [ext_resource type="Resource" uid="uid://e5hgrycyc56d" path="res://Resources/AbilitySlots/any_slot.tres" id="2_kv6en"]
-[ext_resource type="Resource" uid="uid://rdd5qiwxs47w" path="res://Resources/AbilitySlots/healing_slot.tres" id="3_ewfv5"]
 [ext_resource type="PackedScene" uid="uid://facmy4lcu82s" path="res://Items/test_staff_1/test_staff_1.tscn" id="3_f5ghg"]
+[ext_resource type="Resource" uid="uid://rdd5qiwxs47w" path="res://Resources/AbilitySlots/heal_slot.tres" id="3_nqmhf"]
 
 [resource]
 script = ExtResource("2_1hfkf")
 equip_icon = ExtResource("1_01g70")
-default_slots = Array[ExtResource("1_cu4cb")]([ExtResource("2_kv6en"), ExtResource("3_ewfv5")])
+default_slots = Array[ExtResource("1_cu4cb")]([ExtResource("2_kv6en"), ExtResource("3_nqmhf")])
 name = "Test Staff"
 description = "Cool le purple le staff lol"
 icon = ExtResource("1_01g70")

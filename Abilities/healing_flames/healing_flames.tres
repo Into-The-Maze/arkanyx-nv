@@ -9,4 +9,4 @@ ability_name = "Healing Flames"
 description = "Conjure a circle of green flames on your position. Healing any allies within."
 icon = ExtResource("1_g3c3u")
 type = 2
-cooldown = 15.0
+cooldown = 12.0

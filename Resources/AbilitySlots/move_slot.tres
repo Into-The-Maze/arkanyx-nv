@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AbilitySlot" load_steps=3 format=3 uid="uid://7dmn8l3dgwm1"]
 
 [ext_resource type="Script" path="res://Scripts/AbilitySlot/Ability_Slot.gd" id="1_ux7t6"]
-[ext_resource type="Texture2D" uid="uid://qxofprj872bg" path="res://Resources/AbilitySlots/movement_slot.png" id="2_vkyvw"]
+[ext_resource type="Texture2D" uid="uid://qxofprj872bg" path="res://Resources/AbilitySlots/move_slot.png" id="2_vkyvw"]
 
 [resource]
 script = ExtResource("1_ux7t6")

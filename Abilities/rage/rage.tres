@@ -8,5 +8,5 @@ script = ExtResource("1_1mr6e")
 ability_name = "Rage"
 description = "Increase damage and damage taken for 10 seconds."
 icon = ExtResource("1_xk74t")
-type = -1
-cooldown = 40.0
+type = 1
+cooldown = 20.0

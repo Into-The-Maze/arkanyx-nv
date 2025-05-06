@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qxofprj872bg"
-path="res://.godot/imported/movement_slot.png-3d69d5e14888715b93b3bcfcdb991c26.ctex"
+uid="uid://c4nif0twhds86"
+path="res://.godot/imported/heal_slot.png-75758c1f179d5b2b0a948da729d3d174.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/AbilitySlots/movement_slot.png"
-dest_files=["res://.godot/imported/movement_slot.png-3d69d5e14888715b93b3bcfcdb991c26.ctex"]
+source_file="res://Resources/AbilitySlots/heal_slot.png"
+dest_files=["res://.godot/imported/heal_slot.png-75758c1f179d5b2b0a948da729d3d174.ctex"]
 
 [params]
 

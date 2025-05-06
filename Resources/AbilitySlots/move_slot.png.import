@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfqfjdha7d7ut"
-path="res://.godot/imported/self_buff_slot.png-95c979bb1f11d699a95a692c44e70269.ctex"
+uid="uid://qxofprj872bg"
+path="res://.godot/imported/move_slot.png-f8907ea113127a892e9047b3cd49eb22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/AbilitySlots/self_buff_slot.png"
-dest_files=["res://.godot/imported/self_buff_slot.png-95c979bb1f11d699a95a692c44e70269.ctex"]
+source_file="res://Resources/AbilitySlots/move_slot.png"
+dest_files=["res://.godot/imported/move_slot.png-f8907ea113127a892e9047b3cd49eb22.ctex"]
 
 [params]
 
