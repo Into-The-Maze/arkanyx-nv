@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://h1v672ul11ao"]
+
+[ext_resource type="Script" path="res://Scripts/UI/InGame/current_slot.gd" id="1_b3ckg"]
+[ext_resource type="Texture2D" uid="uid://cqq1y25rra308" path="res://Resources/AbilitySlots/any_slot.png" id="2_4xhy8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bi8qc"]
+size = Vector2(20, 20)
+
+[node name="CurrentSlot" type="Control" node_paths=PackedStringArray("label", "icon", "slotIcon")]
+custom_minimum_size = Vector2(64, 88)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 96.0
+script = ExtResource("1_b3ckg")
+label = NodePath("Label")
+icon = NodePath("Icon")
+slotIcon = NodePath("SlotIcon")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(3.2, 3.2)
+texture = SubResource("PlaceholderTexture2D_bi8qc")
+centered = false
+
+[node name="SlotIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3.2, -3.2)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("2_4xhy8")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -11.0
+offset_top = 65.0
+offset_right = 75.0
+offset_bottom = 99.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Key"
+horizontal_alignment = 1
